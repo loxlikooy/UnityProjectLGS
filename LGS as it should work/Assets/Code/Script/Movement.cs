@@ -32,6 +32,7 @@ using UnityEngine.UIElements;
         {
             xCollisionMovement();
         }
+        
         private void xCollisionMovement()
         {
        

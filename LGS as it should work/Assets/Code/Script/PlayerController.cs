@@ -1,87 +1,77 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Code.Script;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
+// Требуется компонент InputHandler для работы
+[RequireComponent(typeof(InputHandler))]
 public class PlayerController : MonoBehaviour
 {
-    // Скорость движения игрока в единицах в секунду
-    private float _moveSpeed = 1f;
-    
-    // Отступ для предотвращения застревания игрока из-за незначительных столкновений
-    private float _collisionOffSet = 0.05f;
-    
-    // Фильтр для определения объектов, с которыми игрок может столкнуться
-    public ContactFilter2D movementFilter; //Паблик для получения доступа в юнити
-    
-    // Вектор для отслеживания направления движения игрока на основе пользовательского ввода
-    Vector2 _movementInput;
-    
-    // Ссылка на компонент Rigidbody2D, который управляет физикой игрока
-    Rigidbody2D _rigidbody2D;
-    
-    // Список для хранения потенциальных точек столкновения при движении игрока
-    List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>();
+    [SerializeField]
+    private float _moveSpeed = 1f; // Скорость движения игрока
 
-    // Инициализация: получение ссылки на компонент Rigidbody2D в начале игры
+    private const float CollisionOffset = 0.001f; // Отступ для предотвращения застревания
+
+    [SerializeField]
+    private ContactFilter2D _movementFilter; // Фильтр для определения объектов, с которыми игрок может столкнуться
+
+    private Vector2 _movementInput; // Направление движения игрока
+    private Rigidbody2D _rigidbody2D; // Ссылка на Rigidbody2D компонент игрока
+    private List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>(); // Список для хранения результатов лучевого просеивания
+
+    private InputHandler _inputHandler; // Ссылка на компонент обработки ввода
+
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _inputHandler = GetComponent<InputHandler>();
+        
+        // Подписываемся на событие получения данных о движении
+        _inputHandler.OnMoveInputReceived += HandleMoveInput;
     }
 
-    // Логика перемещения игрока
     private void FixedUpdate()
-    {     //// Проверяет, было ли задано направление движения игрока
-        if (_movementInput != Vector2.zero)
-        {
-            //смотрит уперся ли игрок в объект
-           bool success = TryMove(_movementInput);
-           if (!success)
-           {//запрещает ходить по X вектору
-               success = TryMove(new Vector2(_movementInput.x, 0));
-               if (!success)
-               {  //запрещает ходить по Y вектору 
-                   success = TryMove(new Vector2(0, _movementInput.y));
-               }
-               {
-                   
-               }
-           }
-        }
-            
-    }
-    //логика для того, чтоб персонаж ходил если уперется в объект по одной оси
-    private bool TryMove(Vector2 moveDirection)
     {
-        // Выполняем лучевое просеивание (raycasting) в направлении движения игрока, чтобы определить потенциальные столкновения
-        int count = _rigidbody2D.Cast(moveDirection, // Направление движения игрока
-            movementFilter, // Фильтр, определяющий, с какими объектами может произойти столкновение
-            _castCollisions, // Список, в который сохраняются результаты лучевого просеивания
-            _moveSpeed * Time.fixedDeltaTime +
-            _collisionOffSet); // Расстояние, на которое игрок пытается переместиться, увеличенное на отступ для предотвращения застревания
-        if (count == 0)
+        // Если нет направления движения, прекращаем выполнение функции
+        if (_movementInput == Vector2.zero) return;
+
+        // Попытка движения игрока
+        if (!AttemptMove(_movementInput) && 
+            !AttemptMove(new Vector2(_movementInput.x, 0)) && 
+            !AttemptMove(new Vector2(0, _movementInput.y)))
+        {
+            // Обработка ситуации, когда игрок не может двигаться ни в каком направлении
+        }
+    }
+
+    // Метод попытки движения игрока в заданном направлении
+    private bool AttemptMove(Vector2 moveDirection)
+    {
+        int collisionCount = CastAgainstCollidables(moveDirection);
+
+        // Если нет препятствий, двигаем игрока
+        if (collisionCount == 0)
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + moveDirection * _moveSpeed * Time.deltaTime);
-            //возвращает тру если не уперся
             return true;
         }
-        else
-        {//возвращает фолс если уперся в объект
-            return false;
-        }
+
+        return false; // Возвращаем false, если есть препятствия
     }
 
-
-
-
-
-
-
-    // Получение данных о направлении движения от пользователя
-    void OnMove(InputValue movementValue)
+    // Метод для определения столкновений в заданном направлении
+    private int CastAgainstCollidables(Vector2 moveDirection)
     {
-        _movementInput = movementValue.Get<Vector2>();
+        return _rigidbody2D.Cast(
+            moveDirection,
+            _movementFilter,
+            _castCollisions,
+            _moveSpeed * Time.fixedDeltaTime + CollisionOffset
+        );
+    }
+
+    // Метод обработки данных о направлении движения
+    private void HandleMoveInput(Vector2 moveInput)
+    {
+        _movementInput = moveInput;
     }
 }

@@ -10,7 +10,7 @@ namespace Code.Script
 
         private void OnMove(InputValue movementValue)
         {
-            Vector2 moveInput = movementValue.Get<Vector2>();
+            Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             OnMoveInputReceived?.Invoke(moveInput);
         }
     }

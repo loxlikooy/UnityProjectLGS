@@ -38,7 +38,7 @@ namespace Code.Script
                 if (raycastHit2D.collider != null)
                 {
                     Vector3 hitPoint3D = new Vector3(raycastHit2D.point.x, raycastHit2D.point.y, 0);
-                    dashPosition = hitPoint3D - dashDirection3D.normalized * 0.1f;
+                    dashPosition = hitPoint3D - dashDirection3D.normalized * 0.2f;
                 }
 
                 transform.position = dashPosition;

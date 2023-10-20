@@ -18,15 +18,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private ContactFilter2D _movementFilter; 
 
-    private Vector2 _movementInput; 
+    private Vector2 _movementInput;
+    
+    private Vector2 _lastMoveDirection;
+    
+    public Vector2 LastMoveDirection => _lastMoveDirection;
+    
     private Rigidbody2D _rigidbody2D; 
     private List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>();
 
     private InputHandler _inputHandler;
 
-    private Vector2 _lastMoveDirection;
+    /*private Vector2 _lastMoveDirection;
     
-    public Vector2 LastMoveDirection { get; }
+    public Vector2 LastMoveDirection { get; }*/
     
     private void Start()
     {
@@ -36,22 +41,28 @@ public class PlayerMovement : MonoBehaviour
         _inputHandler.OnMoveInputReceived += HandleMoveInput;
     }
 
-    private void Update()
+    /*private void Update()
     {
-        AssignLastMoveDirection();
-    }
+        //AssignLastMoveDirection();
+    }*/
 
-    private void AssignLastMoveDirection()
+    private Vector2 AssignLastMoveDirection()
     {
         if ((_movementInput.x != 0 || _movementInput.y != 0))
         {
             _lastMoveDirection = _movementInput;
-        }
+            //Debug.Log(_lastMoveDirection+"lmd");
+            return _lastMoveDirection;
+        } 
+
+        return Vector2.zero;
     }
     
     private void FixedUpdate()
     {
+        
         HandleMovement();
+        AssignLastMoveDirection();
     }
 
     private void HandleMovement()

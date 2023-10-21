@@ -5,7 +5,6 @@ using UnityEngine;
 // Ensure the GameObject has an InputHandler component
 namespace Code.Script
 {
-    [RequireComponent(typeof(InputHandler))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
@@ -41,6 +40,7 @@ namespace Code.Script
         {
             if ((_movementInput.x != 0 || _movementInput.y != 0))
             {
+                Debug.Log(_movementInput);
                 _lastMoveDirection = _movementInput;
                 return _lastMoveDirection;
             } 

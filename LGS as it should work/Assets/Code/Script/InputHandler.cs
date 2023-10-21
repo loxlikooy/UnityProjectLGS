@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,13 @@ namespace Code.Script
     public class InputHandler : MonoBehaviour
     {
         private PlayerInputActions _playerInputActions;
+        [SerializeField] private InputHandler _inputHandler;
+
+        private void Start()
+        {
+            _inputHandler = GameObject.Find("GameInput").GetComponent<InputHandler>();
+
+        }
 
         private void Awake()
         {

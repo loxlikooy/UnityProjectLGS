@@ -8,12 +8,12 @@ namespace Code.Script
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
-        private float _moveSpeed = 1f; 
+        private float moveSpeed = 1f; 
         private const float CollisionOffset = 0.01f; 
         private MoveVelocity _moveVelocity;
 
         [SerializeField]
-        private ContactFilter2D _movementFilter; 
+        private ContactFilter2D movementFilter; 
 
         private Vector2 _movementInput;
     
@@ -36,15 +36,12 @@ namespace Code.Script
 
         }
     
-        private Vector2 AssignLastMoveDirection()
+        private void AssignLastMoveDirection()
         {
             if ((_movementInput.x != 0 || _movementInput.y != 0))
             {
-                Debug.Log(_movementInput);
-                _lastMoveDirection = _movementInput;
-                return _lastMoveDirection;
+                _lastMoveDirection = _movementInput;  
             } 
-            return Vector2.zero;
         }
     
         private void FixedUpdate()
@@ -68,7 +65,7 @@ namespace Code.Script
         {
             if (CastAgainstCollidables(moveDirection) == 0)
             {
-                _moveVelocity.SetVelocity(moveDirection * _moveSpeed);
+                _moveVelocity.SetVelocity(moveDirection * moveSpeed);
                 return true;
             }
             return false;
@@ -78,15 +75,10 @@ namespace Code.Script
         {
             return _rigidbody2D.Cast(
                 moveDirection,
-                _movementFilter,
+                movementFilter,
                 _castCollisions,
-                _moveSpeed * Time.fixedDeltaTime + CollisionOffset
+                moveSpeed * Time.fixedDeltaTime + CollisionOffset
             );
-        }
-
-        private void HandleMoveInput(Vector2 moveInput)
-        {
-            _movementInput = moveInput;
         }
     }
 }

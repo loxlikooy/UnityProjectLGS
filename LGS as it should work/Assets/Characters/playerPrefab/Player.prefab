@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2424761438457795542}
   - component: {fileID: 3068946243399211900}
   - component: {fileID: 6813034410814520666}
-  - component: {fileID: 7243280054138053973}
   - component: {fileID: 7597777190538731393}
+  - component: {fileID: 8795529690292387989}
+  - component: {fileID: 2819936543741047268}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -227,24 +228,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a46ee55c61c54a518f87a595c33f191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7243280054138053973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e77a409a3ef45d7a494f84ece484214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputHandler: {fileID: 6813034410814520666}
+  _inputHandler: {fileID: 0}
 --- !u!114 &7597777190538731393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,3 +247,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
+--- !u!114 &8795529690292387989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320852814905868469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d5d9aab11947809f4d654e1f8267c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputHandler: {fileID: 6813034410814520666}
+--- !u!114 &2819936543741047268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320852814905868469}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e77a409a3ef45d7a494f84ece484214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputHandler: {fileID: 0}

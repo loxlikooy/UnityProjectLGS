@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Script
 {
-    public class Dash : MonoBehaviour, IDash
+    public class DashAccelerated : MonoBehaviour, IDash
     {
         private bool _isDashButtonDown;
         private Rigidbody2D _rigidbody2D;

@@ -1,5 +1,4 @@
-﻿using Code.Script;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Script
 {
@@ -7,22 +6,22 @@ namespace Code.Script
     {
         [SerializeField] private float moveSpeed = 50f;
 
-        private Vector2 velocityVector;
-        private new Rigidbody2D rigidbody2D;
+        private Vector2 _velocityVector;
+        private Rigidbody2D _rigidbody2D;
 
         private void Awake()
         {
-            rigidbody2D = GetComponent<Rigidbody2D>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
         public void SetVelocity(Vector2 vector)
         {
-            this.velocityVector = vector;
+            _velocityVector = vector;
         }
 
         private void FixedUpdate()
         {
-            rigidbody2D.velocity = velocityVector * moveSpeed * Time.fixedDeltaTime;
+            _rigidbody2D.velocity = (_velocityVector * (moveSpeed * Time.fixedDeltaTime));
         }
     }
 }

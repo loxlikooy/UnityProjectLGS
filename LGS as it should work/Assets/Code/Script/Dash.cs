@@ -1,63 +1,83 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Code.Script
 {
     public class Dash : MonoBehaviour, IDash
     {
-        private bool _isDashButtonDown;
-        private Rigidbody2D _rigidbody2D;
-        public InputHandler inputHandler;
+        private bool _isDashing;
+        private Vector3 _dashStartPosition;
+        private Vector3 _dashEndPosition;
+        private float _dashTimeCounter;
+        private float _dashDuration = 0.2f;  // Duration of the dash in seconds
+
         
+        public InputHandler inputHandler;
+        private PlayerMovement _playerMovement;
+
         private void Awake()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _playerMovement = GetComponent<PlayerMovement>();
         }
 
         public void HandleDash()
         {
-            // Обновляем _lastMoveDirection перед использованием
-            Vector2 _lastMoveDirection = GetComponent<PlayerMovement>().LastMoveDirection;
+            if (_isDashing) return;
+                
             
-            if (_isDashButtonDown)
+
+            Vector2 lastMoveDirection = _playerMovement.LastMoveDirection;
+            Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
+            float dashAmount = 0.8f;
+            Vector3 targetDashPosition = transform.position + dashDirection3D * dashAmount;
+
+            Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount);
+
+            if (raycastHit2D.collider != null)
             {
-                Vector3 dashDirection3D = new Vector3(_lastMoveDirection.x, _lastMoveDirection.y, 0);
-                
-                float dashAmount = 1.2f;
-                Vector3 dashPosition = transform.position + dashDirection3D * dashAmount;
-                Debug.Log(dashPosition);
-                
-                
-                
-                Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f;
-                RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount);
-               
-
-                if (raycastHit2D.collider != null)
-                {
-                    Vector3 hitPoint3D = new Vector3(raycastHit2D.point.x, raycastHit2D.point.y, 0);
-                    dashPosition = hitPoint3D - dashDirection3D.normalized * 0.2f;
-                }
-
-                transform.position = dashPosition;
-
-                _isDashButtonDown = false;
+                Vector3 hitPoint3D = new Vector3(raycastHit2D.point.x, raycastHit2D.point.y, 0);
+                targetDashPosition = hitPoint3D - dashDirection3D.normalized * 0.2f;
             }
+
+            StartDash(targetDashPosition);
         }
 
+        private void StartDash(Vector3 targetPosition)
+        {
+            _dashStartPosition = transform.position;
+            _dashEndPosition = targetPosition;
+            _dashTimeCounter = 0f;
+            _isDashing = true;
+
+            StartCoroutine(DashCoroutine());
+        }
+
+        private IEnumerator DashCoroutine()
+        {
+            while (_dashTimeCounter < _dashDuration)
+            {
+                _dashTimeCounter += Time.deltaTime;
+                float lerpValue = _dashTimeCounter / _dashDuration;
+                transform.position = Vector3.Lerp(_dashStartPosition, _dashEndPosition, lerpValue);
+                yield return null;
+            }
+
+            transform.position = _dashEndPosition;
+            _isDashing = false;
+        }
 
         public void HandleDashInput()
         {
-            if (inputHandler.OnDash()) 
+            if (inputHandler.OnDash())
             {
-                _isDashButtonDown = true;    
+                HandleDash();
             }
         }
-        
+
         private void Update()
         {
             HandleDashInput();
-            HandleDash();
         }
     }
 }

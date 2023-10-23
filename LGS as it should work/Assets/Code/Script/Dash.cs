@@ -6,7 +6,6 @@ namespace Code.Script
     public class Dash : MonoBehaviour, IDash
     {
         private bool _isDashing;
-        private Vector3 _dashStartPosition;
         private Vector3 _dashEndPosition;
         private float _dashTimeCounter;
         private float _dashDuration = 0.2f;  // Duration of the dash in seconds

@@ -1,7 +1,6 @@
 ﻿
 using UnityEngine;
 
-
 namespace Code.Script
 {
     public class InputHandler : MonoBehaviour
@@ -17,14 +16,17 @@ namespace Code.Script
         public Vector2 GetMovementVectorNormalized()
         {
             Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
-            inputVector = inputVector.normalized;
-            return inputVector;
+            return inputVector.normalized;
         }
 
         public bool OnDash()
         {
-            bool isDashButtonDown = _playerInputActions.Player.Dash.triggered;
-            return isDashButtonDown;
+            return _playerInputActions.Player.Dash.triggered;
+        }
+
+        public bool OnAttack()
+        {
+            return _playerInputActions.Player.Fire.triggered;
         }
     }
 }

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Code.Script.Dash" BaseTypeListCollapsed="true">
+    <Position X="2" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQIACCAAABgAAAAAAAAAAAAAAAAQAAAAAEAQAEQAEA=</HashCode>
+      <FileName>Assets\Code\Script\Dash.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Code.Script.Enemy" BaseTypeListCollapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAgAAAAAAAAAIAAAAAAAAAAgAAAAAg=</HashCode>
+      <FileName>Assets\Code\Script\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.888" />
+  </Class>
+  <Class Name="Code.Script.Health" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.75" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="Code.Script.Health.HealthChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Script\Health.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACAAAAAgAAAEAAAAAAAEAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\Health.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Code.Script.InputHandler">
+    <Position X="6" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAGA=</HashCode>
+      <FileName>Assets\Code\Script\InputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Code.Script.MoveVelocity" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAMEgAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEA=</HashCode>
+      <FileName>Assets\Code\Script\MoveVelocity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Code.Script.Player" BaseTypeListCollapsed="true">
+    <Position X="9" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAAAAAIAAAABBAAAAAAAAIAAAQAEAAAAgAAQAEA=</HashCode>
+      <FileName>Assets\Code\Script\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Code.Script.PlayerAttack">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAIAAAAAAAAABAAAAAACAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\Script\PlayerAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Code.Script.PlayerMovement">
+    <Position X="6" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAYUiAAAEAIAAABAAABAAAAAAAAAEQAACgAAEA=</HashCode>
+      <FileName>Assets\Code\Script\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Code.Script.Weapon">
+    <Position X="11.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyData">
+    <Position X="13.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAg=</HashCode>
+      <FileName>Assets\Code\Script\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponData">
+    <Position X="13.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\Code\Script\WeaponData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UnityEngine.ScriptableObject" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Code.Script.IAttackable">
+    <Position X="1.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\IAttackable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Code.Script.IDamagable" Collapsed="true">
+    <Position X="1.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\IDamagable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Code.Script.IDash">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\IDash.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Code.Script.IMoveVelocity">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Script\IMoveVelocity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

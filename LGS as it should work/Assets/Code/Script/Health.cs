@@ -5,6 +5,7 @@ namespace Code.Script
     public class Health : MonoBehaviour, IDamagable
     {
         public float maxHealth = 100f;
+        [SerializeField]
         private float currentHealth;
 
         public delegate void HealthChangedDelegate(float currentHealth);

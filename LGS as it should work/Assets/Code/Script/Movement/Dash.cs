@@ -6,11 +6,12 @@ namespace Code.Script
     public class Dash : MonoBehaviour, IDash
     {
         private bool _isDashing;
-        private Vector3 _dashStartPosition;
         private Vector3 _dashEndPosition;
+        private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
         private float _dashDuration = 0.2f;  // Duration of the dash in seconds
-
+        [SerializeField]
+        private LayerMask layersToCheck;
         
         public InputHandler inputHandler;
         private PlayerMovement _playerMovement;
@@ -23,8 +24,6 @@ namespace Code.Script
         public void HandleDash()
         {
             if (_isDashing) return;
-                
-            
 
             Vector2 lastMoveDirection = _playerMovement.LastMoveDirection;
             Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
@@ -32,7 +31,9 @@ namespace Code.Script
             Vector3 targetDashPosition = transform.position + dashDirection3D * dashAmount;
 
             Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f;
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount);
+    
+            // Добавляем layersToCheck в рейкаст
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount, layersToCheck);
 
             if (raycastHit2D.collider != null)
             {

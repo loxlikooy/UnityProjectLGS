@@ -23,10 +23,9 @@ namespace Code.Script
             // Здесь можно добавить логику определения цели, если нужно.
             if (_inputHandler.OnAttack())
             {
-                
                 Vector2 LastMoveDirection = _playerMovement.LastMoveDirection;
                 Enemy[] enemies = FindObjectsOfType<Enemy>();
-                Debug.Log(enemies);
+                
                 foreach (Enemy enemy in enemies)
                 {
                     _toEnemy = (enemy.transform.position - transform.position).normalized;
@@ -34,8 +33,6 @@ namespace Code.Script
                     if (angle <= 90.0f)
                     {
                         ExecuteAttack(enemy);
-                        Debug.Log(LastMoveDirection);
-                        Debug.Log(enemy.transform.position);
                     }
 
                 }

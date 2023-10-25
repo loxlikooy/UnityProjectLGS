@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
+        
+        
         [Header("Stats")]
         public float health;
         public float damage;
@@ -30,6 +34,9 @@ namespace Code.Script
         private Vector2 _randomPatrolPoint;
         private float _timeSinceLastAttack = 0f;
         private EnemyState _currentState;
+        private Animator _animator; 
+        private SpriteRenderer _spriteRenderer;
+
 
         private enum EnemyState
         {
@@ -42,6 +49,9 @@ namespace Code.Script
         {
             InitializeComponents();
             SetInitialState();
+            _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            
         }
 
         private void InitializeComponents()
@@ -68,9 +78,11 @@ namespace Code.Script
             {
                 case EnemyState.Patrolling:
                     Patrol();
+                    _animator.SetBool("Patrolling", true);
                     break;
                 case EnemyState.Chasing:
                     Chase();
+                    _animator.SetBool("Patrolling", false);
                     break;
                 case EnemyState.Attacking:
                     Attack();
@@ -82,11 +94,14 @@ namespace Code.Script
         {
             MoveTowards(_randomPatrolPoint, patrolSpeed);
             
+            
+            
             if (IsCloseTo(_randomPatrolPoint))
                 PickRandomPatrolPoint();
 
             if (IsCloseTo(_player.position, detectionRadius))
                 _currentState = EnemyState.Chasing;
+            
         }
 
         private void Chase()
@@ -151,8 +166,21 @@ namespace Code.Script
 
         private void MoveTowards(Vector2 target, float speed)
         {
+            Vector2 moveDirection = target - _rb.position;
+
+            // Flip the sprite based on the movement direction
+            if (moveDirection.x > 0.01f) // Moving right
+            {
+                _spriteRenderer.flipX = false;
+            }
+            else if (moveDirection.x < -0.01f) // Moving left
+            {
+                _spriteRenderer.flipX = true;
+            }
+
             _rb.position = Vector2.MoveTowards(_rb.position, target, speed * Time.deltaTime);
         }
+
 
         public void TakeDamage(float damageAmount)
         {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 269790056752698997}
   - component: {fileID: 7728716527477353694}
   m_Layer: 0
-  m_Name: Slime Prefab
+  m_Name: Shekotalka Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1493250173, guid: ef99d2706060d4658814355466f15546, type: 3}
+  m_Sprite: {fileID: -203404513, guid: f4552be06ce4f4633b8a59e4f0cdc444, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00065526366, y: -0.013760791}
+  m_Offset: {x: -0.00065526366, y: 0.0005360376}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13521242, y: 0.08016939}
+  m_Size: {x: 0.13521242, y: 0.08221178}
   m_EdgeRadius: 0
 --- !u!114 &269790056752698997
 MonoBehaviour:
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!114 &7728716527477353694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,18 +188,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 2
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _patrolSpeed: 3
-  _chaseSpeed: 5
-  _detectionRadius: 5
-  _attackRadius: 2
+  patrolSpeed: 3
+  chaseSpeed: 5
+  patrolRange: 5
+  detectionRadius: 5
+  attackRadius: 2
+  attackCooldown: 1
+  backgroundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  collideObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 0

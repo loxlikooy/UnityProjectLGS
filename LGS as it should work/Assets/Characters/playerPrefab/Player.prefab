@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 3068946243399211900}
   - component: {fileID: 6813034410814520666}
   - component: {fileID: 7597777190538731393}
-  - component: {fileID: 8795529690292387989}
   - component: {fileID: 2819936543741047268}
   - component: {fileID: 333153605003840080}
   m_Layer: 0
@@ -82,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1315265965, guid: fee918208d37844daa9dcfad109dce95, type: 3}
+  m_Sprite: {fileID: 530912763, guid: ea733a642add84bca9f862f994d69b35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.48, y: 0.48}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -213,8 +212,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
-    newSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -247,19 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
---- !u!114 &8795529690292387989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d5d9aab11947809f4d654e1f8267c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputHandler: {fileID: 6813034410814520666}
 --- !u!114 &2819936543741047268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e77a409a3ef45d7a494f84ece484214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 0
   inputHandler: {fileID: 0}
 --- !u!114 &333153605003840080
 MonoBehaviour:
@@ -285,4 +274,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e21c765a094f3081ded3545a529fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 0}
+  playerDamage: 10

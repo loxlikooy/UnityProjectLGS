@@ -9,17 +9,19 @@ namespace Code.Script
         private InputHandler _inputHandler;
         private PlayerMovement _playerMovement;
         private Vector2 _toEnemy;
+        private PlayerAnimator _playerAnimator;  // Изменил тип с Animator на PlayerAnimator
 
         private void Awake()
         {
             _playerMovement = GetComponent<PlayerMovement>();
             _inputHandler = GetComponent<InputHandler>();
-            
+            _playerAnimator = GetComponent<PlayerAnimator>();  // Убрал создание локальной переменной
         }
 
         private void Update()
         {
-            
+            if (_playerAnimator.IsAttacking()) 
+                return;
             // Здесь можно добавить логику определения цели, если нужно.
             if (_inputHandler.OnAttack())
             {
@@ -34,16 +36,13 @@ namespace Code.Script
                     {
                         ExecuteAttack(enemy);
                     }
-
                 }
-
-
+                _playerAnimator.SetAttackAnimation();
             }
         }
 
         public void ExecuteAttack(IDamagable target)
         {
-            
             target.TakeDamage(playerDamage);
         }
     }

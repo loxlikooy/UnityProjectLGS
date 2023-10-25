@@ -7,6 +7,7 @@ namespace Code.Script
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private PlayerAnimator _playerAnimator; 
         [SerializeField]
         private float moveSpeed = 1f; 
         private const float CollisionOffset = 0.01f; 
@@ -28,6 +29,7 @@ namespace Code.Script
     
         private void Start()
         {
+            _playerAnimator = GetComponent<PlayerAnimator>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _inputHandler = GetComponent<InputHandler>();
              GetComponent<IMoveVelocity>().SetVelocity(_movementInput);
@@ -46,7 +48,8 @@ namespace Code.Script
     
         private void FixedUpdate()
         {
-            _movementInput = _inputHandler.GetMovementVectorNormalized(); // Directly get the movement input here
+            _movementInput = _inputHandler.GetMovementVectorNormalized();
+            _playerAnimator.SetMovementAnimation(_movementInput); 
             HandleMovement();
             AssignLastMoveDirection();
         }

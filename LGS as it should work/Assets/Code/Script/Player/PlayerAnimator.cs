@@ -38,5 +38,11 @@ namespace Code.Script
         {
             return _animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
         }
+        
+        public void SetDashAnimation()
+        {
+            _animator.SetTrigger("Dash");
+        }
+
     }
 }

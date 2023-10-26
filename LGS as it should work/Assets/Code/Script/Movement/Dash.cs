@@ -10,6 +10,7 @@ namespace Code.Script
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
         private float _dashDuration = 0.2f;  // Duration of the dash in seconds
+        private PlayerAnimator _playerAnimator;
         [SerializeField]
         private LayerMask layersToCheck;
         
@@ -19,6 +20,8 @@ namespace Code.Script
         private void Awake()
         {
             _playerMovement = GetComponent<PlayerMovement>();
+            _playerAnimator = GetComponent<PlayerAnimator>();
+
         }
 
         public void HandleDash()
@@ -52,6 +55,8 @@ namespace Code.Script
             _isDashing = true;
 
             StartCoroutine(DashCoroutine());
+            _playerAnimator.SetDashAnimation();
+
         }
 
         private IEnumerator DashCoroutine()

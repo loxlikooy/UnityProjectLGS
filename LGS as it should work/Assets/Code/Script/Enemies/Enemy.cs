@@ -24,7 +24,11 @@ namespace Code.Script
         [SerializeField] private float detectionRadius = 5f;
         [FormerlySerializedAs("_attackRadius")] [SerializeField] private float attackRadius = 2f;
         [SerializeField] private float attackCooldown = 1f;
+        [Header("Chase Settings")]
+        [SerializeField] private float minimumDistanceFromPlayer = 1f; // Adjust this value as needed
 
+        
+        
         [Header("Layers")]
         [SerializeField] private LayerMask backgroundLayer;
         [SerializeField] private LayerMask collideObjectsLayer;
@@ -45,7 +49,7 @@ namespace Code.Script
             Attacking
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             InitializeComponents();
             SetInitialState();
@@ -66,7 +70,7 @@ namespace Code.Script
             PickRandomPatrolPoint();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             _timeSinceLastAttack += Time.deltaTime;
             HandleStates();
@@ -166,20 +170,35 @@ namespace Code.Script
 
         private void MoveTowards(Vector2 target, float speed)
         {
-            Vector2 moveDirection = target - _rb.position;
+            
 
-            // Flip the sprite based on the movement direction
-            if (moveDirection.x > 0.01f) // Moving right
+            Vector2 movementDirection = (target - _rb.position).normalized; // Renamed to movementDirection
+            _rb.velocity = movementDirection * speed;
+            float distanceToTarget = Vector2.Distance(_rb.position, target);
+
+            // Check if the distance to the target is greater than the minimum distance
+            if (distanceToTarget > minimumDistanceFromPlayer)
+            {
+                _rb.velocity = movementDirection * speed;
+            }
+            else
+            {
+                _rb.velocity = Vector2.zero; // Stop moving if within the minimum distance
+            }
+            
+            
+            // Keep the sprite flipping logic with the original moveDirection name
+            if (movementDirection.x > 0.01f) // Moving right
             {
                 _spriteRenderer.flipX = false;
             }
-            else if (moveDirection.x < -0.01f) // Moving left
+            else if (movementDirection.x < -0.01f) // Moving left
             {
                 _spriteRenderer.flipX = true;
             }
-
-            _rb.position = Vector2.MoveTowards(_rb.position, target, speed * Time.deltaTime);
+            Debug.Log("Moving towards: " + target + " with speed: " + speed);
         }
+
 
 
         public void TakeDamage(float damageAmount)

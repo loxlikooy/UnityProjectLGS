@@ -2,7 +2,7 @@
 
 namespace Code.Script
 {
-    public class Health : MonoBehaviour, IDamagable
+    public class Health : MonoBehaviour, IDamageable
     {
         public float maxHealth = 100f;
         [SerializeField]

@@ -2,7 +2,7 @@
 {
     public interface IAttackable
     {
-        void Attack(IDamagable target);
+        void Attack(IDamageable target);
 
 
     }

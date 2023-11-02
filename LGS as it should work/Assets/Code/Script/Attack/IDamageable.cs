@@ -1,6 +1,6 @@
 ﻿    namespace Code.Script
     {
-        public interface IDamagable
+        public interface IDamageable
         {
             void TakeDamage(float damage);
         }

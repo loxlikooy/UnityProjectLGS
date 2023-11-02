@@ -2,7 +2,7 @@
 
 namespace Code.Script
 {
-    public class Player : MonoBehaviour, IDamagable, IAttackable
+    public class Player : MonoBehaviour, IDamageable, IAttackable
     {
         private Health _playerHealth;
         private PlayerMovement _playerMovement;
@@ -27,7 +27,7 @@ namespace Code.Script
             _playerHealth.TakeDamage(damageAmount);
         }
 
-        public void Attack(IDamagable target)
+        public void Attack(IDamageable target)
         {
             _playerAttack.ExecuteAttack(target);
         }

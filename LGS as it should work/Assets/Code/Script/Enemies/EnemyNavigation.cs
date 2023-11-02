@@ -23,11 +23,14 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (hasTarget)
         {
-            MoveTowardsTarget();
+            MoveTowardsTarget(targetPosition);
+        } else
+        {
+            rb.velocity = Vector2.zero; // Stop moving when there's no target
         }
     }
 
-    private void MoveTowardsTarget()
+    private void MoveTowardsTarget(Vector2 targetPosition)
     {
         Vector2 direction = (targetPosition - rb.position).normalized;
         rb.velocity = direction * moveSpeed;

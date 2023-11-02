@@ -25,7 +25,7 @@ namespace Code.Script
         public void Execute()
         {
             // If the enemy sees the player, transition to chase state
-            if (enemy.CanSeePlayer())
+            if (enemy.CanSeePlayer() && enemy.CheckIfPlayerInRange())
             {
                 enemy.ChangeState(new ChaseState(enemy, navigation));
             }
@@ -54,5 +54,10 @@ namespace Code.Script
 
             return randomPoint;
         }
+        public PatrolState(EnemyBase enemy, EnemyNavigation navigation, Vector2[] waypoints)
+        {
+            // Assign the parameters to the class fields
+        }
+
     }
 }

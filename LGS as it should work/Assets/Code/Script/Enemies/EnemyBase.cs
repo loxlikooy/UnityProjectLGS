@@ -15,11 +15,16 @@ namespace Code.Script
         
         [SerializeField]
         private Vector2[] patrolWaypoints;
+        public Vector2[] PatrolWaypoints => patrolWaypoints;
+        public Transform player; // Assign this via the Unity inspector or find it at runtime
+        public float detectionRange = 5.0f; // The range within which the enemy will start chasing the player
+        
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
         }
+       
 
         private EnemyNavigation navigation;
 
@@ -73,11 +78,23 @@ namespace Code.Script
         public abstract bool CanSeePlayer();
         public abstract bool CanAttackPlayer();
         
+        protected bool IsPlayerInRange()
+        {
+            if (player == null) return false;
+
+            return Vector2.Distance(transform.position, player.position) <= detectionRange;
+        }
+        
+        public bool CheckIfPlayerInRange()
+        {
+            return IsPlayerInRange();
+        }
+        
         // Somewhere in EnemyBase.cs
         public void TransitionToAttack()
         {
             EnemyNavigation navigation = GetComponent<EnemyNavigation>(); // Or however you get your navigation component
-            IEnemyState attackState = new AttackState(this, navigation);
+            IEnemyState attackState = new AttackState(this, navigation); // Make sure you have a constructor that matches this in AttackState
             ChangeState(attackState);
         }
 

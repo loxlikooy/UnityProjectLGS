@@ -27,6 +27,8 @@ namespace Code.Script
             // If the enemy sees the player, transition to chase state
             if (enemy.CanSeePlayer() && enemy.CheckIfPlayerInRange())
             {
+                Debug.Log("Player spotted, transitioning to ChaseState");
+
                 enemy.ChangeState(new ChaseState(enemy, navigation));
             }
             else if (navigation.HasReachedDestination())

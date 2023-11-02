@@ -22,23 +22,31 @@ namespace Code.Script
 
         public void Execute()
         {
-            if (enemy.player == null) return;
+            if (enemy.playerTransform == null)
+            {
+                Debug.LogWarning("Player reference not set in enemy.");
+                return;
+            }
 
-            // Update the destination to be the player's current 2D position
-            navigation.SetDestination(new Vector2(enemy.player.position.x, enemy.player.position.y));
+            Debug.Log("Chasing player at position: " + enemy.playerTransform.position);
 
-            // Optionally, switch back to patrol state if the player is no longer in range
+            // Move the enemy towards the player's current position
+            enemy.MoveTo(enemy.playerTransform.position);
+            navigation.SetDestination(new Vector2(enemy.playerTransform.position.x, enemy.playerTransform.position.y));
+
+            // Check if the player is no longer in sight or range to switch back to patrol
             if (!enemy.CanSeePlayer() && !enemy.CheckIfPlayerInRange())
             {
-                // You must pass the waypoints when transitioning to PatrolState
-                enemy.ChangeState(new PatrolState(enemy, navigation, enemy.PatrolWaypoints)); // Make sure PatrolWaypoints is accessible
+                // Make sure to pass the waypoints array to the PatrolState constructor
+                enemy.ChangeState(new PatrolState(enemy, navigation, enemy.PatrolWaypoints));
             }
             else if (enemy.CanAttackPlayer())
             {
-                // Transition to attack state
-                enemy.TransitionToAttack(); // This method should handle the transition to AttackState
+                // If the enemy can attack the player, transition to the attack state
+                enemy.TransitionToAttack();
             }
         }
+
 
         public void Exit()
         {

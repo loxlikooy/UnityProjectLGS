@@ -16,13 +16,14 @@ namespace Code.Script
         [SerializeField]
         private Vector2[] patrolWaypoints;
         public Vector2[] PatrolWaypoints => patrolWaypoints;
-        public Transform player; // Assign this via the Unity inspector or find it at runtime
+        public Transform playerTransform; // Assign this via the Unity inspector or find it at runtime
         public float detectionRange = 5.0f; // The range within which the enemy will start chasing the player
         
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Find the player by tag
         }
        
 
@@ -74,15 +75,15 @@ namespace Code.Script
         }
 
         // Abstract methods that must be implemented by inheriting classes
-        public abstract void MoveTo(Vector3 point);
+        public abstract void MoveTo(Vector2 point);
         public abstract bool CanSeePlayer();
         public abstract bool CanAttackPlayer();
         
         protected bool IsPlayerInRange()
         {
-            if (player == null) return false;
+            if (playerTransform == null) return false;
 
-            return Vector2.Distance(transform.position, player.position) <= detectionRange;
+            return Vector2.Distance(transform.position, playerTransform.position) <= detectionRange;
         }
         
         public bool CheckIfPlayerInRange()

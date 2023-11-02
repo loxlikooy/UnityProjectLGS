@@ -16,22 +16,38 @@ namespace Code.Script
             nextAttractionTime = Time.time + attractionCooldown;
         }
 
+        void Awake() {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        
         protected override void Update()
         {
             base.Update(); // Call to base class Update() if it's implemented
             Attract();
         }
 
-        public override void MoveTo(Vector3 point)
+        public override void MoveTo(Vector2 point)
         {
-            // Implement movement logic toward the point here
+            // Implementation for how Kuldirgish moves to a point
+            Vector2 direction = (point - (Vector2)transform.position).normalized;
+            rb.velocity = direction * speed;
         }
 
         public override bool CanSeePlayer()
         {
-            // Implement the logic to determine if the Kuldirgish can see the player here
-            return false;
+            // Implementation for how Kuldirgish detects the player
+            float detectionRange = 10.0f; // Example range value
+            return Vector2.Distance(transform.position, playerTransform.position) <= detectionRange;
         }
+
+        public override bool CanAttackPlayer()
+        {
+            // Implementation for how Kuldirgish decides it can attack the player
+            float attackRange = 2.0f; // Example attack range value
+            return Vector2.Distance(transform.position, playerTransform.position) <= attackRange;
+        }
+
         
         protected override void Die()
         {
@@ -51,17 +67,7 @@ namespace Code.Script
             gameObject.SetActive(false);
             // Destroy(gameObject); // Use this instead if you want to completely remove the GameObject
         }
-
-
-
         
-
-        public override bool CanAttackPlayer()
-        {
-            // Implement the logic to determine if the Kuldirgish can attack the player here
-            return false;
-        }
-
         private void Attract()
         {
             if (Time.time >= nextAttractionTime)

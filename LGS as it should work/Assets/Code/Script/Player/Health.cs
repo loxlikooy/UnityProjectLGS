@@ -30,6 +30,7 @@ namespace Code.Script
         protected virtual void Die()
         {
             Destroy(gameObject);
+            GameManager.Instance.ShowRestartScreen();
         }
     }
 }

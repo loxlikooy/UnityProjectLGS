@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Code.Script
 {
@@ -13,16 +10,16 @@ namespace Code.Script
         public float health;
         public float damage;
 
-        [FormerlySerializedAs("_patrolSpeed")]
+        
         [Header("Movement Settings")]
         [SerializeField] private float patrolSpeed = 3f;
         [SerializeField] private float chaseSpeed = 5f;
         [SerializeField] private float patrolRange = 5f;
 
-        [FormerlySerializedAs("_detectionRadius")]
+        
         [Header("Detection & Attack Settings")]
         [SerializeField] private float detectionRadius = 5f;
-        [FormerlySerializedAs("_attackRadius")] [SerializeField] private float attackRadius = 2f;
+        [SerializeField] private float attackRadius = 2f;
         [SerializeField] private float attackCooldown = 1f;
 
         [Header("Layers")]
@@ -63,7 +60,7 @@ namespace Code.Script
         private void SetInitialState()
         {
             _currentState = EnemyState.Patrolling;
-            PickRandomPatrolPoint();
+            
         }
 
         private void Update()
@@ -106,12 +103,19 @@ namespace Code.Script
 
         private void Chase()
         {
+            if (_player == null)
+            {
+                _currentState = EnemyState.Chasing;
+                return;
+            }
+
             MoveTowards(_player.position, chaseSpeed);
 
             if (IsCloseTo(_player.position, attackRadius))
                 _currentState = EnemyState.Attacking;
             else if (!IsCloseTo(_player.position, detectionRadius))
                 _currentState = EnemyState.Patrolling;
+            
         }
 
         private void Attack()
@@ -192,6 +196,7 @@ namespace Code.Script
         private void Die()
         {
             Destroy(gameObject);
+            this.enabled = false;
         }
 
         public void Attack(IDamagable target)

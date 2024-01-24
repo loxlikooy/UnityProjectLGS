@@ -4,9 +4,11 @@ namespace Code.Script
 {
     public class Health : MonoBehaviour, IDamagable
     {
-        public float maxHealth = 100f;
+        public float maxHealth = 100f; 
         [SerializeField]
-        private float currentHealth;
+        private float currentHealth; //displayable health
+        
+        public float CurrentHealth => currentHealth; //для будущего пригодится, чтоб другие части скрипта могли смотерть на хп персонажа
 
         public delegate void HealthChangedDelegate(float currentHealth);
         public event HealthChangedDelegate OnHealthChanged;
@@ -30,6 +32,7 @@ namespace Code.Script
         protected virtual void Die()
         {
             Destroy(gameObject);
+            transform.gameObject.SetActive(false);
             GameManager.Instance.ShowRestartScreen();
         }
     }

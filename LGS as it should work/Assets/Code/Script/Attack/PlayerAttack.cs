@@ -11,36 +11,32 @@ namespace Code.Script
         [FormerlySerializedAs("desiredAttackRange")] [SerializeField]
         private float attackRange = 0.1f;
 
-        private InputHandler _inputHandler;
-        private PlayerMovement _playerMovement;
-        private PlayerAnimator _playerAnimator;
+        
+        private ComponentGetter _componentGetter;
 
         private List<Enemy> _enemies = new List<Enemy>();
 
         private void Start()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
-            _inputHandler = GetComponent<InputHandler>();
-            _playerAnimator = GetComponent<PlayerAnimator>();
-
+            _componentGetter = GetComponent<ComponentGetter>();
             // Initialize enemies list (assuming enemies are spawned at start)
             _enemies.AddRange(FindObjectsOfType<Enemy>());
         }
 
         private void Update()
         {
-            if (_playerAnimator.IsAttacking()) return;
+            if (_componentGetter.PlayerAnimator.IsAttacking()) return;
 
-            if (_inputHandler.OnAttack())
+            if (_componentGetter.PlayerInputHandler.OnAttack())
             {
                 CheckAndExecuteAttack();
-                _playerAnimator.SetAttackAnimation();
+                _componentGetter.PlayerAnimator.SetAttackAnimation();
             }
         }
 
         private void CheckAndExecuteAttack()
         {
-            Vector2 lastMoveDirection = _playerMovement.LastMoveDirection.normalized;
+            Vector2 lastMoveDirection = _componentGetter.PlayerMovement.LastMoveDirection.normalized;
             _enemies.RemoveAll(enemy => enemy == null);
             foreach (Enemy enemy in _enemies)
             {

@@ -10,25 +10,22 @@ namespace Code.Script
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
         private float _dashDuration = 0.2f;  // Duration of the dash in seconds
-        private PlayerAnimator _playerAnimator;
+        
         [SerializeField]
         private LayerMask layersToCheck;
         
-        public InputHandler inputHandler;
-        private PlayerMovement _playerMovement;
+        private ComponentGetter _componentGetter;
 
         private void Awake()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
-            _playerAnimator = GetComponent<PlayerAnimator>();
-
+            _componentGetter = GetComponent<ComponentGetter>();
         }
 
         public void HandleDash()
         {
             if (_isDashing) return;
 
-            Vector2 lastMoveDirection = _playerMovement.LastMoveDirection;
+            Vector2 lastMoveDirection = _componentGetter.PlayerMovement.LastMoveDirection;
             Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
             float dashAmount = 0.8f;
             Vector3 targetDashPosition = transform.position + dashDirection3D * dashAmount;
@@ -55,7 +52,7 @@ namespace Code.Script
             _isDashing = true;
 
             StartCoroutine(DashCoroutine());
-            _playerAnimator.SetDashAnimation();
+            _componentGetter.PlayerAnimator.SetDashAnimation();
 
         }
 
@@ -75,7 +72,7 @@ namespace Code.Script
 
         public void HandleDashInput()
         {
-            if (inputHandler.OnDash())
+            if (_componentGetter.PlayerInputHandler.OnDash())
             {
                 HandleDash();
             }

@@ -1,47 +1,50 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace Code.Script
 {
     public class PlayerAnimator : MonoBehaviour
     {
-        private Animator _animator;
-        private SpriteRenderer _spriteRenderer;
+        
+       
+        private ComponentGetter _componentGetter;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            
+            _componentGetter = GetComponent<ComponentGetter>();
         }
 
         public void SetAttackAnimation()
         {
-            _animator.SetTrigger("Attack");
+            _componentGetter.Animator.SetTrigger("Attack");
         }
 
         public void SetMovementAnimation(Vector2 movement)
         {
-            _animator.SetFloat("MoveX", movement.x);
+            _componentGetter.Animator.SetFloat("MoveX", movement.x);
 
             // Если персонаж не двигается по горизонтали, установите IsIdle в true
             if (movement.x == 0)
             {
-                _animator.SetBool("IsIdle", true);
+                _componentGetter.Animator.SetBool("IsIdle", true);
             }
             else
             {
-                _animator.SetBool("IsIdle", false);
-                _spriteRenderer.flipX = movement.x < 0;
+                _componentGetter.Animator.SetBool("IsIdle", false);
+                _componentGetter.SpriteRenderer.flipX = movement.x < 0;
             }
         }
 
         public bool IsAttacking()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+            return _componentGetter.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
         }
         
         public void SetDashAnimation()
         {
-            _animator.SetTrigger("Dash");
+            _componentGetter.Animator.SetTrigger("Dash");
         }
 
     }

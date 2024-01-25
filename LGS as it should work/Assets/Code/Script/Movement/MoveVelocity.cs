@@ -7,11 +7,11 @@ namespace Code.Script
         [SerializeField] private float moveSpeed = 50f;
 
         private Vector2 _velocityVector;
-        private Rigidbody2D _rigidbody2D;
+        private ComponentGetter _componentGetter;
 
         private void Awake()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _componentGetter = GetComponent<ComponentGetter>();
         }
 
         public void SetVelocity(Vector2 vector)
@@ -21,7 +21,7 @@ namespace Code.Script
 
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = (_velocityVector * (moveSpeed * Time.fixedDeltaTime));
+            _componentGetter.PlayerRGB.velocity = (_velocityVector * (moveSpeed * Time.fixedDeltaTime));
         }
     }
 }

@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     public GameObject restartScreen;
 
-    void Awake() {
+    public void Awake() {
         if (Instance == null) {
             Instance = this;
         } else if (Instance != this) {

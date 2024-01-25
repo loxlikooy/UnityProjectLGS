@@ -5,24 +5,24 @@ namespace Code.Script
     public class InputHandler : MonoBehaviour
     {
         private PlayerInputActions _playerInputActions;
-        private Animator _animator; // Reference to the Animator
+        private Animator _playerAnimator; // Reference to the Animator
 
         private void Awake()
         {
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Player.Enable();
             
-            _animator = GetComponent<Animator>(); // Initialize the Animator
+            _playerAnimator = GetComponent<Animator>(); // Initialize the Animator
         }
 
         private void Update()
         {
             Vector2 movement = GetMovementVectorNormalized();
-            _animator.SetFloat("MoveX", movement.x);
+            _playerAnimator.SetFloat("MoveX", movement.x);
             
             if (OnAttack())
             {
-                _animator.SetTrigger("Attack");
+                _playerAnimator.SetTrigger("Attack");
             }
         }
 

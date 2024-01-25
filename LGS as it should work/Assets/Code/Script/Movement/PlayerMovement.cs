@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-// Assume Code.Script namespace contains InputHandler
 
-// Ensure the GameObject has an InputHandler component
 namespace Code.Script
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerAnimator _playerAnimator; 
+        //
+        private ComponentGetter _componentGetter;
+        //
         [SerializeField]
         private float moveSpeed = 1f; 
         private const float CollisionOffset = 0.01f; 
-        private MoveVelocity _moveVelocity;
+        
 
         [SerializeField]
         private ContactFilter2D movementFilter; 
@@ -22,20 +22,14 @@ namespace Code.Script
     
         public Vector2 LastMoveDirection => _lastMoveDirection;
     
-        private Rigidbody2D _rigidbody2D; 
+       
         private List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>();
 
-        private InputHandler _inputHandler;
+        
     
         private void Start()
         {
-            _playerAnimator = GetComponent<PlayerAnimator>();
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            _inputHandler = GetComponent<InputHandler>();
-             GetComponent<IMoveVelocity>().SetVelocity(_movementInput);
-             _moveVelocity = GetComponent<MoveVelocity>();
-
-
+             _componentGetter = GetComponent<ComponentGetter>();
         }
     
         private void AssignLastMoveDirection()
@@ -48,8 +42,8 @@ namespace Code.Script
     
         private void FixedUpdate()
         {
-            _movementInput = _inputHandler.GetMovementVectorNormalized();
-            _playerAnimator.SetMovementAnimation(_movementInput); 
+            _movementInput = _componentGetter.PlayerInputHandler.GetMovementVectorNormalized();
+            _componentGetter.PlayerAnimator.SetMovementAnimation(_movementInput); 
             HandleMovement();
             AssignLastMoveDirection();
         }
@@ -68,7 +62,7 @@ namespace Code.Script
         {
             if (CastAgainstCollidables(moveDirection) == 0)
             {
-                _moveVelocity.SetVelocity(moveDirection * moveSpeed);
+                _componentGetter.PlayerMoveVelocity.SetVelocity(moveDirection * moveSpeed);
                 return true;
             }
             return false;
@@ -76,7 +70,7 @@ namespace Code.Script
 
         private int CastAgainstCollidables(Vector2 moveDirection)
         {
-            return _rigidbody2D.Cast(
+            return _componentGetter.PlayerRGB.Cast(
                 moveDirection,
                 movementFilter,
                 _castCollisions,

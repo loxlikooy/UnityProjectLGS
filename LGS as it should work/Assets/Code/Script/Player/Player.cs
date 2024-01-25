@@ -4,32 +4,21 @@ namespace Code.Script
 {
     public class Player : MonoBehaviour, IDamagable, IAttackable
     {
-        private Health _playerHealth;
-        private PlayerMovement _playerMovement;
-        private PlayerAttack _playerAttack;
-        private Dash _playerDash;
-
-        public Health HealthComponent => _playerHealth;
-        public PlayerMovement Movement => _playerMovement;
-        public PlayerAttack AttackComponent => _playerAttack;
-        public Dash DashComponent => _playerDash;
+        private ComponentGetter _componentGetter;
 
         private void Awake()
         {
-            _playerHealth = GetComponent<Health>();
-            _playerMovement = GetComponent<PlayerMovement>();
-            _playerAttack = GetComponent<PlayerAttack>();
-            _playerDash = GetComponent<Dash>();
+            _componentGetter = GetComponent<ComponentGetter>();
         }
 
         public void TakeDamage(float damageAmount)
         {
-            _playerHealth.TakeDamage(damageAmount);
+            _componentGetter.HealthComponent.TakeDamage(damageAmount);
         }
 
         public void Attack(IDamagable target)
         {
-            _playerAttack.ExecuteAttack(target);
+            _componentGetter.PlayerAttackComponent.ExecuteAttack(target);
         }
 
     }

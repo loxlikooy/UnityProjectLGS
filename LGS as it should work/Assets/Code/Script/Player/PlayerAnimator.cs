@@ -11,8 +11,6 @@ namespace Code.Script
 
         private void Awake()
         {
-            
-            
             _componentGetter = GetComponent<ComponentGetter>();
         }
 

@@ -9,7 +9,7 @@ namespace Code.Script
         [SerializeField]
         private float playerDamage = 10f; // Default damage value
         [FormerlySerializedAs("desiredAttackRange")] [SerializeField]
-        private float attackRange = 0.1f;
+        private float attackRange = 1f;
 
         
         private ComponentGetter _componentGetter;

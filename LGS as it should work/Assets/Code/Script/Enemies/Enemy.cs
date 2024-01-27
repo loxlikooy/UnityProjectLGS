@@ -65,7 +65,6 @@ namespace Code.Script
 
         private void Update()
         {
-            _timeSinceLastAttack += Time.deltaTime;
             HandleStates();
         }
 
@@ -103,9 +102,9 @@ namespace Code.Script
 
         private void Chase()
         {
+            
             if (_player == null)
             {
-                _currentState = EnemyState.Chasing;
                 return;
             }
 
@@ -120,13 +119,20 @@ namespace Code.Script
 
         private void Attack()
         {
+            _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
+            
 
-            _currentState = IsCloseTo(_player.position, attackRadius) ? EnemyState.Chasing : EnemyState.Patrolling;
+            if (!IsCloseTo(_player.position, attackRadius))
+            {
+                _timeSinceLastAttack = 0f;
+                _currentState = IsCloseTo(_player.position, attackRadius) ? EnemyState.Chasing : EnemyState.Patrolling;
+            }
+           
         }
 
         private void TryDealDamageToPlayer()
@@ -134,6 +140,7 @@ namespace Code.Script
             IDamagable playerDamagable = _player.GetComponent<IDamagable>();
             if (playerDamagable != null)
                 playerDamagable.TakeDamage(damage);
+            
         }
 
         private void PickRandomPatrolPoint()

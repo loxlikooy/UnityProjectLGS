@@ -9,7 +9,10 @@ namespace Code.Script
         private Vector3 _dashEndPosition;
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
-        private float _dashDuration = 0.2f;  // Duration of the dash in seconds
+        private float _dashDuration = 0.2f; // Duration of the dash in seconds
+        private float _dashCooldown = 2f;
+        private float _timeSinceLastDash = Mathf.Infinity;
+        
         
         [SerializeField]
         private LayerMask layersToCheck;
@@ -23,7 +26,7 @@ namespace Code.Script
 
         public void HandleDash()
         {
-            if (_isDashing) return;
+            if (_isDashing || _timeSinceLastDash < _dashCooldown) return;
 
             Vector2 lastMoveDirection = _componentGetter.PlayerMovement.LastMoveDirection;
             Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
@@ -46,6 +49,7 @@ namespace Code.Script
 
         private void StartDash(Vector3 targetPosition)
         {
+            _timeSinceLastDash = 0f;
             _dashStartPosition = transform.position;
             _dashEndPosition = targetPosition;
             _dashTimeCounter = 0f;
@@ -80,6 +84,12 @@ namespace Code.Script
 
         private void Update()
         {
+            if (_timeSinceLastDash < _dashCooldown)
+            {
+                _timeSinceLastDash += Time.deltaTime;
+            }
+
+            PlayerHUDManager.Instance.DashColdown(_dashCooldown, Mathf.Clamp(_timeSinceLastDash, 0, _dashCooldown));
             HandleDashInput();
         }
     }

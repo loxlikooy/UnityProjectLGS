@@ -36,6 +36,7 @@ namespace Code.Script
             Destroy(gameObject);
             transform.gameObject.SetActive(false);
             GameManager.Instance.ShowRestartScreen();
+           
         }
     }
 }

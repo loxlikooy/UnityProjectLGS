@@ -9,7 +9,11 @@ namespace Code.Script
     {
         public static PlayerHUDManager Instance { get; private set; }
 
-        public Image HealthBar;
+        public Image healthBar;
+        //public Image expBar;
+        public Text healthText;
+        public Image dashOnColdown;
+        
 
         private void Awake()
         {
@@ -25,7 +29,21 @@ namespace Code.Script
 
         public void SetHealth(float health,float maxHealth)
         {
-            HealthBar.fillAmount = health / maxHealth ;
+            
+            healthBar.fillAmount = health / maxHealth;
+            healthText.text = health.ToString("0") + "/" + maxHealth.ToString("0");
+        }
+
+        public void SetExp(float exp, float maxExp)
+        {
+            //expBar.fillAmount = exp / maxExp;
+            return;
+        }
+
+        public void DashColdown(float dashCooldown, float timeSinceLastDash)
+        {
+            float cooldownLeft = 1 - (timeSinceLastDash / dashCooldown);
+            dashOnColdown.fillAmount = Mathf.Clamp(cooldownLeft, 0, 1);
         }
     }
 }

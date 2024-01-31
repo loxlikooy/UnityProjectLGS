@@ -42,7 +42,7 @@ namespace Code.Script
 
         public void DashColdown(float dashCooldown, float timeSinceLastDash)
         {
-            float cooldownLeft = 1 - (timeSinceLastDash / dashCooldown);
+            float cooldownLeft = timeSinceLastDash / dashCooldown;
             dashOnColdown.fillAmount = Mathf.Clamp(cooldownLeft, 0, 1);
         }
     }

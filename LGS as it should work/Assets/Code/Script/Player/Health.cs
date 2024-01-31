@@ -34,8 +34,8 @@ namespace Code.Script
         protected virtual void Die()
         {
             Destroy(gameObject);
-            transform.gameObject.SetActive(false);
             GameManager.Instance.ShowRestartScreen();
+            
            
         }
     }

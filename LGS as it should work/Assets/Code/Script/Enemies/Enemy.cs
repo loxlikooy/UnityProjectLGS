@@ -119,6 +119,10 @@ namespace Code.Script
 
         private void Attack()
         {
+            if (_player == null)
+            {
+                return;
+            }
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
@@ -140,7 +144,7 @@ namespace Code.Script
             IDamagable playerDamagable = _player.GetComponent<IDamagable>();
             if (playerDamagable != null)
                 playerDamagable.TakeDamage(damage);
-            
+
         }
 
         private void PickRandomPatrolPoint()

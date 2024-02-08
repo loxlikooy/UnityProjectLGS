@@ -4,11 +4,12 @@ namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
-        
-        
-        [Header("Stats")]
-        public float health;
-        public float damage;
+
+        [Header("EXP Gainer")] 
+        [SerializeField] private float expValue;
+        [Header("Stats")] 
+        [SerializeField]private float health;
+        [SerializeField]private float damage;
 
         
         [Header("Movement Settings")]
@@ -33,6 +34,7 @@ namespace Code.Script
         private EnemyState _currentState;
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
+        private EXP _exp;
 
 
         private enum EnemyState
@@ -53,8 +55,10 @@ namespace Code.Script
 
         private void InitializeComponents()
         {
+            GameObject playerGameObject = GameObject.FindWithTag("Player");
             _rb = GetComponent<Rigidbody2D>();
             _player = FindObjectOfType<PlayerAttack>().transform;
+            _exp = playerGameObject.GetComponent<EXP>();
         }
 
         private void SetInitialState()
@@ -206,6 +210,7 @@ namespace Code.Script
 
         private void Die()
         {
+            _exp.AddExp(expValue);
             Destroy(gameObject);
             this.enabled = false;
         }

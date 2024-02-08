@@ -30,13 +30,28 @@ namespace Code.Script
                 Die();
             }
         }
+        
+        public void IncreaseHealth()
+        {
+            Debug.Log("Health Increased!");
+            maxHealth = maxHealth + 10;
+            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+        }
+
+        public void HealthRegen()
+        {
+            Debug.Log("Health Regened!");
+            currentHealth = currentHealth + 10;
+            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+        }
 
         protected virtual void Die()
         {
             Destroy(gameObject);
             GameManager.Instance.ShowRestartScreen();
-            
-           
+
+
+
         }
     }
 }

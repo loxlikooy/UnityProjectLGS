@@ -15,5 +15,6 @@ namespace Code.Script
         public InputHandler PlayerInputHandler => GetComponent<InputHandler>();
         public MoveVelocity PlayerMoveVelocity => GetComponent<MoveVelocity>();
         public PlayerMovement PlayerMovement => GetComponent<PlayerMovement>();
+        public EXP EXP => GetComponent<EXP>();
     }
 }

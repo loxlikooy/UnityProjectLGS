@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8160280767874490071}
   - component: {fileID: 5213862995777971778}
   - component: {fileID: 955046777657964787}
-  - component: {fileID: 269790056752698997}
   - component: {fileID: 7728716527477353694}
+  - component: {fileID: 1704431160897629140}
   m_Layer: 0
   m_Name: Shekotalka Prefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.67296, y: 0.67296, z: 0.67296}
+  m_LocalScale: {x: 0.93220866, y: 1.0945593, z: 0.67296}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,14 +96,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3133060212721523930}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &955046777657964787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,20 +160,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13521242, y: 0.08221178}
   m_EdgeRadius: 0
---- !u!114 &269790056752698997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3133060212721523930}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae9f23080b848fcaec5b977fff54685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
 --- !u!114 &7728716527477353694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,17 +172,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b69c0851564d3d9ca9b72377e2a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expValue: 30
   health: 100
-  damage: 2
-  patrolSpeed: 3
-  chaseSpeed: 5
-  patrolRange: 5
-  detectionRadius: 5
-  attackRadius: 2
-  attackCooldown: 1
+  damage: 10
+  patrolSpeed: 0.3
+  chaseSpeed: 0.5
+  patrolRange: 1
+  detectionRadius: 1
+  attackRadius: 0.1
+  attackCooldown: 0.3
   backgroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   collideObjectsLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+--- !u!95 &1704431160897629140
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133060212721523930}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25ca53ca47dc9486f81586b45da3c285, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

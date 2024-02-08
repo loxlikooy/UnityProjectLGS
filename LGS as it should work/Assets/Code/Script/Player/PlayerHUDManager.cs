@@ -8,10 +8,13 @@ namespace Code.Script
     public class PlayerHUDManager : MonoBehaviour
     {
         public static PlayerHUDManager Instance { get; private set; }
-
+        [Header("Health")]
         public Image healthBar;
-        //public Image expBar;
         public Text healthText;
+        [Header("EXP")]
+        public Image expBar;
+        public Text expText;
+        [Header("Dash")]
         public Image dashOnColdown;
         
 
@@ -36,8 +39,8 @@ namespace Code.Script
 
         public void SetExp(float exp, float maxExp)
         {
-            //expBar.fillAmount = exp / maxExp;
-            return;
+            expBar.fillAmount = exp / maxExp;
+            expText.text = exp.ToString("0") + "/" + maxExp.ToString("0");
         }
 
         public void DashColdown(float dashCooldown, float timeSinceLastDash)

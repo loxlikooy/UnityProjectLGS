@@ -92,5 +92,10 @@ namespace Code.Script
             PlayerHUDManager.Instance.DashColdown(_dashCooldown, Mathf.Clamp(_timeSinceLastDash, 0, _dashCooldown));
             HandleDashInput();
         }
+
+        public void DecreaseDashCooldown()
+        {
+            _dashCooldown = _dashCooldown - 0.5f;
+        }
     }
 }

@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 1490878527
+    locked: 0
+  - name: Trees
+    uniqueID: 3074590159
+    locked: 0
+  - name: Bushes
+    uniqueID: 1610154799
+    locked: 0
+  - name: Vegetation
+    uniqueID: 1381454427
+    locked: 0
+  - name: Cobblestones
+    uniqueID: 3567346795
+    locked: 0

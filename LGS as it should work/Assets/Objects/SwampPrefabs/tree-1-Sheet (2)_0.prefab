@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5008194364160789068}
   - component: {fileID: 23786925863580751}
   - component: {fileID: 203800493387094468}
+  - component: {fileID: -8891376523251467843}
   m_Layer: 0
   m_Name: tree-1-Sheet (2)_0
   m_TagString: Untagged
@@ -106,3 +107,60 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &-8891376523251467843
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089912163962977669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.6104761, y: 1.7834765}
+    newSize: {x: 1.6104761, y: 1.7834765}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.02676338, y: -0.6468003}
+      - {x: -0.54495114, y: -0.72660154}
+      - {x: -0.6065949, y: -0.78311735}
+      - {x: -0.6199291, y: -0.83327395}
+      - {x: -0.06103456, y: -0.8853791}
+      - {x: 0.18165039, y: -0.8917383}
+      - {x: 0.2972461, y: -0.85871094}
+      - {x: 0.37540376, y: -0.7741941}
+      - {x: 0.28381038, y: -0.67316383}
+    - - {x: 0.06246221, y: -0.5018709}
+      - {x: -0.07487628, y: -0.6255712}
+      - {x: 0.2659577, y: -0.6408536}
+  m_UseDelaunayMesh: 0

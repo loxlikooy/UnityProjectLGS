@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9157655304293749194}
   - component: {fileID: 7327538592966204236}
   - component: {fileID: 3809257030940265606}
+  - component: {fileID: 2661894590947285445}
   m_Layer: 3
   m_Name: bigBush-1
   m_TagString: Untagged
@@ -106,3 +107,58 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &2661894590947285445
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366902596526798611}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8107692, y: 0.5}
+    newSize: {x: 0.8107692, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.3170011, y: -0.1316402}
+      - {x: 0.29106855, y: -0.11963393}
+      - {x: 0.12318206, y: -0.10132424}
+      - {x: -0.25254595, y: -0.114137225}
+      - {x: -0.35307217, y: -0.1677112}
+      - {x: -0.37219095, y: -0.13259488}
+      - {x: -0.3560953, y: -0.22}
+      - {x: -0.29999998, y: -0.25}
+      - {x: 0.27914324, y: -0.24304774}
+      - {x: 0.34307212, y: -0.16823746}
+  m_UseDelaunayMesh: 0

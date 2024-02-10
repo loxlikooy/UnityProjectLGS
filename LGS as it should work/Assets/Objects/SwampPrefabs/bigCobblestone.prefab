@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335264050178230789}
   - component: {fileID: 3360394897391550124}
+  - component: {fileID: 4823866458252925144}
   m_Layer: 0
   m_Name: bigCobblestone
   m_TagString: Untagged
@@ -84,3 +85,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &4823866458252925144
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822141550620039338}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.14, y: 0.82}
+    newSize: {x: 1.14, y: 0.82}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.377129, y: -0.13470234}
+      - {x: 0.21514636, y: -0.08426398}
+      - {x: -0.0017066747, y: -0.07204741}
+      - {x: -0.14058918, y: -0.079185665}
+      - {x: -0.29624784, y: -0.11106092}
+      - {x: -0.31947264, y: -0.120073676}
+      - {x: -0.35865113, y: -0.13026837}
+      - {x: -0.40819013, y: -0.1718843}
+      - {x: -0.41062403, y: -0.23523223}
+      - {x: -0.2535577, y: -0.31108057}
+      - {x: 0.0939654, y: -0.3271153}
+      - {x: 0.27189606, y: -0.30128455}
+      - {x: 0.40647298, y: -0.2425077}
+      - {x: 0.43164524, y: -0.18368362}
+  m_UseDelaunayMesh: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6950413144148809273}
   - component: {fileID: 7261124934566541742}
+  - component: {fileID: 8863661561907439006}
   m_Layer: 0
   m_Name: Cobblestone
   m_TagString: Untagged
@@ -84,3 +85,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &8863661561907439006
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2215531059603131586}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.66, y: 0.5}
+    newSize: {x: 0.66, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.13109891, y: -0.067940935}
+      - {x: -0.004534386, y: -0.063152075}
+      - {x: -0.11870448, y: -0.06771541}
+      - {x: -0.20067668, y: -0.08557543}
+      - {x: -0.22685197, y: -0.11816431}
+      - {x: -0.20786008, y: -0.14954886}
+      - {x: -0.15242341, y: -0.1674089}
+      - {x: -0.037663415, y: -0.17828223}
+      - {x: 0.11456332, y: -0.17880373}
+      - {x: 0.19009896, y: -0.17341001}
+      - {x: 0.24619147, y: -0.15609254}
+      - {x: 0.2650655, y: -0.11529821}
+      - {x: 0.21882395, y: -0.08094583}
+  m_UseDelaunayMesh: 0

@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour {
     public Button[] choiceButtons; // Массив кнопок для выбора улучшений
     public GameObject abilityChoiceScreen; // Экран выбора улучшений
 
-    [SerializeField] private Health playerHealth;
-    [SerializeField] private PlayerAttack playerAttack;
-    [SerializeField] private Dash playerDash;
-    [SerializeField] private MoveVelocity playerMoveVelocity;
+    public Health playerHealth;
+    public PlayerAttack playerAttack;
+    public Dash playerDash;
+    public MoveVelocity playerMoveVelocity;
     
     public void Awake() {
         if (Instance == null) {
@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour {
             int index = chosenIndices[i];
             choiceButtons[i].GetComponent<Image>().sprite = allUpgrades[index].icon;
 
-            
+            // Найти компонент TextMeshProUGUI внутри кнопки и установить его текст
             var buttonText = choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = allUpgrades[index].name; 
+            buttonText.text = allUpgrades[index].name; // Установить имя улучшения
         
             choiceButtons[i].onClick.RemoveAllListeners();
             choiceButtons[i].onClick.AddListener(() => ApplyUpgrade(allUpgrades[index]));

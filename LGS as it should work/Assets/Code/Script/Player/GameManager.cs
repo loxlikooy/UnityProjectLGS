@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour {
     public GameObject restartScreen;
     public GameObject HUD;
     
-    public Upgrade[] allUpgrades; // Массив со всеми доступными улучшениями
+    private Upgrade[] allUpgrades; // Массив со всеми доступными улучшениями
     public Button[] choiceButtons; // Массив кнопок для выбора улучшений
     public GameObject abilityChoiceScreen; // Экран выбора улучшений
 
-    public Health playerHealth;
-    public PlayerAttack playerAttack;
-    public Dash playerDash;
-    public MoveVelocity playerMoveVelocity;
+    [SerializeField] private Health playerHealth;
+    [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private Dash playerDash;
+    [SerializeField] private MoveVelocity playerMoveVelocity;
     
     public void Awake() {
         if (Instance == null) {
@@ -25,7 +25,12 @@ public class GameManager : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
-
+        Sprite testSprite = Resources.Load<Sprite>("OurIcons/Icon 3");
+        if (testSprite == null) {
+            Debug.LogError("Sprite not found at path: OurIcons/Icon 3");
+        } else {
+            Debug.Log("Sprite loaded successfully.");
+        }
         
     }
 
@@ -39,11 +44,36 @@ public class GameManager : MonoBehaviour {
     {
         allUpgrades = new Upgrade[]
         {
-            new Upgrade { name = "Health Increase", effect = playerHealth.IncreaseHealth },
-            new Upgrade { name = "Health Regen", effect = playerHealth.HealthRegen },
-            new Upgrade { name = "Damage Increase", effect = playerAttack.IncreeseDamage },
-            new Upgrade { name = "Decrease Dash Cooldown", effect = playerDash.DecreaseDashCooldown },
-            new Upgrade { name = "Speed Increase", effect = playerMoveVelocity.IncreaseSpeed }
+            new Upgrade
+            {
+                name = "Health Increase",
+                effect = playerHealth.IncreaseHealth,
+                icon = Resources.Load<Sprite>("OurIcons/Icon 3")
+            },
+            new Upgrade
+            {
+                name = "Health Regen",
+                effect = playerHealth.HealthRegen,
+                icon = Resources.Load<Sprite>("OurIcons/Icon 3")
+            },
+            new Upgrade
+            {
+                name = "Damage Increase",
+                effect = playerAttack.IncreaseDamage, // Исправьте опечатку в названии метода здесь
+                icon = Resources.Load<Sprite>("OurIcons/Icon 1")
+            },
+            new Upgrade
+            {
+                name = "Decrease Dash Cooldown",
+                effect = playerDash.DecreaseDashCooldown,
+                icon = Resources.Load<Sprite>("OurIcons/Icon 2")
+            },
+            new Upgrade
+            {
+                name = "Speed Increase",
+                effect = playerMoveVelocity.IncreaseSpeed,
+                icon = Resources.Load<Sprite>("OurIcons/Icon 2")
+            }
         };
     }
 
@@ -71,15 +101,17 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             int index = chosenIndices[i];
-            choiceButtons[i].GetComponent<Image>().sprite = allUpgrades[index].icon;
+            Button button = choiceButtons[i];
+            button.GetComponent<Image>().sprite = allUpgrades[index].icon;
+            var buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = allUpgrades[index].name;
 
-            // Найти компонент TextMeshProUGUI внутри кнопки и установить его текст
-            var buttonText = choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = allUpgrades[index].name; // Установить имя улучшения
-        
-            choiceButtons[i].onClick.RemoveAllListeners();
-            choiceButtons[i].onClick.AddListener(() => ApplyUpgrade(allUpgrades[index]));
+            button.onClick.RemoveAllListeners();
+            int finalIndex = index; // Локальная переменная для использования в лямбда-выражении
+            button.onClick.AddListener(() => ApplyUpgrade(allUpgrades[finalIndex]));
         }
+
+
 
         abilityChoiceScreen.SetActive(true);
         HUD.SetActive(false);

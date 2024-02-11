@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Upgrade
 {
     public string name;
-    public Sprite icon; // Предполагается, что вы добавили Sprite в редакторе Unity
+    public Sprite icon; 
     public Action effect;
 }

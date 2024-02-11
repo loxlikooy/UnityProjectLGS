@@ -56,7 +56,7 @@ namespace Code.Script
             target.TakeDamage(playerDamage);
         }
 
-        public void IncreeseDamage()
+        public void IncreaseDamage()
         {
             playerDamage = playerDamage + (playerDamage*0.3f);
         }

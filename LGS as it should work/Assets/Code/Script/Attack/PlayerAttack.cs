@@ -8,29 +8,38 @@ namespace Code.Script
     {
         [SerializeField]
         private float playerDamage = 10f; // Default damage value
-        [FormerlySerializedAs("desiredAttackRange")] [SerializeField]
+        [SerializeField]
         private float attackRange = 1f;
+        [SerializeField]
+        private float attackCooldown = 2f; // Длительность кулдауна атаки в секундах
 
-        
+        private float attackTimer; // Таймер для отслеживания кулдауна
+
         private ComponentGetter _componentGetter;
-
         private List<Enemy> _enemies = new List<Enemy>();
 
         private void Start()
         {
             _componentGetter = GetComponent<ComponentGetter>();
-            // Initialize enemies list (assuming enemies are spawned at start)
             _enemies.AddRange(FindObjectsOfType<Enemy>());
+            attackTimer = 0f; // Инициализация таймера кулдауна
         }
 
         private void Update()
         {
             if (_componentGetter.PlayerAnimator.IsAttacking()) return;
 
-            if (_componentGetter.PlayerInputHandler.OnAttack())
+            // Обновление таймера кулдауна
+            if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+
+            if (_componentGetter.PlayerInputHandler.OnAttack() && attackTimer <= 0)
             {
                 CheckAndExecuteAttack();
                 _componentGetter.PlayerAnimator.SetAttackAnimation();
+                attackTimer = attackCooldown; // Сброс таймера кулдауна
             }
         }
 
@@ -58,7 +67,7 @@ namespace Code.Script
 
         public void IncreaseDamage()
         {
-            playerDamage = playerDamage + (playerDamage*0.3f);
+            playerDamage += playerDamage * 0.3f;
         }
     }
 }

@@ -25,13 +25,6 @@ public class GameManager : MonoBehaviour {
         } else if (Instance != this) {
             Destroy(gameObject);
         }
-        Sprite testSprite = Resources.Load<Sprite>("OurIcons/Icon 3");
-        if (testSprite == null) {
-            Debug.LogError("Sprite not found at path: OurIcons/Icon 3");
-        } else {
-            Debug.Log("Sprite loaded successfully.");
-        }
-        
     }
 
     private void Start()
@@ -48,31 +41,31 @@ public class GameManager : MonoBehaviour {
             {
                 name = "Health Increase",
                 effect = playerHealth.IncreaseHealth,
-                icon = Resources.Load<Sprite>("OurIcons/Icon 3")
+                icon = Resources.Load<Sprite>("OurIcons/survivalrateup")
             },
             new Upgrade
             {
                 name = "Health Regen",
                 effect = playerHealth.HealthRegen,
-                icon = Resources.Load<Sprite>("OurIcons/Icon 3")
+                icon = Resources.Load<Sprite>("OurIcons/survivalrateup")
             },
             new Upgrade
             {
                 name = "Damage Increase",
                 effect = playerAttack.IncreaseDamage, // Исправьте опечатку в названии метода здесь
-                icon = Resources.Load<Sprite>("OurIcons/Icon 1")
+                icon = Resources.Load<Sprite>("OurIcons/damageup")
             },
             new Upgrade
             {
                 name = "Decrease Dash Cooldown",
                 effect = playerDash.DecreaseDashCooldown,
-                icon = Resources.Load<Sprite>("OurIcons/Icon 2")
+                icon = Resources.Load<Sprite>("OurIcons/agilityup")
             },
             new Upgrade
             {
                 name = "Speed Increase",
                 effect = playerMoveVelocity.IncreaseSpeed,
-                icon = Resources.Load<Sprite>("OurIcons/Icon 2")
+                icon = Resources.Load<Sprite>("OurIcons/agilityup")
             }
         };
     }

@@ -68,11 +68,13 @@ namespace Code.Script
         public void IncreaseDamage()
         {
             playerDamage += playerDamage * 0.3f;
+            Debug.Log("dec");
         }
 
         public void DecreaseAttackCooldown()
         {
             attackCooldown = attackCooldown * 0.8f;
+            Debug.Log("dec");
         }
     }
 }

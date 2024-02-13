@@ -9,15 +9,18 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     public GameObject restartScreen;
     public GameObject HUD;
+    private bool _isUpgradeScreenShown = false;
     
     private Upgrade[] allUpgrades; // Массив со всеми доступными улучшениями
     public Button[] choiceButtons; // Массив кнопок для выбора улучшений
     public GameObject abilityChoiceScreen; // Экран выбора улучшений
+    private Queue<Upgrade[]> upgradesQueue = new Queue<Upgrade[]>();
 
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Dash playerDash;
     [SerializeField] private MoveVelocity playerMoveVelocity;
+    
     
     public void Awake() {
         if (Instance == null) {
@@ -87,6 +90,10 @@ public class GameManager : MonoBehaviour {
 
     public void ShowRandomUpgrades()
     {
+        
+        if (_isUpgradeScreenShown) return;
+        Debug.Log("upgrade shown");
+        _isUpgradeScreenShown = true;
         List<int> chosenIndices = new List<int>();
         while (chosenIndices.Count < 3)
         {
@@ -108,6 +115,7 @@ public class GameManager : MonoBehaviour {
             button.onClick.RemoveAllListeners();
             int finalIndex = index; // Локальная переменная для использования в лямбда-выражении
             button.onClick.AddListener(() => ApplyUpgrade(allUpgrades[finalIndex]));
+            Time.timeScale = 0;
         }
 
 
@@ -116,6 +124,8 @@ public class GameManager : MonoBehaviour {
         HUD.SetActive(false);
         Time.timeScale = 0;
     }
+    
+    
 
 
 
@@ -129,7 +139,12 @@ public class GameManager : MonoBehaviour {
     {
         abilityChoiceScreen.SetActive(false);
         HUD.SetActive(true);
+        _isUpgradeScreenShown = false;
         Time.timeScale = 1;
+    }
+    
+    public bool IsUpgradeScreenShown() {
+        return _isUpgradeScreenShown;
     }
 
     public void RestartGame() {

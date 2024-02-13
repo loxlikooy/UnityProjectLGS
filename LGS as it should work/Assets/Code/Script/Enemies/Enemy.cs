@@ -4,7 +4,6 @@ namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
-
         [Header("EXP Gainer")] 
         [SerializeField] private float expValue;
         [Header("Stats")] 
@@ -35,6 +34,7 @@ namespace Code.Script
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
+       
 
 
         private enum EnemyState
@@ -51,7 +51,6 @@ namespace Code.Script
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             PickRandomPatrolPoint();
-            
         }
 
         private void InitializeComponents()
@@ -71,7 +70,7 @@ namespace Code.Script
         private void Update()
         {
             HandleStates();
-            Debug.Log(_randomPatrolPoint);
+            
         }
 
         private void HandleStates()
@@ -215,13 +214,21 @@ namespace Code.Script
         private void Die()
         {
             _exp.AddExp(expValue);
+            CheckQuestCompletion();
             Destroy(gameObject);
             this.enabled = false;
+            
         }
 
         public void Attack(IDamagable target)
         {
             target.TakeDamage(damage);
+        }
+        private void CheckQuestCompletion()
+        {
+            // Предположим, что у вас есть квест с именем "Убить врага"
+            QuestManager.Instance.CompleteQuest("Убить врага");
+            QuestManager.Instance.UpdateQuestText("Квест выполнен");
         }
     }
 }

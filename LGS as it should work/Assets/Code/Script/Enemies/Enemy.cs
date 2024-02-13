@@ -50,6 +50,7 @@ namespace Code.Script
             SetInitialState();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            PickRandomPatrolPoint();
             
         }
 
@@ -70,6 +71,7 @@ namespace Code.Script
         private void Update()
         {
             HandleStates();
+            Debug.Log(_randomPatrolPoint);
         }
 
         private void HandleStates()
@@ -161,11 +163,13 @@ namespace Code.Script
 
                 _randomPatrolPoint = GetRandomPointWithinPatrolRange();
             }
+            
         }
 
         private Vector2 GetRandomPointWithinPatrolRange()
         {
             return (Vector2)transform.position + new Vector2(Random.Range(-patrolRange, patrolRange), Random.Range(-patrolRange, patrolRange));
+            
         }
 
         private bool IsValidPatrolPoint(Vector2 point)

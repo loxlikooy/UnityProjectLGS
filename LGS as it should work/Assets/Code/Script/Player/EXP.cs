@@ -17,15 +17,16 @@ namespace Code.Script
         public void AddExp(float amountExp)
         {
             _currentExp += amountExp;
-            if (_currentExp >= _expForNextLevel)
+    
+            // Используем цикл while для повторной проверки после каждого повышения уровня
+            while (_currentExp >= _expForNextLevel)
             {
-                _currentExp = _currentExp - _expForNextLevel;
-                _expForNextLevel = _expForNextLevel + 20;
-                GameManager.Instance.ShowRandomUpgrades();
-              
-            }  
-            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
-            
+                _currentExp -= _expForNextLevel; 
+                _expForNextLevel += 20; 
+                GameManager.Instance.ShowRandomUpgrades(); 
+            }
+    
+            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel); // Обновляем HUD игрока
         }
         
     }

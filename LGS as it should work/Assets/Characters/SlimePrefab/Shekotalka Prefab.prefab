@@ -172,12 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b69c0851564d3d9ca9b72377e2a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expValue: 30
+  expValue: 50
   health: 100
   damage: 10
   patrolSpeed: 0.3
   chaseSpeed: 0.5
-  patrolRange: 1
+  patrolRange: 8
   detectionRadius: 1
   attackRadius: 0.1
   attackCooldown: 0.3

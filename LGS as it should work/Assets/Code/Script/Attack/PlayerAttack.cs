@@ -69,5 +69,10 @@ namespace Code.Script
         {
             playerDamage += playerDamage * 0.3f;
         }
+
+        public void DecreaseAttackCooldown()
+        {
+            attackCooldown = attackCooldown * 0.8f;
+        }
     }
 }

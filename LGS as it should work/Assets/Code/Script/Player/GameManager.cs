@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour {
                 name = "Speed Increase",
                 effect = playerMoveVelocity.IncreaseSpeed,
                 icon = Resources.Load<Sprite>("OurIcons/agilityup")
+            },
+            new Upgrade
+            {
+                name = "Upgrade Attack Speed",
+                effect = playerAttack.DecreaseAttackCooldown,
+                icon = Resources.Load<Sprite>("OurIcons/damageup")
             }
         };
     }

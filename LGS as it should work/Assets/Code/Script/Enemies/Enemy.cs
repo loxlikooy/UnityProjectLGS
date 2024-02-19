@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Script.Music;
+using UnityEngine;
 
 namespace Code.Script
 {
@@ -34,6 +35,7 @@ namespace Code.Script
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
+        private MusicChange _musicChange;
        
 
 
@@ -59,6 +61,7 @@ namespace Code.Script
             _rb = GetComponent<Rigidbody2D>();
             _player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
+            _musicChange = FindObjectOfType<MusicChange>();
         }
 
         private void SetInitialState()
@@ -107,19 +110,37 @@ namespace Code.Script
 
         private void Chase()
         {
-            
             if (_player == null)
             {
                 return;
             }
 
             MoveTowards(_player.position, chaseSpeed);
+            if (_musicChange.musicOnChange !=
+                Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk"))
+            {
+
+                _musicChange.musicOnChange =
+                    Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk");
+                _musicChange.MusicChangeOnStateChase();
+            }
 
             if (IsCloseTo(_player.position, attackRadius))
                 _currentState = EnemyState.Attacking;
             else if (!IsCloseTo(_player.position, detectionRadius))
+            {
                 _currentState = EnemyState.Patrolling;
-            
+                if (_musicChange.musicOnChange !=
+                    Resources.Load<AudioClip>(
+                        "Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps"))
+                {
+                    _musicChange.musicOnChange =
+                        Resources.Load<AudioClip>(
+                            "Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps");
+                    _musicChange.MusicChangeOnStateChase();
+                }
+
+            }
         }
 
         private void Attack()

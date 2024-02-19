@@ -53,6 +53,7 @@ namespace Code.Script
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             PickRandomPatrolPoint();
+            Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk");
         }
 
         private void InitializeComponents()
@@ -117,11 +118,11 @@ namespace Code.Script
 
             MoveTowards(_player.position, chaseSpeed);
             if (_musicChange.musicOnChange !=
-                Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk"))
+                Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі"))
             {
 
                 _musicChange.musicOnChange =
-                    Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk");
+                    Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі");
                 _musicChange.MusicChangeOnStateChase();
             }
 

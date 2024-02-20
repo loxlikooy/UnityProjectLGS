@@ -229,6 +229,8 @@ namespace Code.Script
 
         private void Die()
         {
+            EnemyManager.StopChasing();
+            _isChasing = false;
             _exp.AddExp(expValue);
             CheckQuestCompletion();
             Destroy(gameObject);

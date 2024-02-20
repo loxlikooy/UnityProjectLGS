@@ -48,10 +48,8 @@ namespace Code.Script
         protected virtual void Die()
         {
             Destroy(gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("MusicBox"));
             GameManager.Instance.ShowRestartScreen();
-
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Code.Script.Music;
+﻿using System.Collections.Generic;
+using Code.Script.Music;
 using UnityEngine;
 
 namespace Code.Script
@@ -36,6 +37,8 @@ namespace Code.Script
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
         private MusicChange _musicChange;
+        private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+        private bool _isChasing = false;
        
 
 
@@ -53,7 +56,6 @@ namespace Code.Script
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             PickRandomPatrolPoint();
-            Resources.Load<AudioClip>("Music/Adai_Kurmangazy_Адай_Құрманғазы_QR8bnM_GvDk");
         }
 
         private void InitializeComponents()
@@ -63,6 +65,8 @@ namespace Code.Script
             _player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
             _musicChange = FindObjectOfType<MusicChange>();
+            _audioClips.Add("ChaseMusic", Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі"));
+            _audioClips.Add("PatrolMusic", Resources.Load<AudioClip>("Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps"));
         }
 
         private void SetInitialState()
@@ -97,10 +101,9 @@ namespace Code.Script
 
         private void Patrol()
         {
+            if (_player == null || _player.gameObject == null) return;
             MoveTowards(_randomPatrolPoint, patrolSpeed);
-            
-            
-            
+
             if (IsCloseTo(_randomPatrolPoint))
                 PickRandomPatrolPoint();
 
@@ -109,61 +112,52 @@ namespace Code.Script
             
         }
 
+
         private void Chase()
         {
-            if (_player == null)
-            {
-                return;
-            }
+            if (_player == null || _player.gameObject == null) return;
 
             MoveTowards(_player.position, chaseSpeed);
-            if (_musicChange.musicOnChange !=
-                Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі"))
-            {
 
-                _musicChange.musicOnChange =
-                    Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі");
-                _musicChange.MusicChangeOnStateChase();
+            if (!_isChasing)
+            {
+                EnemyManager.StartChasing();
+                _isChasing = true; // Добавьте эту переменную в ваш класс
             }
 
-            if (IsCloseTo(_player.position, attackRadius))
-                _currentState = EnemyState.Attacking;
             else if (!IsCloseTo(_player.position, detectionRadius))
             {
                 _currentState = EnemyState.Patrolling;
-                if (_musicChange.musicOnChange !=
-                    Resources.Load<AudioClip>(
-                        "Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps"))
+                if (_isChasing)
                 {
-                    _musicChange.musicOnChange =
-                        Resources.Load<AudioClip>(
-                            "Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps");
-                    _musicChange.MusicChangeOnStateChase();
+                    EnemyManager.StopChasing();
+                    _isChasing = false;
                 }
-
             }
+            if (IsCloseTo(_player.position, attackRadius))
+                _currentState = EnemyState.Attacking;
         }
+
+        // Дополните код определениями для MoveTowards и IsCloseTo, а также любыми другими необходимыми методами.
+    
 
         private void Attack()
         {
-            if (_player == null)
-            {
-                return;
-            }
+            if (_player == null) return;
+
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
+                // Assume TryDealDamageToPlayer is a method that deals damage to the player
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
-            
 
             if (!IsCloseTo(_player.position, attackRadius))
             {
                 _timeSinceLastAttack = 0f;
-                _currentState = IsCloseTo(_player.position, attackRadius) ? EnemyState.Chasing : EnemyState.Patrolling;
+                _currentState = EnemyState.Patrolling;
             }
-           
         }
 
         private void TryDealDamageToPlayer()

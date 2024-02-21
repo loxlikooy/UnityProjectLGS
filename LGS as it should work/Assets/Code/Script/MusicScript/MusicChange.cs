@@ -7,8 +7,8 @@ namespace Code.Script.Music
     public class MusicChange : MonoBehaviour
     {
         private AudioSource _musicBox;
-        private float _fadeOutDuration = 1f; // Время затухания в секундах
-        private float _fadeInDuration = 1f;  // Время нарастания громкости в секундах
+        private float _fadeOutDuration = 1f; 
+        private float _fadeInDuration = 1f;  
         private float _startVolume;
         private Dictionary<AudioClip, float> _clipPositions = new Dictionary<AudioClip, float>();
 

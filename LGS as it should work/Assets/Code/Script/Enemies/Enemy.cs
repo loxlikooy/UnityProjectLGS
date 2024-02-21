@@ -122,7 +122,7 @@ namespace Code.Script
             if (!_isChasing)
             {
                 EnemyManager.StartChasing();
-                _isChasing = true; // Добавьте эту переменную в ваш класс
+                _isChasing = true; 
             }
 
             else if (!IsCloseTo(_player.position, detectionRadius))
@@ -138,7 +138,7 @@ namespace Code.Script
                 _currentState = EnemyState.Attacking;
         }
 
-        // Дополните код определениями для MoveTowards и IsCloseTo, а также любыми другими необходимыми методами.
+      
     
 
         private void Attack()
@@ -148,7 +148,7 @@ namespace Code.Script
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
-                // Assume TryDealDamageToPlayer is a method that deals damage to the player
+                
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
@@ -244,7 +244,7 @@ namespace Code.Script
         }
         private void CheckQuestCompletion()
         {
-            // Предположим, что у вас есть квест с именем "Убить врага"
+            
             QuestManager.Instance.CompleteQuest("Убить врага");
             QuestManager.Instance.UpdateQuestText("Квест выполнен");
         }

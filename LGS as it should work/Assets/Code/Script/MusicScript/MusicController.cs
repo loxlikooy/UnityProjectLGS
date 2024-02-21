@@ -6,8 +6,8 @@ public class MusicController : MonoBehaviour
     public static MusicController Instance { get; private set; }
 
     private MusicChange _musicChange;
-    [SerializeField] private AudioClip chaseMusicClip; // Assign in the Inspector
-    [SerializeField] private AudioClip patrolMusicClip; // Assign in the Inspector
+    [SerializeField] private AudioClip chaseMusicClip; 
+    [SerializeField] private AudioClip patrolMusicClip; 
 
     private void Awake()
     {

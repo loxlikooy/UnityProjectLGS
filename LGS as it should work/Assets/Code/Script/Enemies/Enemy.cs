@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Code.Script.Music;
+using UnityEngine;
 
 namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
-
         [Header("EXP Gainer")] 
         [SerializeField] private float expValue;
         [Header("Stats")] 
@@ -35,6 +36,10 @@ namespace Code.Script
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
+        private MusicChange _musicChange;
+        private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+        private bool _isChasing = false;
+       
 
 
         private enum EnemyState
@@ -51,7 +56,6 @@ namespace Code.Script
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             PickRandomPatrolPoint();
-            
         }
 
         private void InitializeComponents()
@@ -60,6 +64,9 @@ namespace Code.Script
             _rb = GetComponent<Rigidbody2D>();
             _player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
+            _musicChange = FindObjectOfType<MusicChange>();
+            _audioClips.Add("ChaseMusic", Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі"));
+            _audioClips.Add("PatrolMusic", Resources.Load<AudioClip>("Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps"));
         }
 
         private void SetInitialState()
@@ -71,7 +78,7 @@ namespace Code.Script
         private void Update()
         {
             HandleStates();
-            Debug.Log(_randomPatrolPoint);
+            
         }
 
         private void HandleStates()
@@ -94,10 +101,9 @@ namespace Code.Script
 
         private void Patrol()
         {
+            if (_player == null || _player.gameObject == null) return;
             MoveTowards(_randomPatrolPoint, patrolSpeed);
-            
-            
-            
+
             if (IsCloseTo(_randomPatrolPoint))
                 PickRandomPatrolPoint();
 
@@ -106,43 +112,52 @@ namespace Code.Script
             
         }
 
+
         private void Chase()
         {
-            
-            if (_player == null)
-            {
-                return;
-            }
+            if (_player == null || _player.gameObject == null) return;
 
             MoveTowards(_player.position, chaseSpeed);
 
+            if (!_isChasing)
+            {
+                EnemyManager.StartChasing();
+                _isChasing = true; 
+            }
+
+            else if (!IsCloseTo(_player.position, detectionRadius))
+            {
+                _currentState = EnemyState.Patrolling;
+                if (_isChasing)
+                {
+                    EnemyManager.StopChasing();
+                    _isChasing = false;
+                }
+            }
             if (IsCloseTo(_player.position, attackRadius))
                 _currentState = EnemyState.Attacking;
-            else if (!IsCloseTo(_player.position, detectionRadius))
-                _currentState = EnemyState.Patrolling;
-            
         }
+
+      
+    
 
         private void Attack()
         {
-            if (_player == null)
-            {
-                return;
-            }
+            if (_player == null) return;
+
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
+                
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
-            
 
             if (!IsCloseTo(_player.position, attackRadius))
             {
                 _timeSinceLastAttack = 0f;
-                _currentState = IsCloseTo(_player.position, attackRadius) ? EnemyState.Chasing : EnemyState.Patrolling;
+                _currentState = EnemyState.Patrolling;
             }
-           
         }
 
         private void TryDealDamageToPlayer()
@@ -214,14 +229,24 @@ namespace Code.Script
 
         private void Die()
         {
+            EnemyManager.StopChasing();
+            _isChasing = false;
             _exp.AddExp(expValue);
+            CheckQuestCompletion();
             Destroy(gameObject);
             this.enabled = false;
+            
         }
 
         public void Attack(IDamagable target)
         {
             target.TakeDamage(damage);
+        }
+        private void CheckQuestCompletion()
+        {
+            
+            QuestManager.Instance.CompleteQuest("Убить врага");
+            QuestManager.Instance.UpdateQuestText("Квест выполнен");
         }
     }
 }

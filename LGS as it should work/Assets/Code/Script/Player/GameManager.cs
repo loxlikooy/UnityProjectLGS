@@ -9,15 +9,17 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
     public GameObject restartScreen;
     public GameObject HUD;
+    private bool _isUpgradeScreenShown = false;
     
-    private Upgrade[] allUpgrades; // Массив со всеми доступными улучшениями
-    public Button[] choiceButtons; // Массив кнопок для выбора улучшений
+    private Upgrade[] _allUpgrades; // Массив со всеми доступными улучшениями
+    [SerializeField]private Button[] choiceButtons; // Массив кнопок для выбора улучшений
     public GameObject abilityChoiceScreen; // Экран выбора улучшений
 
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Dash playerDash;
     [SerializeField] private MoveVelocity playerMoveVelocity;
+    
     
     public void Awake() {
         if (Instance == null) {
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeUpgrades()
     {
-        allUpgrades = new Upgrade[]
+        _allUpgrades = new Upgrade[]
         {
             new Upgrade
             {
@@ -82,15 +84,19 @@ public class GameManager : MonoBehaviour {
     public void ShowRestartScreen() {
         restartScreen.SetActive(true);
         HUD.SetActive(false);
-        // Optionally, pause the game here if needed
+        
     }
 
     public void ShowRandomUpgrades()
     {
+        
+        if (_isUpgradeScreenShown) return;
+        Debug.Log("upgrade shown");
+        _isUpgradeScreenShown = true;
         List<int> chosenIndices = new List<int>();
         while (chosenIndices.Count < 3)
         {
-            int randomIndex = Random.Range(0, allUpgrades.Length);
+            int randomIndex = Random.Range(0, _allUpgrades.Length);
             if (!chosenIndices.Contains(randomIndex))
             {
                 chosenIndices.Add(randomIndex);
@@ -101,13 +107,14 @@ public class GameManager : MonoBehaviour {
         {
             int index = chosenIndices[i];
             Button button = choiceButtons[i];
-            button.GetComponent<Image>().sprite = allUpgrades[index].icon;
+            button.GetComponent<Image>().sprite = _allUpgrades[index].icon;
             var buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = allUpgrades[index].name;
+            buttonText.text = _allUpgrades[index].name;
 
             button.onClick.RemoveAllListeners();
             int finalIndex = index; // Локальная переменная для использования в лямбда-выражении
-            button.onClick.AddListener(() => ApplyUpgrade(allUpgrades[finalIndex]));
+            button.onClick.AddListener(() => ApplyUpgrade(_allUpgrades[finalIndex]));
+            Time.timeScale = 0;
         }
 
 
@@ -116,6 +123,8 @@ public class GameManager : MonoBehaviour {
         HUD.SetActive(false);
         Time.timeScale = 0;
     }
+    
+    
 
 
 
@@ -129,11 +138,15 @@ public class GameManager : MonoBehaviour {
     {
         abilityChoiceScreen.SetActive(false);
         HUD.SetActive(true);
+        _isUpgradeScreenShown = false;
         Time.timeScale = 1;
+    }
+    
+    public bool IsUpgradeScreenShown() {
+        return _isUpgradeScreenShown;
     }
 
     public void RestartGame() {
-        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

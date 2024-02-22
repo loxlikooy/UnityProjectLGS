@@ -96,6 +96,7 @@ namespace Code.Script
         public void DecreaseDashCooldown()
         {
             _dashCooldown = _dashCooldown - 0.5f;
+            Debug.Log("dec");
         }
     }
 }

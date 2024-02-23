@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Code.Script;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -153,4 +155,6 @@ public class GameManager : MonoBehaviour {
     public void QuitGame() {
         Application.Quit();
     }
+
+  
 }

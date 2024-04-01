@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq.Expressions;
+using UnityEngine;
 
 namespace Code.Script
 {
@@ -16,8 +17,11 @@ namespace Code.Script
 
         private void Start()
         {
+            
             currentHealth = maxHealth;
+            LoadHealth();
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+            
         }
 
         public void TakeDamage(float damage)
@@ -51,5 +55,29 @@ namespace Code.Script
             Destroy(GameObject.FindGameObjectWithTag("MusicBox"));
             GameManager.Instance.ShowRestartScreen();
         }
+        
+        public void SaveHealth()
+        {
+            PlayerPrefs.SetFloat("MaxHealth", maxHealth);
+            PlayerPrefs.SetFloat("CurrentHealth", currentHealth);
+            PlayerPrefs.Save();
+        }
+
+        public void LoadHealth()
+        {
+            if (PlayerPrefs.HasKey("MaxHealth"))
+            {
+                maxHealth = PlayerPrefs.GetFloat("MaxHealth");
+            }
+            else
+            {
+                Debug.Log("nokey");
+            }
+            if (PlayerPrefs.HasKey("CurrentHealth"))
+            {
+                currentHealth = PlayerPrefs.GetFloat("CurrentHealth");
+            }
+        }
+
     }
 }

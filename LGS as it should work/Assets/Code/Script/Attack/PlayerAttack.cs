@@ -23,6 +23,8 @@ namespace Code.Script
             _componentGetter = GetComponent<ComponentGetter>();
             _enemies.AddRange(FindObjectsOfType<Enemy>());
             attackTimer = 0f; // Инициализация таймера кулдауна
+            
+            LoadAttackStats();
         }
 
         private void Update()
@@ -75,6 +77,26 @@ namespace Code.Script
         {
             attackCooldown = attackCooldown * 0.8f;
             Debug.Log("dec");
+        }
+
+        public void SaveAttackStats()
+        {
+            PlayerPrefs.SetFloat("PlayerDamage", playerDamage);
+            PlayerPrefs.SetFloat("AttackCooldown", attackCooldown);
+            PlayerPrefs.Save();
+        }
+
+        public void LoadAttackStats()
+        {
+            if (PlayerPrefs.HasKey("PlayerDamage"))
+            {
+                playerDamage = PlayerPrefs.GetFloat("PlayerDamage");
+            }
+
+            if (PlayerPrefs.HasKey("AttackCooldown"))
+            {
+                attackCooldown = PlayerPrefs.GetFloat("AttackCooldown");
+            }
         }
     }
 }

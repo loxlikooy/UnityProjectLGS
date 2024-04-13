@@ -22,6 +22,7 @@ namespace Code.Script
         private void Awake()
         {
             _componentGetter = GetComponent<ComponentGetter>();
+            LoadDashCooldown();
         }
 
         public void HandleDash()
@@ -97,6 +98,19 @@ namespace Code.Script
         {
             _dashCooldown = _dashCooldown - 0.5f;
             Debug.Log("dec");
+        }
+
+        public void SaveDashCooldown()
+        {
+            PlayerPrefs.SetFloat("DashCooldown", _dashCooldown);
+        }
+
+        public void LoadDashCooldown()
+        {
+            if (PlayerPrefs.HasKey("DashCooldown"))
+            {
+                _dashCooldown = PlayerPrefs.GetFloat("DashCooldown");
+            }
         }
     }
 }

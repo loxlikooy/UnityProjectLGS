@@ -12,10 +12,11 @@ namespace Code.Script
 
         private void Start()
         {
-            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
             Quest killEnemyQuest = new Quest("Убить врага");
             QuestManager.Instance.AddQuest(killEnemyQuest);
             QuestManager.Instance.EnableQuestText(true);
+            LoadEXP();
+            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
         }
 
         public void AddExp(float amountExp) {
@@ -46,6 +47,26 @@ namespace Code.Script
             yield return new WaitUntil(() => !GameManager.Instance.IsUpgradeScreenShown());
             AddExp(amountExp); // Повторное добавление опыта после закрытия экрана
         }
+        
+        public void SaveEXP()
+        {
+            PlayerPrefs.SetFloat("CurrentExp", _currentExp);
+            PlayerPrefs.SetFloat("ExpForNextLevel", _expForNextLevel);
+            PlayerPrefs.Save();
+        }
+
+        public void LoadEXP()
+        {
+            if (PlayerPrefs.HasKey("CurrentExp"))
+            {
+                _currentExp = PlayerPrefs.GetFloat("CurrentExp");
+            }
+            if (PlayerPrefs.HasKey("ExpForNextLevel"))
+            {
+                _expForNextLevel = PlayerPrefs.GetFloat("ExpForNextLevel");
+            }
+        }
+
         
     }
 }

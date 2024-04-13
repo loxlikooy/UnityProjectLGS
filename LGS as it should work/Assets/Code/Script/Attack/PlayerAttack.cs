@@ -97,8 +97,6 @@ namespace Code.Script
             {
                 attackCooldown = PlayerPrefs.GetFloat("AttackCooldown");
             }
-            int attackStats = PlayerPrefs.GetInt("AttackStats", 0);
-            Debug.Log("Loaded Attack Stats: " + attackStats);
         }
     }
 }

@@ -54,6 +54,7 @@ namespace Code.Script
             Destroy(gameObject);
             Destroy(GameObject.FindGameObjectWithTag("MusicBox"));
             GameManager.Instance.ShowRestartScreen();
+            PlayerPrefs.DeleteAll();
         }
         
         public void SaveHealth()

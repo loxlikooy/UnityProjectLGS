@@ -16,9 +16,6 @@ public class LevelManager : MonoBehaviour
         _dash = GetComponent<Dash>();
         _exp = GetComponent<EXP>();
         _health = GetComponent<Health>();
-        
-       
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,6 +42,5 @@ public class LevelManager : MonoBehaviour
        _dash.SaveDashCooldown();
        _exp.SaveEXP();
        _health.SaveHealth();
-       
     }
 }

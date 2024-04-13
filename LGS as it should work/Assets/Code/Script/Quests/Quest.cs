@@ -4,12 +4,13 @@ public class Quest
 {
     public string QuestName { get; private set; }
     public bool IsCompleted { get; private set; }
-    public float questExpValue = 10f;
+    public float QuestExpValue { get; private set; }
 
-    public Quest(string questName)
+    public Quest(string questName, float questExpValue = 10f)
     {
         QuestName = questName;
         IsCompleted = false;
+        QuestExpValue = questExpValue;
     }
 
     public void Complete()

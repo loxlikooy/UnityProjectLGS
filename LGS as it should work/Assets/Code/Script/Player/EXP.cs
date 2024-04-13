@@ -12,11 +12,11 @@ namespace Code.Script
 
         private void Start()
         {
-            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
             Quest killEnemyQuest = new Quest("Убить врага");
             QuestManager.Instance.AddQuest(killEnemyQuest);
             QuestManager.Instance.EnableQuestText(true);
             LoadEXP();
+            PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
         }
 
         public void AddExp(float amountExp) {

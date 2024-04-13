@@ -109,7 +109,7 @@ namespace Code.Script
         {
             if (PlayerPrefs.HasKey("DashCooldown"))
             {
-                _dashCooldown = PlayerPrefs.GetFloat("CurrentExp");
+                _dashCooldown = PlayerPrefs.GetFloat("DashCooldown");
             }
         }
     }

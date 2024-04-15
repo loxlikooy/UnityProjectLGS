@@ -23,7 +23,6 @@ namespace Code.Script
             _componentGetter = GetComponent<ComponentGetter>();
             _enemies.AddRange(FindObjectsOfType<Enemy>());
             attackTimer = 0f; // Инициализация таймера кулдауна
-            
             LoadAttackStats();
         }
 

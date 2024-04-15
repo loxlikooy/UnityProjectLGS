@@ -232,7 +232,6 @@ namespace Code.Script
             EnemyManager.StopChasing();
             _isChasing = false;
             _exp.AddExp(expValue);
-            CheckQuestCompletion();
             Destroy(gameObject);
             this.enabled = false;
             
@@ -241,12 +240,6 @@ namespace Code.Script
         public void Attack(IDamagable target)
         {
             target.TakeDamage(damage);
-        }
-        private void CheckQuestCompletion()
-        {
-            
-            QuestManager.Instance.CompleteQuest("Убить врага");
-            QuestManager.Instance.UpdateQuestText("Квест выполнен");
         }
     }
 }

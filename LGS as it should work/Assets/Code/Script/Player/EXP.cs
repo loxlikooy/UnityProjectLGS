@@ -12,9 +12,6 @@ namespace Code.Script
 
         private void Start()
         {
-            Quest killEnemyQuest = new Quest("Убить врага");
-            QuestManager.Instance.AddQuest(killEnemyQuest);
-            QuestManager.Instance.EnableQuestText(true);
             LoadEXP();
             PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
         }

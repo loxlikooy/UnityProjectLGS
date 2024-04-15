@@ -5,9 +5,7 @@ namespace Code.Script
 {
     public class PlayerMovement : MonoBehaviour
     {
-        //
         private ComponentGetter _componentGetter;
-        //
         [SerializeField]
         private float moveSpeed = 1f; 
         private const float CollisionOffset = 0.01f; 

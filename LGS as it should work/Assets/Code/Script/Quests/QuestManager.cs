@@ -8,10 +8,10 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
-    private List<Quest> quests = new List<Quest>();
+    private List<Quest> _quests = new List<Quest>();
     [SerializeField] private EXP exp;
     [SerializeField] private TextMeshProUGUI questText;
-    private Quest currentActiveQuest;
+    private Quest _currentActiveQuest;
     
     private void Awake()
     {
@@ -34,14 +34,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void AddQuest(Quest quest)
+    private void AddQuest(Quest quest)
     {
-        quests.Add(quest);
+        _quests.Add(quest);
     }
 
     public Quest GetQuestByName(string questName)
     {
-        return quests.FirstOrDefault(q => q.QuestName == questName);
+        return _quests.FirstOrDefault(q => q.QuestName == questName);
     }
 
     public void CompleteQuest(string questName)
@@ -51,7 +51,7 @@ public class QuestManager : MonoBehaviour
         {
             quest.Complete();
             exp.AddExp(quest.QuestExpValue);
-            Debug.Log("опыт добавлен" + quest.QuestExpValue + exp);
+            
         }
     }
 
@@ -60,48 +60,38 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByName(questName);
         if (quest != null && !quest.IsCompleted)
         {
-            currentActiveQuest = quest;
+            _currentActiveQuest = quest;
             UpdateQuestText($"Current Quest: {questName}");
-        }
-        else
-        {
-            Debug.LogWarning($"Cannot activate quest: {questName}. Quest not found or already completed.");
         }
     }
 
     private void ShowNextActiveQuest()
     {
-        if (currentActiveQuest == null)
+        if (_currentActiveQuest == null)
         {
             UpdateQuestText("You have no quests");
             return;
         }
 
-        int currentIndex = quests.IndexOf(currentActiveQuest);
-        for (int i = currentIndex + 1; i <= quests.Count; i++)
+        int currentIndex = _quests.IndexOf(_currentActiveQuest);
+        for (int i = currentIndex + 1; i <= _quests.Count; i++)
         {
-            if (i>= quests.Count)
+            if (i>= _quests.Count)
             {
                 i = 0;
             }
-            if (!quests[i].IsCompleted)
+            if (!_quests[i].IsCompleted)
             { 
-                Debug.Log(quests[0]);
-               currentActiveQuest = quests[i];
-                UpdateQuestText($"Current Quest: {quests[i].QuestName}");
+               _currentActiveQuest = _quests[i];
+                UpdateQuestText($"Current Quest: {_quests[i].QuestName}");
                 return;
             }
         }
     }
 
-    public void UpdateQuestText(string newText)
+    [SerializeField] private void UpdateQuestText(string newText)
     {
         questText.text = newText;
-    }
-
-    public void EnableQuestText(bool isEnabled)
-    {
-        questText.enabled = isEnabled;
     }
     
     private void Start()

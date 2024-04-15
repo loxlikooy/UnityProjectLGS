@@ -26,8 +26,7 @@ namespace Code.Script
 
         public void IncreaseSpeed()
         {
-            moveSpeed = moveSpeed + 5f;
-            Debug.Log("dec");
+            moveSpeed += 5f;
         }
     }
 }

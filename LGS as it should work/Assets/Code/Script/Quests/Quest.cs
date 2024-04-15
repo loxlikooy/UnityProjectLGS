@@ -17,6 +17,5 @@ public class Quest
     {
         IsCompleted = true;
         // Здесь можно добавить дополнительные действия при завершении квеста, например, выдачу награды.
-        Debug.Log($"Quest {QuestName} completed!");
     }
 }

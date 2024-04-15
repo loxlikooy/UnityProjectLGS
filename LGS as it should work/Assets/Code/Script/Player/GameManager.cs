@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         InitializeUpgrades();
-        
     }
 
     private void InitializeUpgrades()
@@ -93,7 +92,6 @@ public class GameManager : MonoBehaviour {
     {
         
         if (_isUpgradeScreenShown) return;
-        Debug.Log("upgrade shown");
         _isUpgradeScreenShown = true;
         List<int> chosenIndices = new List<int>();
         while (chosenIndices.Count < 3)

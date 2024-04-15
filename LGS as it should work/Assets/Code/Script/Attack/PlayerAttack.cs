@@ -29,7 +29,6 @@ namespace Code.Script
         private void Update()
         {
             if (_componentGetter.PlayerAnimator.IsAttacking()) return;
-
             // Обновление таймера кулдауна
             if (attackTimer > 0)
             {
@@ -69,13 +68,13 @@ namespace Code.Script
         public void IncreaseDamage()
         {
             playerDamage += playerDamage * 0.3f;
-            Debug.Log("dec");
+           
         }
 
         public void DecreaseAttackCooldown()
         {
             attackCooldown = attackCooldown * 0.8f;
-            Debug.Log("dec");
+           
         }
 
         public void SaveAttackStats()
@@ -85,7 +84,7 @@ namespace Code.Script
             PlayerPrefs.Save();
         }
 
-        public void LoadAttackStats()
+        private void LoadAttackStats()
         {
             if (PlayerPrefs.HasKey("PlayerDamage"))
             {

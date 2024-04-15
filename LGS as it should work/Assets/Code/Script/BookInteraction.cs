@@ -33,7 +33,6 @@ public class BookInteraction : MonoBehaviour
 
     public void OpenBook()
     {
-        Debug.Log("открыл книгу");
         bookUI.SetActive(true);
         hudUI.SetActive(false);
         pageIndex = 0;

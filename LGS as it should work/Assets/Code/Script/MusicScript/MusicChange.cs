@@ -36,14 +36,12 @@ namespace Code.Script.Music
 
         private IEnumerator FadeOutMusicAndChange(AudioClip newClip)
         {
-            SaveCurrentMusicPosition();
-
             while (_musicBox.volume > 0)
             {
                 _musicBox.volume -= _startVolume * Time.deltaTime / _fadeOutDuration;
                 yield return null;
             }
-
+            SaveCurrentMusicPosition();
             _musicBox.Stop();
             _musicBox.clip = newClip;
             RestoreMusicPosition(newClip);

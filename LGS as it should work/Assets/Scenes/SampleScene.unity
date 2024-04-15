@@ -41991,7 +41991,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.975
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -47430,6 +47430,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3498077962865384700, guid: 63ec63cf4b9e42149ab2935518042706, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1932111622}
+    - targetCorrespondingSourceObject: {fileID: 3498077962865384700, guid: 63ec63cf4b9e42149ab2935518042706, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1932111624}
   m_SourcePrefab: {fileID: 100100000, guid: 63ec63cf4b9e42149ab2935518042706, type: 3}
 --- !u!4 &1932111618 stripped
 Transform:
@@ -47496,6 +47499,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.847259, y: 3.0694847}
   m_EdgeRadius: 0
+--- !u!114 &1932111624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632181131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854e6db2d05cd41269f58071b77517b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 698786405}
+  questManager: {fileID: 1919113273}
+  questName: Retrieve the Ancient Relic
 --- !u!4 &1933727311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
@@ -48694,6 +48712,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 1784851302}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1988950744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_Name
+      value: Shekotalka Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.44244123
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8634453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: expValue
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
 --- !u!4 &1993889742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
@@ -50822,6 +50905,14 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7571588499061185833, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597777190538731393, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: moveSpeed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8795529690292387989, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -50891,3 +50982,4 @@ SceneRoots:
   - {fileID: 869493788}
   - {fileID: 432918429}
   - {fileID: 1808457523}
+  - {fileID: 1988950744}

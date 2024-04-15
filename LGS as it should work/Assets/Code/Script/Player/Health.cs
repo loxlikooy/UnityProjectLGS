@@ -37,16 +37,15 @@ namespace Code.Script
         
         public void IncreaseHealth()
         {
-            Debug.Log("Health Increased!");
-            maxHealth = maxHealth + 10;
+            maxHealth += 10;
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
         }
 
         public void HealthRegen()
         {
-            Debug.Log("Health Regened!");
-            currentHealth = currentHealth + 10;
+            currentHealth +=  10;
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+            //регенить % от макс хп + при переходе на новый лвл
         }
 
         protected virtual void Die()
@@ -69,10 +68,6 @@ namespace Code.Script
             if (PlayerPrefs.HasKey("MaxHealth"))
             {
                 maxHealth = PlayerPrefs.GetFloat("MaxHealth");
-            }
-            else
-            {
-                Debug.Log("nokey");
             }
             if (PlayerPrefs.HasKey("CurrentHealth"))
             {

@@ -1,6 +1,6 @@
 ﻿public static class EnemyManager
 {
-    public static int chasingEnemies = 0;
+    private static int chasingEnemies = 0;
 
     public static void StartChasing()
     {

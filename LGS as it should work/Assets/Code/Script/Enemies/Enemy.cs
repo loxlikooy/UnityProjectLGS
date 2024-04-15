@@ -36,9 +36,9 @@ namespace Code.Script
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
-        private MusicChange _musicChange;
+        
         private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
-        private bool _isChasing = false;
+        private bool _isChasing;
        
 
 
@@ -64,9 +64,6 @@ namespace Code.Script
             _rb = GetComponent<Rigidbody2D>();
             _player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
-            _musicChange = FindObjectOfType<MusicChange>();
-            _audioClips.Add("ChaseMusic", Resources.Load<AudioClip>("Music/y2mate.com - Адаи күиі"));
-            _audioClips.Add("PatrolMusic", Resources.Load<AudioClip>("Music/y2mate.com - Жәнібек Жантұрсынұлы  Ақсақ құлан Халық күйі_320kbps"));
         }
 
         private void SetInitialState()
@@ -148,7 +145,6 @@ namespace Code.Script
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= attackCooldown)
             {
-                
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }

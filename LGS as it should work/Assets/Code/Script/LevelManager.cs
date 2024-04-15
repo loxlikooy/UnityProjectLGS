@@ -20,11 +20,10 @@ public class LevelManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.CompareTag("Finish")) // Убедитесь, что у вашего игрока установлен тег "Player"
         {
-            LoadNextLevel();
             SavePlayerPrefs();
+            LoadNextLevel();
         }
     }
 
@@ -33,7 +32,7 @@ public class LevelManager : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int totalScenes = SceneManager.sceneCountInBuildSettings;
         int nextSceneIndex = (currentSceneIndex + 1) % totalScenes; // Переход к следующей сцене по кругу
-        SceneManager.LoadScene(1); // Загрузка следующей сцены
+        SceneManager.LoadScene(nextSceneIndex); // Загрузка следующей сцены
     }
 
     void SavePlayerPrefs()

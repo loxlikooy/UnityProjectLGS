@@ -18,7 +18,6 @@ namespace Code.Script
 
         public void AddExp(float amountExp) {
             if (GameManager.Instance.IsUpgradeScreenShown()) {
-                Debug.Log("жду");
                 StartCoroutine(WaitAndAddExp(amountExp));
             } else {
                 _currentExp += amountExp;
@@ -36,7 +35,7 @@ namespace Code.Script
                 }
             }
             PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
-        }
+        } //пофиксить получения большого количества экспы
 
         IEnumerator WaitAndAddExp(float amountExp) 
         {

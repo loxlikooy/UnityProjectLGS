@@ -27,14 +27,14 @@ namespace Code.Script
 
         public void HandleDash()
         {
-            if (_isDashing || _timeSinceLastDash < _dashCooldown) return;
+            if (_timeSinceLastDash < _dashCooldown) return;
 
             Vector2 lastMoveDirection = _componentGetter.PlayerMovement.LastMoveDirection;
             Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
             float dashAmount = 0.8f;
             Vector3 targetDashPosition = transform.position + dashDirection3D * dashAmount;
 
-            Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f;
+            Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f; //посмотреть нахуй надо
     
             // Добавляем layersToCheck в рейкаст
             RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount, layersToCheck);
@@ -92,12 +92,12 @@ namespace Code.Script
 
             PlayerHUDManager.Instance.DashColdown(_dashCooldown, Mathf.Clamp(_timeSinceLastDash, 0, _dashCooldown));
             HandleDashInput();
+            
         }
 
         public void DecreaseDashCooldown()
         {
-            _dashCooldown = _dashCooldown - 0.5f;
-            Debug.Log("dec");
+            _dashCooldown -=  0.5f;
         }
 
         public void SaveDashCooldown()
@@ -105,7 +105,7 @@ namespace Code.Script
             PlayerPrefs.SetFloat("DashCooldown", _dashCooldown);
         }
 
-        public void LoadDashCooldown()
+        private void LoadDashCooldown()
         {
             if (PlayerPrefs.HasKey("DashCooldown"))
             {

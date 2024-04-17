@@ -27,7 +27,6 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        // Проверяем нажатие кнопки TAB и показываем следующий активный квест
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ShowNextActiveQuest();

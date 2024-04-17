@@ -16,10 +16,14 @@ namespace Code.Script
             PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
         }
 
-        public void AddExp(float amountExp) {
-            if (GameManager.Instance.IsUpgradeScreenShown()) {
+        public void AddExp(float amountExp) 
+        {
+            if (GameManager.Instance.IsUpgradeScreenShown()) 
+            {
                 StartCoroutine(WaitAndAddExp(amountExp));
-            } else {
+            }
+            else 
+            {
                 _currentExp += amountExp;
                 CheckLevelUp();
             }
@@ -27,10 +31,12 @@ namespace Code.Script
 
         private void CheckLevelUp() 
         {
-            if (_currentExp >= _expForNextLevel) {
+            if (_currentExp >= _expForNextLevel) 
+            {
                 _currentExp -= _expForNextLevel;
                 _expForNextLevel += 20;
-                if (!GameManager.Instance.IsUpgradeScreenShown()) {
+                if (!GameManager.Instance.IsUpgradeScreenShown()) 
+                {
                     GameManager.Instance.ShowRandomUpgrades();
                 }
             }
@@ -51,7 +57,7 @@ namespace Code.Script
             PlayerPrefs.Save();
         }
 
-        public void LoadEXP()
+        private void LoadEXP()
         {
             if (PlayerPrefs.HasKey("CurrentExp"))
             {

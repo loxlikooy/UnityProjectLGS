@@ -5,7 +5,6 @@ namespace Code.Script
 {
     public class Dash : MonoBehaviour, IDash
     {
-        private bool _isDashing;
         private Vector3 _dashEndPosition;
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
@@ -44,7 +43,6 @@ namespace Code.Script
                 Vector3 hitPoint3D = new Vector3(raycastHit2D.point.x, raycastHit2D.point.y, 0);
                 targetDashPosition = hitPoint3D - dashDirection3D.normalized * 0.2f;
             }
-
             StartDash(targetDashPosition);
         }
 
@@ -54,8 +52,7 @@ namespace Code.Script
             _dashStartPosition = transform.position;
             _dashEndPosition = targetPosition;
             _dashTimeCounter = 0f;
-            _isDashing = true;
-
+            
             StartCoroutine(DashCoroutine());
             _componentGetter.PlayerAnimator.SetDashAnimation();
 
@@ -70,9 +67,7 @@ namespace Code.Script
                 transform.position = Vector3.Lerp(_dashStartPosition, _dashEndPosition, lerpValue);
                 yield return null;
             }
-
             transform.position = _dashEndPosition;
-            _isDashing = false;
         }
 
         public void HandleDashInput()

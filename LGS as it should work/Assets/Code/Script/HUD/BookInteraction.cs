@@ -16,13 +16,15 @@ public class BookInteraction : MonoBehaviour
     private void Start()
     {
         // Инициализация текстов и заголовков страниц
-        pages = new string[] {
+        pages = new string[] 
+        {
             "болото с камышом, прудами и реками",
             "Приятные, но весьма опасные существа женского пола. Согласно казахскому фольклору, в степных реках, в протоках среди камышей, часто покрытые илом, в омутах могут обитать они - водяные красавицы-русалки. Сродни сиренам, они соблазняют юношей своими песнями и щекочут до смерти; в полночь могут приходить в юрты. Кульдыргыш убивает человека сильным щекотанием, откуда и происходит само название, обозначающее «заставляющая смеяться».",
             // Добавьте столько страниц, сколько нужно
         };
 
-        titles = new string[] {
+        titles = new string[] 
+        {
             "Секция 1: Локация",
             "Секция 2: Описание",
             // Убедитесь, что количество заголовков соответствует количеству страниц
@@ -49,20 +51,22 @@ public class BookInteraction : MonoBehaviour
 
     public void NextPage()
     {
-        if (pageIndex < pages.Length - 1)
-        {
-            pageIndex++;
-            UpdatePage();
-        }
+        if (pageIndex >= pages.Length - 1)
+            return;
+        
+        pageIndex++;
+        UpdatePage();
+        
     }
     
     public void PrevPage()
     {
-        if (pageIndex >= 1)
-        {
-            pageIndex--;
-            UpdatePage();
-        }
+        if (pageIndex < 1) return;
+            
+            
+        pageIndex--;
+        UpdatePage();
+        
     }
 
     private void UpdatePage()

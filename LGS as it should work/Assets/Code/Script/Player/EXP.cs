@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Code.Script
@@ -8,7 +6,8 @@ namespace Code.Script
     public class EXP : MonoBehaviour
     {
         private float _expForNextLevel = 10f;
-        private float _currentExp = 0f;
+        private float _currentExp;
+
 
         private void Start()
         {
@@ -24,8 +23,19 @@ namespace Code.Script
             }
             else 
             {
-                _currentExp += amountExp;
-                CheckLevelUp();
+                while (amountExp>0f)
+                {
+                    _currentExp++;
+                    amountExp--;
+                    float expHolder = amountExp;
+                    if (GameManager.Instance.IsUpgradeScreenShown()) 
+                    {
+                        StartCoroutine(WaitAndAddExp(expHolder));
+                        return;
+                    }
+                    CheckLevelUp();
+                }
+                
             }
         }
 

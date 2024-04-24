@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Code.Script.Music;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Script
 {
@@ -11,6 +9,7 @@ namespace Code.Script
         [Header("Stats")] 
         [SerializeField]private float health;
         [SerializeField]private float damage;
+        private float _maxHealth;
 
         
         [Header("Movement Settings")]
@@ -31,17 +30,30 @@ namespace Code.Script
         private Rigidbody2D _rb;
         private Transform _player;
         private Vector2 _randomPatrolPoint;
-        private float _timeSinceLastAttack = 0f;
+        private float _timeSinceLastAttack;
         private EnemyState _currentState;
         private Animator _animator; 
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
-        
-        private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
         private bool _isChasing;
-       
+        
+        
+        public float GetCurrentHealth()
+        {
+            return health;
+        }
+        
+        private void HandleAdditionalBehaviors()
+        {
+            // This method can be overridden in derived classes to add additional behaviors
+        }
 
-
+        // Method to get the maximum health
+        public float GetMaxHealth()
+        {
+            return _maxHealth;
+        }
+        
         private enum EnemyState
         {
             Patrolling,
@@ -51,10 +63,9 @@ namespace Code.Script
 
         private void Start()
         {
+            _maxHealth = health;
             InitializeComponents();
             SetInitialState();
-            _animator = GetComponent<Animator>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
             PickRandomPatrolPoint();
         }
 
@@ -64,18 +75,19 @@ namespace Code.Script
             _rb = GetComponent<Rigidbody2D>();
             _player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
+            _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void SetInitialState()
         {
             _currentState = EnemyState.Patrolling;
-            
         }
 
         private void Update()
         {
             HandleStates();
-            
+            HandleAdditionalBehaviors();
         }
 
         private void HandleStates()

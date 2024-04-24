@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Trigger entered with tag: {other.tag}");
         if (other.CompareTag("Finish"))
         {
             SavePlayerPrefs();
@@ -25,7 +24,6 @@ public class LevelManager : MonoBehaviour
 
         if (other.CompareTag("Quest"))
         {
-            Debug.Log("Respawn tag detected. Trying to complete quest.");
             QuestManager.Instance.CompleteQuest("Explore the Forest");
         }
     }

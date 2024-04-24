@@ -6,7 +6,7 @@ public class Quest
     public bool IsCompleted { get; private set; }
     public float QuestExpValue { get; private set; }
 
-    public Quest(string questName, float questExpValue = 10f)
+    public Quest(string questName, float questExpValue)
     {
         QuestName = questName;
         IsCompleted = false;
@@ -16,6 +16,5 @@ public class Quest
     public void Complete()
     {
         IsCompleted = true;
-        // Здесь можно добавить дополнительные действия при завершении квеста, например, выдачу награды.
     }
 }

@@ -46,6 +46,7 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(string questName)
     {
         Quest quest = GetQuestByName(questName);
+        Debug.Log("завершенно");
         if (quest != null && !quest.IsCompleted)
         {
             quest.Complete();

@@ -6,32 +6,32 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform startPoint; 
-    [SerializeField] private Transform endPoint; 
-    private PlayerAttack _playerAttack;
-    private Dash _dash;
-    private EXP _exp;
-    private Health _health;
-
+    [SerializeField] private Transform endPoint;
+    private ComponentGetter _componentGetter;
     private void Start()
     {
-        _playerAttack = GetComponent<PlayerAttack>();
-        _dash = GetComponent<Dash>();
-        _exp = GetComponent<EXP>();
-        _health = GetComponent<Health>();
-
+        _componentGetter = GetComponent<ComponentGetter>();
         MoveToStartPoint();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Finish"))
-            return;
-        
-        SavePlayerPrefs();
-        StartCoroutine(MoveToEndPoint(1.5f, () => LoadNextLevel()));
+        Debug.Log($"Trigger entered with tag: {other.tag}");
+        if (other.CompareTag("Finish"))
+        {
+            SavePlayerPrefs();
+            StartCoroutine(MoveToEndPoint(1.5f, () => LoadNextLevel()));
+        }
+
+        if (other.CompareTag("Quest"))
+        {
+            Debug.Log("Respawn tag detected. Trying to complete quest.");
+            QuestManager.Instance.CompleteQuest("Explore the Forest");
+        }
     }
 
-    private static void LoadNextLevel()
+
+    private void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int totalScenes = SceneManager.sceneCountInBuildSettings;
@@ -41,10 +41,9 @@ public class LevelManager : MonoBehaviour
 
     private void SavePlayerPrefs()
     {
-       _playerAttack.SaveAttackStats();
-       _dash.SaveDashCooldown();
-       _exp.SaveEXP();
-       _health.SaveHealth();
+       _componentGetter.PlayerAttackComponent.SaveAttackStats();
+       _componentGetter.PlayerDash.SaveDashCooldown();
+       _componentGetter.HealthComponent.SaveHealth();
     }
 
     private IEnumerator MoveToStartPointCoroutine(Vector2 targetPosition, float duration)

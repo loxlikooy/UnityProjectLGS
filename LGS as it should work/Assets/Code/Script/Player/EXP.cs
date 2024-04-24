@@ -34,6 +34,7 @@ namespace Code.Script
                         return;
                     }
                     CheckLevelUp();
+                    SaveEXP();
                 }
                 
             }

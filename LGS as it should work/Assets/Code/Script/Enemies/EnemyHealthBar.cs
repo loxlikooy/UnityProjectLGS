@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy; // Ссылка на компонент Enemy
-    [SerializeField] private SpriteRenderer healthBarSprite; // Ссылка на спрайт health bar
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private SpriteRenderer healthBarSprite;
 
-    private Transform healthBarTransform; // Ссылка на transform спрайта health bar
-    private float initialScaleX; // Исходный масштаб спрайта по оси X
+    private Transform _healthBarTransform;
+    private float _initialScaleX;
+    private float _targetScaleX;
 
     private void Start()
     {
@@ -18,24 +19,28 @@ public class EnemyHealthBar : MonoBehaviour
             return;
         }
 
-        initialScaleX = healthBarSprite.transform.localScale.x;
-        healthBarTransform = healthBarSprite.transform;
+        _initialScaleX = healthBarSprite.transform.localScale.x;
+        _healthBarTransform = healthBarSprite.transform;
+        _targetScaleX = _initialScaleX;
     }
 
     private void Update()
     {
         if (enemy != null)
         {
-            // Вычисляем процент здоровья
             float healthPercentage = enemy.GetCurrentHealth() / enemy.GetMaxHealth();
+            _targetScaleX = _initialScaleX * healthPercentage;
 
-            // Меняем масштаб спрайта health bar на основе процента здоровья
-            healthBarTransform.localScale = new Vector3(initialScaleX * healthPercentage, healthBarTransform.localScale.y, 1f);
+            // Плавное изменение масштаба полосы здоровья
+            _healthBarTransform.localScale = new Vector3(
+                Mathf.Lerp(_healthBarTransform.localScale.x, _targetScaleX, Time.deltaTime * 10),
+                _healthBarTransform.localScale.y,
+                1f
+            );
         }
         else
         {
-            // Если ссылка на enemy равна null, выключаем спрайт health bar
-            healthBarTransform.localScale = new Vector3(0f, healthBarTransform.localScale.y, 1f);
+            _healthBarTransform.localScale = new Vector3(0f, _healthBarTransform.localScale.y, 1f);
         }
     }
 }

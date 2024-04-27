@@ -28,7 +28,7 @@ namespace Code.Script
         [SerializeField] private LayerMask collideObjectsLayer;
 
         private Rigidbody2D _rb;
-        private Transform _player;
+        protected Transform _player;
         private Vector2 _randomPatrolPoint;
         private float _timeSinceLastAttack;
         private EnemyState _currentState;
@@ -43,11 +43,6 @@ namespace Code.Script
             return health;
         }
         
-        private void HandleAdditionalBehaviors()
-        {
-            // This method can be overridden in derived classes to add additional behaviors
-        }
-
         // Method to get the maximum health
         public float GetMaxHealth()
         {
@@ -69,7 +64,7 @@ namespace Code.Script
             PickRandomPatrolPoint();
         }
 
-        private void InitializeComponents()
+        protected virtual void InitializeComponents()
         {
             GameObject playerGameObject = GameObject.FindWithTag("Player");
             _rb = GetComponent<Rigidbody2D>();
@@ -84,10 +79,9 @@ namespace Code.Script
             _currentState = EnemyState.Patrolling;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             HandleStates();
-            HandleAdditionalBehaviors();
         }
 
         private void HandleStates()
@@ -122,7 +116,7 @@ namespace Code.Script
         }
 
 
-        private void Chase()
+        protected virtual void Chase()
         {
             if (_player == null || _player.gameObject == null) return;
 

@@ -11,13 +11,28 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _componentGetter = GetComponent<ComponentGetter>();
+        ActivateSavedQuests();
         MoveToStartPoint();
+    }
+
+    private void ActivateSavedQuests()
+    {
+        QuestManager questManager = QuestManager.Instance;
+    
+        foreach (Quest quest in questManager.GetQuests())
+        {
+            if (!quest.IsCompleted && PlayerPrefs.GetInt("Quest_Active_" + quest.QuestName, 0) == 1)
+            {
+                questManager.ActivateQuest(quest.QuestName); // Активируем квест, если он не завершен
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Finish"))
         {
+            SaveQuestPlayerPrefs();
             SavePlayerPrefs();
             StartCoroutine(MoveToEndPoint(1.5f, () => LoadNextLevel()));
         }
@@ -80,4 +95,17 @@ public class LevelManager : MonoBehaviour
 
         onEnd?.Invoke(); // Вызываем событие по завершению перемещения
     }
+    
+    private void SaveQuestPlayerPrefs()
+    {
+        foreach (Quest quest in QuestManager.Instance.GetQuests())
+        {
+            if (!quest.IsCompleted)
+            {
+                PlayerPrefs.SetInt("Quest_Active_" + quest.QuestName, 1); // Сохраняем, что квест активен
+            }
+        }
+        PlayerPrefs.Save();
+    }
+
 }

@@ -46,7 +46,7 @@ public class QuestInteraction : MonoBehaviour
         if (questManager != null && !string.IsNullOrEmpty(questName))
         {
             Quest quest = questManager.GetQuestByName(questName);
-            if (quest != null)
+            if (quest != null && !quest.IsCompleted) // Проверяем, не завершен ли квест
             {
                 questManager.ActivateQuest(questName);
             }

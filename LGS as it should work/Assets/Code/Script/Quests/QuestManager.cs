@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance { get; private set; }
 
     private List<Quest> _quests = new List<Quest>();
+    [SerializeField] private List<string> completedQuests = new List<string>();
     [SerializeField] private EXP exp;
     [SerializeField] private TextMeshProUGUI questText;
     private Quest _currentActiveQuest;
@@ -23,6 +24,10 @@ public class QuestManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    
+        LoadCompletedQuests(); // Загружаем завершенные квесты
+        AddQuest(new Quest("Explore the Forest", 20f));
+        AddQuest(new Quest("Retrieve the Ancient Relic", 30f));
     }
 
     private void Update()
@@ -46,24 +51,26 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(string questName)
     {
         Quest quest = GetQuestByName(questName);
-        Debug.Log("завершенно");
         if (quest != null && !quest.IsCompleted)
         {
             quest.Complete();
             exp.AddExp(quest.QuestExpValue);
-            
+            completedQuests.Add(questName); // Добавляем завершенный квест в список завершенных квестов
+            SaveCompletedQuests(); // Сохраняем список завершенных квестов
         }
     }
+
 
     public void ActivateQuest(string questName)
     {
         Quest quest = GetQuestByName(questName);
-        if (quest != null && !quest.IsCompleted)
+        if (quest != null && !completedQuests.Contains(questName))
         {
             _currentActiveQuest = quest;
             UpdateQuestText($"Current Quest: {questName}");
         }
     }
+
 
     private void ShowNextActiveQuest()
     {
@@ -89,14 +96,26 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private void UpdateQuestText(string newText)
+    private void UpdateQuestText(string newText)
     {
         questText.text = newText;
     }
     
-    private void Start()
+    
+    public List<Quest> GetQuests()
     {
-        AddQuest(new Quest("Explore the Forest", 20f));
-        AddQuest(new Quest("Retrieve the Ancient Relic", 30f));
+        return _quests;
     }
+    
+    private void SaveCompletedQuests()
+    {
+        PlayerPrefs.SetString("CompletedQuests", string.Join(",", completedQuests.ToArray()));
+    }
+
+    private void LoadCompletedQuests()
+    {
+        string savedQuests = PlayerPrefs.GetString("CompletedQuests", "");
+        completedQuests = savedQuests.Split(',').ToList();
+    }
+
 }

@@ -21586,11 +21586,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
---- !u!4 &1226310723 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1643651526269043822, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-  m_PrefabInstance: {fileID: 14958977284644783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1228362895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47355,6 +47350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a2a4807c5040caba3a9134030d2661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedQuests: []
   exp: {fileID: 1157619225}
   questText: {fileID: 1499913897}
 --- !u!4 &1919113274
@@ -51018,21 +51014,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 544640448094273521, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1226310723}
-    - target: {fileID: 1643651526269043822, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_Name
       value: Shekotalka Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51073,50 +51057,6 @@ PrefabInstance:
     - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226516469938581285, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226516469938581285, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226516469938581285, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6226516469938581285, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: pullRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: pullCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: pullStrength
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: skillCooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: attractionForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: attractionEffect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728716527477353694, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-      propertyPath: attractionRadius
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -196,7 +196,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3133060212721523930}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -287,9 +287,9 @@ MonoBehaviour:
   collideObjectsLayer:
     serializedVersion: 2
     m_Bits: 8
-  pullStrength: 5
+  pullStrength: 0.1
   pullRadius: 3
-  pullCooldown: 1
+  pullCooldown: 3
 --- !u!95 &1704431160897629140
 Animator:
   serializedVersion: 5

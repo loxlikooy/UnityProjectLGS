@@ -49946,11 +49946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2424761438457795542, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_Mass
-      value: 0.006800191
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 2424761438457795542, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2819936543741047268, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_Enabled

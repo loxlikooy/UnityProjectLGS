@@ -24,7 +24,7 @@ namespace Code.Script
             _componentGetter.PlayerRGB.velocity = (_velocityVector * (moveSpeed * Time.fixedDeltaTime));
         }
 
-        public void IncreaseSpeed()
+        public void IncreaseSpeed(float amount)
         {
             moveSpeed += 5f;
         }

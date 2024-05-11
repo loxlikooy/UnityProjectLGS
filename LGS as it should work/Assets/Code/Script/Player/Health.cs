@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Code.Script
@@ -7,9 +8,7 @@ namespace Code.Script
     {
         public float maxHealth = 100f; 
         [SerializeField]
-        private float currentHealth; //displayable health
-        [SerializeField] 
-        public float CurrentHealth => currentHealth; //для будущего пригодится, чтоб другие части скрипта могли смотерть на хп персонажа
+        private float currentHealth;  
 
         
         public delegate void HealthChangedDelegate(float currentHealth);
@@ -35,17 +34,22 @@ namespace Code.Script
             }
         }
         
-        public void IncreaseHealth()
+        public void IncreaseHealth(float amount)
         {
-            maxHealth += 10;
+            maxHealth += (int)(maxHealth / 10);
+            Debug.Log(currentHealth);
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
         }
 
-        public void HealthRegen()
+        public void HealthRegen(float amount)
         {
-            currentHealth +=  10;
+            if (currentHealth >= maxHealth)
+            {
+                return;
+            }
+            currentHealth += amount;
+            OnHealthChanged?.Invoke(currentHealth);
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
-            //регенить % от макс хп + при переходе на новый лвл
         }
 
         protected virtual void Die()

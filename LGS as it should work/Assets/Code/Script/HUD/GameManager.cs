@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour {
 
     void ApplyUpgrade(Upgrade upgrade)
     {
-        upgrade.effect?.Invoke();
+        upgrade.effect?.Invoke(10);
         HideAbilityChoiceScreen();
     }
 

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 7858368217357626877}
   - component: {fileID: 8376180204649229342}
   - component: {fileID: 8184014539870831574}
-  - component: {fileID: 8666462719345328295}
   - component: {fileID: 5722153562888747729}
   m_Layer: 0
   m_Name: Player
@@ -281,6 +280,7 @@ MonoBehaviour:
   playerDamage: 10
   attackRange: 1
   attackCooldown: 1.4
+  attackVampire: 10
 --- !u!114 &7858368217357626877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,18 +326,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dc8ae9ae7b54432a258667b920d65c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8666462719345328295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efebb685d1a40348a4d3d7bd656032c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5722153562888747729

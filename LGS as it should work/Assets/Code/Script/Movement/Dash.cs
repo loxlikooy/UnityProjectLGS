@@ -90,7 +90,7 @@ namespace Code.Script
             
         }
 
-        public void DecreaseDashCooldown()
+        public void DecreaseDashCooldown(float amount)
         {
             _dashCooldown -=  0.5f;
         }

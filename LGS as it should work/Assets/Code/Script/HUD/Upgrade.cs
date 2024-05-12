@@ -7,5 +7,5 @@ public class Upgrade
 {
     public string name;
     public Sprite icon; 
-    public Action effect;
+    public Action<float> effect;
 }

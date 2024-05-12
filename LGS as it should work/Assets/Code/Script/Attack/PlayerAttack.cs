@@ -12,8 +12,11 @@ namespace Code.Script
         private float attackRange = 1f;
         [SerializeField]
         private float attackCooldown = 2f; // Длительность кулдауна атаки в секундах
+        [SerializeField] 
+        private float attackVampire = 10f;
 
-        private float attackTimer; // Таймер для отслеживания кулдауна
+        private float _attackTimer; // Таймер для отслеживания кулдауна
+        private bool _active;
 
         private ComponentGetter _componentGetter;
         private List<Enemy> _enemies = new List<Enemy>();
@@ -22,7 +25,7 @@ namespace Code.Script
         {
             _componentGetter = GetComponent<ComponentGetter>();
             _enemies.AddRange(FindObjectsOfType<Enemy>());
-            attackTimer = 0f; // Инициализация таймера кулдауна
+            _attackTimer = 0f; // Инициализация таймера кулдауна
             LoadAttackStats();
         }
 
@@ -30,16 +33,16 @@ namespace Code.Script
         {
             if (_componentGetter.PlayerAnimator.IsAttacking()) return;
             // Обновление таймера кулдауна
-            if (attackTimer > 0)
+            if (_attackTimer > 0)
             {
-                attackTimer -= Time.deltaTime;
+                _attackTimer -= Time.deltaTime;
             }
 
-            if (_componentGetter.PlayerInputHandler.OnAttack() && attackTimer <= 0)
+            if (_componentGetter.PlayerInputHandler.OnAttack() && _attackTimer <= 0)
             {
                 CheckAndExecuteAttack();
                 _componentGetter.PlayerAnimator.SetAttackAnimation();
-                attackTimer = attackCooldown; // Сброс таймера кулдауна
+                _attackTimer = attackCooldown; // Сброс таймера кулдауна
             }
         }
 
@@ -55,9 +58,19 @@ namespace Code.Script
                 if (distanceToEnemy <= attackRange && angle <= 45.0f)
                 {
                      ExecuteAttack(enemy);
+                     HealByAttack();
                      break; 
                 }
             }
+        }
+
+        private void HealByAttack()
+        {
+            if (!_active)
+            {
+                return;
+            }
+            _componentGetter.HealthComponent.HealthRegen(attackVampire);
         }
 
         public void ExecuteAttack(IDamagable target)
@@ -65,13 +78,12 @@ namespace Code.Script
             target.TakeDamage(playerDamage);
         }
 
-        public void IncreaseDamage()
+        public void IncreaseDamage(float amount)
         {
             playerDamage += playerDamage * 0.3f;
-           
         }
 
-        public void DecreaseAttackCooldown()
+        public void DecreaseAttackCooldown(float amount)
         {
             attackCooldown = attackCooldown * 0.8f;
            
@@ -81,14 +93,26 @@ namespace Code.Script
         {
             PlayerPrefs.SetFloat("PlayerDamage", playerDamage);
             PlayerPrefs.SetFloat("AttackCooldown", attackCooldown);
+            PlayerPrefs.SetInt("Vampiric", _active ? 1 : 0);
             PlayerPrefs.Save();
         }
+
+        public void TurnOnVampiric()
+        {
+            _active = true;
+        }
+        
 
         private void LoadAttackStats()
         {
             if (PlayerPrefs.HasKey("PlayerDamage"))
             {
                 playerDamage = PlayerPrefs.GetFloat("PlayerDamage");
+            }
+            
+            if (PlayerPrefs.HasKey("Vampiric"))
+            {
+                _active = PlayerPrefs.GetInt("Vampiric") == 1;
             }
 
             if (PlayerPrefs.HasKey("AttackCooldown"))

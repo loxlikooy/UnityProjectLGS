@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour
     {
         foreach (Quest quest in QuestManager.Instance.GetQuests())
         {
-            if (!quest.IsCompleted)
+            if (!quest.IsCompleted && quest.IsActive)
             {
                 PlayerPrefs.SetInt("Quest_Active_" + quest.QuestName, 1); // Сохраняем, что квест активен
             }

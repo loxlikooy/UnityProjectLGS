@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
         
         AddQuest(new Quest("Explore the Forest", 20f));
         AddQuest(new Quest("Retrieve the Ancient Relic", 30f));
-        AddQuest(new Quest("SUka", 30f));
+        AddQuest(new Quest("test", 30f));
         LoadCompletedQuests();
     }
 

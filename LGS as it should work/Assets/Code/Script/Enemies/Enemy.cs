@@ -4,31 +4,17 @@ namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
-        [Header("EXP Gainer")] 
-        [SerializeField] private float expValue;
-        [Header("Stats")] 
-        [SerializeField]private float health;
-        [SerializeField]private float damage;
+        //stats
+        private float _health;
         private float _maxHealth;
-
         
-        [Header("Movement Settings")]
-        [SerializeField] private float patrolSpeed = 3f;
-        [SerializeField] private float chaseSpeed = 5f;
-        [SerializeField] private float patrolRange = 5f;
-
+        //SO
+        [SerializeField]
+        private EnemyData enemyData;
         
-        [Header("Detection & Attack Settings")]
-        [SerializeField] private float detectionRadius = 5f;
-        [SerializeField] private float attackRadius = 2f;
-        [SerializeField] private float attackCooldown = 1f;
-
-        [Header("Layers")]
-        [SerializeField] private LayerMask backgroundLayer;
-        [SerializeField] private LayerMask collideObjectsLayer;
-
+        //Components
         private Rigidbody2D _rb;
-        protected Transform _player;
+        protected Transform Player;
         private Vector2 _randomPatrolPoint;
         private float _timeSinceLastAttack;
         private EnemyState _currentState;
@@ -40,7 +26,7 @@ namespace Code.Script
         
         public float GetCurrentHealth()
         {
-            return health;
+            return _health;
         }
         
         // Method to get the maximum health
@@ -58,7 +44,8 @@ namespace Code.Script
 
         private void Start()
         {
-            _maxHealth = health;
+            _health = enemyData.enemyHealth;
+            _maxHealth = enemyData.enemyHealth;
             InitializeComponents();
             SetInitialState();
             PickRandomPatrolPoint();
@@ -68,7 +55,7 @@ namespace Code.Script
         {
             GameObject playerGameObject = GameObject.FindWithTag("Player");
             _rb = GetComponent<Rigidbody2D>();
-            _player = FindObjectOfType<PlayerAttack>().transform;
+            Player = FindObjectOfType<PlayerAttack>().transform;
             _exp = playerGameObject.GetComponent<EXP>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -104,13 +91,13 @@ namespace Code.Script
 
         private void Patrol()
         {
-            if (_player == null || _player.gameObject == null) return;
-            MoveTowards(_randomPatrolPoint, patrolSpeed);
+            if (Player == null || Player.gameObject == null) return;
+            MoveTowards(_randomPatrolPoint, enemyData.enemyPatrolSpeed);
 
             if (IsCloseTo(_randomPatrolPoint))
                 PickRandomPatrolPoint();
 
-            if (IsCloseTo(_player.position, detectionRadius))
+            if (IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
                 _currentState = EnemyState.Chasing;
             
         }
@@ -118,9 +105,9 @@ namespace Code.Script
 
         protected virtual void Chase()
         {
-            if (_player == null || _player.gameObject == null) return;
+            if (Player == null || Player.gameObject == null) return;
 
-            MoveTowards(_player.position, chaseSpeed);
+            MoveTowards(Player.position, enemyData.enemyChaseSpeed);
 
             if (!_isChasing)
             {
@@ -128,7 +115,7 @@ namespace Code.Script
                 _isChasing = true; 
             }
 
-            else if (!IsCloseTo(_player.position, detectionRadius))
+            else if (!IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
             {
                 _currentState = EnemyState.Patrolling;
                 if (_isChasing)
@@ -137,7 +124,7 @@ namespace Code.Script
                     _isChasing = false;
                 }
             }
-            if (IsCloseTo(_player.position, attackRadius))
+            if (IsCloseTo(Player.position, enemyData.enemyAttackRadius))
                 _currentState = EnemyState.Attacking;
         }
 
@@ -146,16 +133,16 @@ namespace Code.Script
 
         private void Attack()
         {
-            if (_player == null) return;
+            if (Player == null) return;
 
             _timeSinceLastAttack += Time.deltaTime;
-            if (_timeSinceLastAttack >= attackCooldown)
+            if (_timeSinceLastAttack >= enemyData.enemyAttackCooldown)
             {
                 TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
 
-            if (!IsCloseTo(_player.position, attackRadius))
+            if (!IsCloseTo(Player.position, enemyData.enemyAttackRadius))
             {
                 _timeSinceLastAttack = 0f;
                 _currentState = EnemyState.Patrolling;
@@ -164,9 +151,9 @@ namespace Code.Script
 
         private void TryDealDamageToPlayer()
         {
-            IDamagable playerDamagable = _player.GetComponent<IDamagable>();
+            IDamagable playerDamagable = Player.GetComponent<IDamagable>();
             if (playerDamagable != null)
-                playerDamagable.TakeDamage(damage);
+                playerDamagable.TakeDamage(enemyData.enemyDamage);
 
         }
 
@@ -185,17 +172,17 @@ namespace Code.Script
 
         private Vector2 GetRandomPointWithinPatrolRange()
         {
-            return (Vector2)transform.position + new Vector2(Random.Range(-patrolRange, patrolRange), Random.Range(-patrolRange, patrolRange));
+            return (Vector2)transform.position + new Vector2(Random.Range(-enemyData.enemyPatrolRange, enemyData.enemyPatrolRange), Random.Range(-enemyData.enemyPatrolRange, enemyData.enemyPatrolRange));
             
         }
 
         private bool IsValidPatrolPoint(Vector2 point)
         {
-            Collider2D overlap = Physics2D.OverlapPoint(point, backgroundLayer);
+            Collider2D overlap = Physics2D.OverlapPoint(point, enemyData.enemyBackgroundLayer);
             if (overlap == null)
                 return false;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, point - (Vector2)transform.position, Vector2.Distance(transform.position, point), collideObjectsLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, point - (Vector2)transform.position, Vector2.Distance(transform.position, point), enemyData.enemyCollideObjectsLayer);
             return hit.collider == null;
         }
 
@@ -224,8 +211,8 @@ namespace Code.Script
 
         public void TakeDamage(float damageAmount)
         {
-            health -= damageAmount;
-            if (health <= 0)
+            _health -= damageAmount;
+            if (_health <= 0)
                 Die();
         }
 
@@ -233,7 +220,7 @@ namespace Code.Script
         {
             EnemyManager.StopChasing();
             _isChasing = false;
-            _exp.AddExp(expValue);
+            _exp.AddExp(enemyData.enemyExpValue);
             Destroy(gameObject);
             this.enabled = false;
             
@@ -241,7 +228,7 @@ namespace Code.Script
 
         public void Attack(IDamagable target)
         {
-            target.TakeDamage(damage);
+            target.TakeDamage(enemyData.enemyDamage);
         }
     }
 }

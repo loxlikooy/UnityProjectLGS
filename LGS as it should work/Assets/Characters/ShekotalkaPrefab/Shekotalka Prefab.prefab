@@ -272,21 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b69c0851564d3d9ca9b72377e2a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expValue: 12
-  health: 50
-  damage: 15
-  patrolSpeed: 0.4
-  chaseSpeed: 0.7
-  patrolRange: 6
-  detectionRadius: 3
-  attackRadius: 0.2
-  attackCooldown: 0.4
-  backgroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  collideObjectsLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  enemyData: {fileID: 11400000, guid: 2d49502183b264b9ca1cc834b4b1b851, type: 2}
   pullStrength: 0.1
   pullRadius: 3
   pullCooldown: 3

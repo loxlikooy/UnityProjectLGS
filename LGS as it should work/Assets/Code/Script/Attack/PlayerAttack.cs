@@ -85,7 +85,7 @@ namespace Code.Script
 
         public void DecreaseAttackCooldown(float amount)
         {
-            attackCooldown = attackCooldown * 0.8f;
+            attackCooldown -= attackCooldown * 0.2f;
            
         }
 

@@ -54,14 +54,14 @@ namespace Code.Script
             PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
         } //пофиксить получения большого количества экспы
 
-        IEnumerator WaitAndAddExp(float amountExp) 
+        private IEnumerator WaitAndAddExp(float amountExp) 
         {
             // Ожидание пока экран выбора улучшений будет скрыт
             yield return new WaitUntil(() => !GameManager.Instance.IsUpgradeScreenShown());
             AddExp(amountExp); // Повторное добавление опыта после закрытия экрана
         }
         
-        public void SaveEXP()
+        private void SaveEXP()
         {
             PlayerPrefs.SetFloat("CurrentExp", _currentExp);
             PlayerPrefs.SetFloat("ExpForNextLevel", _expForNextLevel);

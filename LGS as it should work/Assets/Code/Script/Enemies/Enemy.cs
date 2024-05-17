@@ -18,7 +18,7 @@ namespace Code.Script
         private Vector2 _randomPatrolPoint;
         private float _timeSinceLastAttack;
         private EnemyState _currentState;
-        private Animator _animator; 
+        protected Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
         private bool _isChasing;
@@ -59,7 +59,6 @@ namespace Code.Script
         protected virtual void Update()
         {
             HandleStates();
-            Debug.Log(_attackRadius);
         }
 
         private void HandleStates()
@@ -108,7 +107,7 @@ namespace Code.Script
             if (!_isChasing)
             {
                 EnemyManager.StartChasing();
-                _isChasing = true; 
+                _isChasing = true;
             }
 
             if (!IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
@@ -125,12 +124,11 @@ namespace Code.Script
                 _currentState = EnemyState.Attacking;
         }
 
-        private void Attack()
+        protected virtual void Attack()
         {
             if (Player == null) return;
-            // Increase attack radius by 20% when attacking
-            _attackRadius = enemyData.enemyAttackRadius * 1.5f;
 
+            _attackRadius = enemyData.enemyAttackRadius * 1.5f;
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= enemyData.enemyAttackCooldown)
             {
@@ -138,13 +136,11 @@ namespace Code.Script
                 _timeSinceLastAttack = 0f;
             }
 
-            if (!IsCloseTo(Player.position,_attackRadius))
+            if (!IsCloseTo(Player.position, _attackRadius))
             {
                 _timeSinceLastAttack = 0f;
                 _currentState = EnemyState.Patrolling;
-
-                // Revert attack radius to original when out of range
-                _attackRadius =  enemyData.enemyAttackRadius;
+                _attackRadius = enemyData.enemyAttackRadius;
             }
         }
 
@@ -191,7 +187,6 @@ namespace Code.Script
         {
             Vector2 moveDirection = target - _rb.position;
 
-            // Flip the sprite based on the movement direction
             if (moveDirection.x > 0.01f) // Moving right
             {
                 _spriteRenderer.flipX = false;

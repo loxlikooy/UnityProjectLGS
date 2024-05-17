@@ -2,25 +2,25 @@ public class Quest
 {
     public string QuestName { get; private set; }
     public bool IsCompleted { get; private set; }
-    public bool IsActive { get; private set; } // Новое свойство
+    public bool IsActive { get; private set; }
     public float QuestExpValue { get; private set; }
 
-    public Quest(string questName, float questExpValue)
+    public Quest(QuestData questData)
     {
-        QuestName = questName;
+        QuestName = questData.questName;
         IsCompleted = false;
-        IsActive = false; // Инициализируем как неактивный
-        QuestExpValue = questExpValue;
+        IsActive = false;
+        QuestExpValue = questData.questExpValue;
     }
 
     public void Complete()
     {
         IsCompleted = true;
-        IsActive = false; // После завершения квест становится неактивным
+        IsActive = false;
     }
 
     public void Activate()
     {
-        IsActive = true; // Активация квеста
+        IsActive = true;
     }
 }

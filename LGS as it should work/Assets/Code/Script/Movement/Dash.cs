@@ -8,7 +8,7 @@ namespace Code.Script
         private Vector3 _dashEndPosition;
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
-        private float _dashDuration = 0.2f; // Duration of the dash in seconds
+        private readonly float _dashDuration = 0.2f; // Duration of the dash in seconds
         private float _dashCooldown = 2f;
         private float _timeSinceLastDash = Mathf.Infinity;
         
@@ -20,8 +20,10 @@ namespace Code.Script
 
         private void Awake()
         {
+            
             _componentGetter = GetComponent<ComponentGetter>();
             LoadDashCooldown();
+            
         }
 
         public void HandleDash()

@@ -8,8 +8,9 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
-    private List<Quest> _quests = new List<Quest>();
-    [SerializeField] private List<string> completedQuests = new List<string>();
+    [SerializeField] private List<QuestData> questDataList;
+    private readonly List<Quest> _quests = new List<Quest>();
+    private readonly List<string> _completedQuests = new List<string>();
     [SerializeField] private EXP exp;
     [SerializeField] private TextMeshProUGUI questText;
     private Quest _currentActiveQuest;
@@ -23,12 +24,22 @@ public class QuestManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-        
-        AddQuest(new Quest("Explore the Forest", 20f));
-        AddQuest(new Quest("Retrieve the Ancient Relic", 30f));
-        AddQuest(new Quest("test", 30f));
-        LoadCompletedQuests();
+
+        foreach (QuestData questData in questDataList)
+        {
+            AddQuest(new Quest(questData));
+        }
+        Load_completedQuests();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
     private void Update()
@@ -41,29 +52,24 @@ public class QuestManager : MonoBehaviour
 
     private void AddQuest(Quest quest)
     {
+        if (quest == null) return;
         _quests.Add(quest);
     }
     
-    private static void LoadCompletedQuests()
+    private void Load_completedQuests()
     {
-        foreach (Quest quest in Instance._quests)
+        if (!PlayerPrefs.HasKey("_completedQuests")) return;
+        
+        string[] completedQuestNames = PlayerPrefs.GetString("_completedQuests").Split(',');
+        foreach (string questName in completedQuestNames)
         {
-            if (PlayerPrefs.HasKey("CompletedQuests"))
+            Quest quest = GetQuestByName(questName);
+            if (quest != null)
             {
-                string[] completedQuestNames = PlayerPrefs.GetString("CompletedQuests").Split(',');
-                foreach (string questName in completedQuestNames)
-                {
-                    if (questName == quest.QuestName)
-                    {
-                        quest.Complete();
-                        break;
-                    }
-                }
+                quest.Complete();
             }
         }
     }
-
-
 
     public Quest GetQuestByName(string questName)
     {
@@ -77,23 +83,29 @@ public class QuestManager : MonoBehaviour
         {
             quest.Complete();
             exp.AddExp(quest.QuestExpValue);
-            completedQuests.Add(questName); // Добавляем завершенный квест в список завершенных квестов
-            SaveCompletedQuests(); // Сохраняем список завершенных квестов
+            _completedQuests.Add(questName);
+            Save_completedQuests();
+        }
+        else
+        {
+            Debug.LogWarning($"Quest '{questName}' is either already completed or not active.");
         }
     }
-
 
     public void ActivateQuest(string questName)
     {
         Quest quest = GetQuestByName(questName);
-        if (quest != null && !completedQuests.Contains(questName))
+        if (quest != null && !_completedQuests.Contains(questName))
         {
             _currentActiveQuest = quest;
-            _currentActiveQuest.Activate(); // Активация квеста
+            _currentActiveQuest.Activate();
             UpdateQuestText($"Current Quest: {questName}");
         }
+        else
+        {
+            Debug.LogWarning($"Quest '{questName}' is either already completed or not found.");
+        }
     }
-
 
     private void ShowNextActiveQuest()
     {
@@ -104,15 +116,24 @@ public class QuestManager : MonoBehaviour
         }
 
         int currentIndex = _quests.IndexOf(_currentActiveQuest);
+
+        // Check if there are any active quests
+        bool hasActiveQuest = _quests.Any(q => q.IsActive && !q.IsCompleted);
+        if (!hasActiveQuest)
+        {
+            UpdateQuestText("You have no active quests");
+            return;
+        }
+
         for (int i = currentIndex + 1; i <= _quests.Count; i++)
         {
-            if (i>= _quests.Count)
+            if (i >= _quests.Count)
             {
                 i = 0;
             }
             if (!_quests[i].IsCompleted && _quests[i].IsActive)
-            { 
-               _currentActiveQuest = _quests[i];
+            {
+                _currentActiveQuest = _quests[i];
                 UpdateQuestText($"Current Quest: {_quests[i].QuestName}");
                 return;
             }
@@ -121,18 +142,19 @@ public class QuestManager : MonoBehaviour
 
     private void UpdateQuestText(string newText)
     {
-        questText.text = newText;
+        if (questText != null)
+        {
+            questText.text = newText;
+        }
     }
-    
     
     public List<Quest> GetQuests()
     {
         return _quests;
     }
     
-    private void SaveCompletedQuests()
+    private void Save_completedQuests()
     {
-        PlayerPrefs.SetString("CompletedQuests", string.Join(",", completedQuests.ToArray()));
+        PlayerPrefs.SetString("_completedQuests", string.Join(",", _completedQuests));
     }
-
 }

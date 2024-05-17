@@ -10,36 +10,16 @@ public class QuestInteraction : MonoBehaviour
 
     // Name of the quest to activate
     [SerializeField] private string questName;
-
-    private bool _isInRange = false;
-
-    private void Update()
+    
+    
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
-        if (_isInRange && Input.GetKeyDown(KeyCode.E))
+        if (other.gameObject == player && Input.GetKeyDown(KeyCode.E))
         {
             StartQuest();
         }
     }
-
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject == player)
-        {
-            _isInRange = true;
-        }
-    }
-
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject == player)
-        {
-            _isInRange = false;
-        }
-    }
-
     
     private void StartQuest()
     {

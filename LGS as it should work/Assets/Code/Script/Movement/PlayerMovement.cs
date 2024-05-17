@@ -21,7 +21,7 @@ namespace Code.Script
         public Vector2 LastMoveDirection => _lastMoveDirection;
     
        
-        private List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>();
+        private readonly List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>();
 
         
     

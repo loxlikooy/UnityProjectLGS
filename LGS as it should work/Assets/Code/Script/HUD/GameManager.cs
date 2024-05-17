@@ -1,102 +1,53 @@
-using System;
 using System.Collections.Generic;
 using Code.Script;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using Random = UnityEngine.Random;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     public static GameManager Instance;
     public GameObject restartScreen;
     public GameObject HUD;
     private bool _isUpgradeScreenShown = false;
-    
-    private Upgrade[] _allUpgrades; // Массив со всеми доступными улучшениями
-    [SerializeField]private Button[] choiceButtons; // Массив кнопок для выбора улучшений
-    public GameObject abilityChoiceScreen; // Экран выбора улучшений
+
+    [SerializeField] private UpgradeData[] allUpgrades; // Array with all available upgrades
+    [SerializeField] private Button[] choiceButtons; // Array of buttons for choosing upgrades
+    public GameObject abilityChoiceScreen; // Screen for choosing upgrades
 
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Dash playerDash;
     [SerializeField] private MoveVelocity playerMoveVelocity;
-    
-    
-    public void Awake() {
-        if (Instance == null) {
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
             Instance = this;
-        } else if (Instance != this) {
+        }
+        else if (Instance != this)
+        {
             Destroy(gameObject);
         }
     }
+    
 
-    private void Start()
+    public void ShowRestartScreen()
     {
-        InitializeUpgrades();
-    }
-
-    private void InitializeUpgrades()
-    {
-        _allUpgrades = new Upgrade[]
-        {
-            new Upgrade
-            {
-                name = "Health Increase",
-                effect = playerHealth.IncreaseHealth,
-                icon = Resources.Load<Sprite>("OurIcons/survivalrateup")
-            },
-            new Upgrade
-            {
-                name = "Health Regen",
-                effect = playerHealth.HealthRegen,
-                icon = Resources.Load<Sprite>("OurIcons/survivalrateup")
-            },
-            new Upgrade
-            {
-                name = "Damage Increase",
-                effect = playerAttack.IncreaseDamage, // Исправьте опечатку в названии метода здесь
-                icon = Resources.Load<Sprite>("OurIcons/damageup")
-            },
-            new Upgrade
-            {
-                name = "Decrease Dash Cooldown",
-                effect = playerDash.DecreaseDashCooldown,
-                icon = Resources.Load<Sprite>("OurIcons/agilityup")
-            },
-            new Upgrade
-            {
-                name = "Speed Increase",
-                effect = playerMoveVelocity.IncreaseSpeed,
-                icon = Resources.Load<Sprite>("OurIcons/agilityup")
-            },
-            new Upgrade
-            {
-                name = "Upgrade Attack Speed",
-                effect = playerAttack.DecreaseAttackCooldown,
-                icon = Resources.Load<Sprite>("OurIcons/damageup")
-            }
-        };
-    }
-
-
-
-
-    public void ShowRestartScreen() {
         restartScreen.SetActive(true);
         HUD.SetActive(false);
-        
     }
 
     public void ShowRandomUpgrades()
     {
-        
         if (_isUpgradeScreenShown) return;
         _isUpgradeScreenShown = true;
         List<int> chosenIndices = new List<int>();
         while (chosenIndices.Count < 3)
         {
-            int randomIndex = Random.Range(0, _allUpgrades.Length);
+            int randomIndex = Random.Range(0, allUpgrades.Length);
             if (!chosenIndices.Contains(randomIndex))
             {
                 chosenIndices.Add(randomIndex);
@@ -107,30 +58,44 @@ public class GameManager : MonoBehaviour {
         {
             int index = chosenIndices[i];
             Button button = choiceButtons[i];
-            button.GetComponent<Image>().sprite = _allUpgrades[index].icon;
+            button.GetComponent<Image>().sprite = allUpgrades[index].icon;
             var buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = _allUpgrades[index].name;
+            buttonText.text = allUpgrades[index].upgradeName;
 
             button.onClick.RemoveAllListeners();
-            int finalIndex = index; // Локальная переменная для использования в лямбда-выражении
-            button.onClick.AddListener(() => ApplyUpgrade(_allUpgrades[finalIndex]));
+            int finalIndex = index; // Local variable for use in the lambda expression
+            button.onClick.AddListener(() => ApplyUpgrade(allUpgrades[finalIndex]));
             Time.timeScale = 0;
         }
-
-
 
         abilityChoiceScreen.SetActive(true);
         HUD.SetActive(false);
         Time.timeScale = 0;
     }
-    
-    
 
-
-
-    void ApplyUpgrade(Upgrade upgrade)
+    void ApplyUpgrade(UpgradeData upgrade)
     {
-        upgrade.effect?.Invoke(10);
+        switch (upgrade.effect)
+        {
+            case UpgradeEffect.HealthIncrease:
+                playerHealth.IncreaseHealth(10);
+                break;
+            case UpgradeEffect.HealthRegen:
+                playerHealth.HealthRegen(10);
+                break;
+            case UpgradeEffect.DamageIncrease:
+                playerAttack.IncreaseDamage(10);
+                break;
+            case UpgradeEffect.DecreaseDashCooldown:
+                playerDash.DecreaseDashCooldown(10);
+                break;
+            case UpgradeEffect.SpeedIncrease:
+                playerMoveVelocity.IncreaseSpeed(10);
+                break;
+            case UpgradeEffect.UpgradeAttackSpeed:
+                playerAttack.DecreaseAttackCooldown(10);
+                break;
+        }
         HideAbilityChoiceScreen();
     }
 
@@ -141,7 +106,7 @@ public class GameManager : MonoBehaviour {
         _isUpgradeScreenShown = false;
         Time.timeScale = 1;
     }
-    
+
     public bool IsUpgradeScreenShown() {
         return _isUpgradeScreenShown;
     }
@@ -153,6 +118,4 @@ public class GameManager : MonoBehaviour {
     public void QuitGame() {
         Application.Quit();
     }
-
-  
 }

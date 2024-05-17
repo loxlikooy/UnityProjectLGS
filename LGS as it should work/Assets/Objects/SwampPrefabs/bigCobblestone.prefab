@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 335264050178230789}
   - component: {fileID: 3360394897391550124}
   - component: {fileID: 4823866458252925144}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bigCobblestone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

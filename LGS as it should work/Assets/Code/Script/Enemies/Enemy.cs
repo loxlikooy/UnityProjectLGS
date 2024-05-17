@@ -4,15 +4,15 @@ namespace Code.Script
 {
     public abstract class Enemy : MonoBehaviour, IDamagable, IAttackable
     {
-        //stats
+        // Stats
         private float _health;
         private float _maxHealth;
-        
-        //SO
+
+        // Scriptable Object
         [SerializeField]
         private EnemyData enemyData;
-        
-        //Components
+
+        // Components
         private Rigidbody2D _rb;
         protected Transform Player;
         private Vector2 _randomPatrolPoint;
@@ -22,19 +22,8 @@ namespace Code.Script
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
         private bool _isChasing;
-        
-        
-        public float GetCurrentHealth()
-        {
-            return _health;
-        }
-        
-        // Method to get the maximum health
-        public float GetMaxHealth()
-        {
-            return _maxHealth;
-        }
-        
+        private float _attackRadius;
+
         private enum EnemyState
         {
             Patrolling,
@@ -46,6 +35,7 @@ namespace Code.Script
         {
             _health = enemyData.enemyHealth;
             _maxHealth = enemyData.enemyHealth;
+            _attackRadius = enemyData.enemyAttackRadius;
             InitializeComponents();
             SetInitialState();
             PickRandomPatrolPoint();
@@ -69,6 +59,7 @@ namespace Code.Script
         protected virtual void Update()
         {
             HandleStates();
+            Debug.Log(_attackRadius);
         }
 
         private void HandleStates()
@@ -78,13 +69,20 @@ namespace Code.Script
                 case EnemyState.Patrolling:
                     Patrol();
                     _animator.SetBool("Patrolling", true);
+                    _animator.SetBool("Chasing", false);
+                    _animator.SetBool("Attacking", false);
                     break;
                 case EnemyState.Chasing:
                     Chase();
                     _animator.SetBool("Patrolling", false);
+                    _animator.SetBool("Chasing", true);
+                    _animator.SetBool("Attacking", false);
                     break;
                 case EnemyState.Attacking:
                     Attack();
+                    _animator.SetBool("Patrolling", false);
+                    _animator.SetBool("Chasing", false);
+                    _animator.SetBool("Attacking", true);
                     break;
             }
         }
@@ -99,9 +97,7 @@ namespace Code.Script
 
             if (IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
                 _currentState = EnemyState.Chasing;
-            
         }
-
 
         protected virtual void Chase()
         {
@@ -115,7 +111,7 @@ namespace Code.Script
                 _isChasing = true; 
             }
 
-            else if (!IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
+            if (!IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
             {
                 _currentState = EnemyState.Patrolling;
                 if (_isChasing)
@@ -124,16 +120,16 @@ namespace Code.Script
                     _isChasing = false;
                 }
             }
-            if (IsCloseTo(Player.position, enemyData.enemyAttackRadius))
+
+            if (IsCloseTo(Player.position, _attackRadius))
                 _currentState = EnemyState.Attacking;
         }
-
-      
-    
 
         private void Attack()
         {
             if (Player == null) return;
+            // Increase attack radius by 20% when attacking
+            _attackRadius = enemyData.enemyAttackRadius * 1.5f;
 
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= enemyData.enemyAttackCooldown)
@@ -142,10 +138,13 @@ namespace Code.Script
                 _timeSinceLastAttack = 0f;
             }
 
-            if (!IsCloseTo(Player.position, enemyData.enemyAttackRadius))
+            if (!IsCloseTo(Player.position,_attackRadius))
             {
                 _timeSinceLastAttack = 0f;
                 _currentState = EnemyState.Patrolling;
+
+                // Revert attack radius to original when out of range
+                _attackRadius =  enemyData.enemyAttackRadius;
             }
         }
 
@@ -154,7 +153,6 @@ namespace Code.Script
             IDamagable playerDamagable = Player.GetComponent<IDamagable>();
             if (playerDamagable != null)
                 playerDamagable.TakeDamage(enemyData.enemyDamage);
-
         }
 
         private void PickRandomPatrolPoint()
@@ -167,13 +165,11 @@ namespace Code.Script
 
                 _randomPatrolPoint = GetRandomPointWithinPatrolRange();
             }
-            
         }
 
         private Vector2 GetRandomPointWithinPatrolRange()
         {
             return (Vector2)transform.position + new Vector2(Random.Range(-enemyData.enemyPatrolRange, enemyData.enemyPatrolRange), Random.Range(-enemyData.enemyPatrolRange, enemyData.enemyPatrolRange));
-            
         }
 
         private bool IsValidPatrolPoint(Vector2 point)
@@ -208,7 +204,6 @@ namespace Code.Script
             _rb.position = Vector2.MoveTowards(_rb.position, target, speed * Time.deltaTime);
         }
 
-
         public void TakeDamage(float damageAmount)
         {
             _health -= damageAmount;
@@ -223,12 +218,21 @@ namespace Code.Script
             _exp.AddExp(enemyData.enemyExpValue);
             Destroy(gameObject);
             this.enabled = false;
-            
         }
 
         public void Attack(IDamagable target)
         {
             target.TakeDamage(enemyData.enemyDamage);
+        }
+
+        public float GetCurrentHealth()
+        {
+            return _health;
+        }
+
+        public float GetMaxHealth()
+        {
+            return _maxHealth;
         }
     }
 }

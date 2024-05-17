@@ -9,25 +9,34 @@ namespace Code.Script
         [SerializeField] private float pullRadius = 3f;
         [SerializeField] private float pullCooldown = 2f;
         private float _timeSinceLastPull;
+        private bool _isPulling;
         private Rigidbody2D _playerRigidBody;
-        
+
         protected override void InitializeComponents()
         {
             base.InitializeComponents();
             _playerRigidBody = Player.GetComponent<Rigidbody2D>();
-
         }
-        
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if (!_isPulling) return;
+                PullPlayer();
+        }
+
         protected override void Chase()
         {
-            base.Chase(); // Вызов основной логики погони из базового класса
+            base.Chase(); // Call base class chase logic
 
             if (Vector2.Distance(Player.position, transform.position) <= pullRadius)
             {
                 if (_timeSinceLastPull >= pullCooldown)
                 {
-                    PullPlayer();
-                    _timeSinceLastPull = 0;
+                    _isPulling = true;
+                    Invoke("StopPulling", 1.26f);
+                    _timeSinceLastPull = 0f;
                 }
             }
             _timeSinceLastPull += Time.deltaTime;
@@ -39,8 +48,13 @@ namespace Code.Script
             float distance = Vector2.Distance(Player.position, transform.position);
             float pullForce = Mathf.Lerp(0, pullStrength, 1 - (distance / pullRadius));
 
-           _playerRigidBody.AddForce(pullDirection * pullForce, ForceMode2D.Force);
+            // Apply force to the player's Rigidbody
+            _playerRigidBody.AddForce(pullDirection * pullForce, ForceMode2D.Force);
         }
 
+        private void StopPulling()
+        {
+            _isPulling = false;
+        }
     }
 }

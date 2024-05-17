@@ -58,8 +58,8 @@ namespace Code.Script
 
         protected virtual void Update()
         {
-            HandleStates();
-            Debug.Log(_attackRadius);
+            HandleStates(); 
+            // Debug.Log(_attackRadius);
         }
 
         private void HandleStates()

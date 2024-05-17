@@ -10072,43 +10072,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 1898279788}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &603973778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-  m_PrefabInstance: {fileID: 145494862964842368}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &603973784
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603973778}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2eda8759e9ce445ee80144a835ea8c87, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &603973785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-  m_PrefabInstance: {fileID: 145494862964842368}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603973778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4625c5c54ef745de9acc95e3f187934a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &604260190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50017,37 +49980,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7194197039177211211, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: enemy
-      value: 
-      objectReference: {fileID: 603973785}
     - target: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
       propertyPath: m_Name
       value: Dyau
       objectReference: {fileID: 0}
-    - target: {fileID: 8451414284946907287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451414284946907287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451414284946907287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451414284946907287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 603973784}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
 --- !u!1001 &8008348659709504544
 PrefabInstance:

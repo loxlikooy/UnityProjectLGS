@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff2eaa962304504ae03f14d991400a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 1573148940140974101}
   healthBarSprite: {fileID: 5501515687135411109}
 --- !u!1 &8064362446555478287
 GameObject:
@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 8451414284946907287}
   - component: {fileID: 2690606194867271231}
   - component: {fileID: 1573148940140974101}
+  - component: {fileID: 7348685450507460888}
   m_Layer: 0
   m_Name: Dyau
   m_TagString: Untagged
@@ -202,7 +203,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -213,7 +214,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2690606194867271231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -272,3 +273,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 8e906034dedf44b16a6a1f25973bd6b1, type: 2}
+--- !u!95 &7348685450507460888
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064362446555478287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2eda8759e9ce445ee80144a835ea8c87, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

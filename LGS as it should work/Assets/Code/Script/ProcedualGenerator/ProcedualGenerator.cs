@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int corridorMinWidth;
     [SerializeField] private int corridorMaxWidth;
 
-    [SerializeField] private GameObject wallPrefab;
-    [SerializeField] private GameObject floorPrefab;
+    [SerializeField] private Tilemap collidableTilemap;
+    [SerializeField] private Tilemap nonCollidableTilemap;
+    [SerializeField] private TileBase wallTile;
+    [SerializeField] private TileBase floorTile;
 
     [SerializeField] private GameObject playerPrefab;
 
@@ -29,6 +32,8 @@ public class MapGenerator : MonoBehaviour
     private List<Room> rooms;
     private System.Random random;
     private Room playerRoom;
+
+    private const float CellSize = 0.64f;
 
     private void Start()
     {
@@ -205,7 +210,6 @@ public class MapGenerator : MonoBehaviour
         return closestRoom;
     }
 
-
     private bool RoomIntersects(Room room)
     {
         foreach (Room r in rooms)
@@ -221,7 +225,8 @@ public class MapGenerator : MonoBehaviour
     private void SpawnPlayer()
     {
         playerRoom = rooms[random.Next(rooms.Count)];
-        Vector3 playerPos = new Vector3(-width / 2 + playerRoom.CenterX, -height / 2 + playerRoom.CenterY, 0);
+        Vector3 playerPos = new Vector3((playerRoom.CenterX - width / 2f) * CellSize, (playerRoom.CenterY - height / 2f) * CellSize, 0);
+        playerPos = new Vector3(playerRoom.CenterX * CellSize, playerRoom.CenterY * CellSize, 0);
         Instantiate(playerPrefab, playerPos, Quaternion.identity, transform);
     }
 
@@ -234,8 +239,6 @@ public class MapGenerator : MonoBehaviour
                 continue; // Skip the player's room
             }
 
-           
-
             foreach (var config in enemyConfigurations)
             {
                 int enemyCount = random.Next(config.minCount, config.maxCount + 1);
@@ -244,46 +247,43 @@ public class MapGenerator : MonoBehaviour
                     int enemyX = random.Next(room.X + 1, room.X + room.Width - 1);
                     int enemyY = random.Next(room.Y + 1, room.Y + room.Height - 1);
 
+
+                    Vector3 enemyPos = new Vector3((enemyX - width / 2f) * CellSize, (enemyY - height / 2f) * CellSize, 0);
+                    enemyPos = new Vector3(enemyX * CellSize, enemyY * CellSize, 0);
+                    GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
                     Vector3 enemyPos = new Vector3(-width / 2 + enemyX, -height / 2 + enemyY, 0);
 
                     
 
                     GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
                     
-                }
-            }
-        }
 
-        // Place walls in corridors
-        List<Vector2Int> emptyTiles = map.GetAllEmptyTiles();
-        foreach (var tile in emptyTiles)
-        {
-            if (random.Next(0, 100) < 5) // 5% chance to place a wall
-            {
-                Vector3 wallPos = new Vector3(-width / 2 + tile.x, -height / 2 + tile.y, 0);
-                Instantiate(wallPrefab, wallPos, Quaternion.identity, transform);
+                }
             }
         }
     }
 
     private void DrawMap(int[,] mapData)
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
+        collidableTilemap.ClearAllTiles();
+        nonCollidableTilemap.ClearAllTiles();
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                Vector3 pos = new Vector3(-width / 2 + x, -height / 2 + y, 0);
-                GameObject tile = mapData[x, y] == 1 ? wallPrefab : floorPrefab;
-                InstantiateTile(tile, pos);
+                Vector3Int pos = new Vector3Int(x, y, 0);
+                if (mapData[x, y] == 1)
+                {
+                    collidableTilemap.SetTile(pos, wallTile);
+                }
+                else
+                {
+                    nonCollidableTilemap.SetTile(pos, floorTile);
+                }
             }
         }
     }
-
     private void InstantiateTile(GameObject prefab, Vector3 position)
     {
         GameObject tile = Instantiate(prefab, position, Quaternion.identity, transform);

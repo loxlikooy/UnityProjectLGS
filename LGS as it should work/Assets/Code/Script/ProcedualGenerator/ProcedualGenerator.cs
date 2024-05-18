@@ -14,9 +14,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int roomCount;
     [SerializeField] private int roomMinSize;
     [SerializeField] private int roomMaxSize;
-
-    [SerializeField] private int corridorMinLength;
-    [SerializeField] private int corridorMaxLength;
+    
     [SerializeField] private int corridorMinWidth;
     [SerializeField] private int corridorMaxWidth;
 
@@ -70,36 +68,6 @@ public class MapGenerator : MonoBehaviour
         DrawMap(mapData);
         SpawnPlayer();
         PlaceEnemies(mapData);
-    }
-
-    private void GenerateRoomsAndCorridors(int[,] mapData)
-    {
-        for (int i = 0; i < roomCount; i++)
-        {
-            CreateRoom(mapData);
-        }
-
-        for (int i = 1; i < rooms.Count; i++)
-        {
-            ConnectRooms(rooms[i - 1], rooms[i], mapData);
-        }
-    }
-
-    private void CreateRoom(int[,] mapData)
-    {
-        int roomWidth = random.Next(roomMinSize, roomMaxSize);
-        int roomHeight = random.Next(roomMinSize, roomMaxSize);
-
-        int roomX = random.Next(1, width - roomWidth - 1);
-        int roomY = random.Next(1, height - roomHeight - 1);
-
-        Room newRoom = new Room(roomX, roomY, roomWidth, roomHeight, random);
-
-        if (!RoomIntersects(newRoom))
-        {
-            rooms.Add(newRoom);
-            newRoom.Carve(mapData);
-        }
     }
 
     private void ConnectRooms(Room roomA, Room roomB, int[,] mapData)
@@ -164,25 +132,79 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void EnsureAllRoomsConnected(int[,] mapData)
+    private void GenerateRoomsAndCorridors(int[,] mapData)
     {
-        while (!map.IsConnected())
+        // Создаем первую комнату, которую гарантированно добавляем в список
+        CreateRoom(mapData, true);
+    
+        for (int i = 1; i < roomCount; i++)
         {
-            List<Room> disconnectedRooms = new List<Room>();
-            for (int i = 0; i < roomCount; i++)
-            {
-                if (!map.IsInMapRange(rooms[i].X, rooms[i].Y))
-                {
-                    disconnectedRooms.Add(rooms[i]);
-                }
-            }
+            CreateRoom(mapData, false);
+        }
 
-            if (disconnectedRooms.Count > 1)
-            {
-                ConnectRooms(disconnectedRooms[0], disconnectedRooms[1], mapData);
-            }
+        for (int i = 1; i < rooms.Count; i++)
+        {
+            ConnectRooms(rooms[i - 1], rooms[i], mapData);
+        }
+
+        EnsureAllRoomsConnected(mapData);
+    }
+
+    private void CreateRoom(int[,] mapData, bool forceAdd)
+    {
+        int roomWidth = random.Next(roomMinSize, roomMaxSize);
+        int roomHeight = random.Next(roomMinSize, roomMaxSize);
+
+        int roomX = random.Next(1, width - roomWidth - 1);
+        int roomY = random.Next(1, height - roomHeight - 1);
+
+        Room newRoom = new Room(roomX, roomY, roomWidth, roomHeight, random);
+
+        if (forceAdd || !RoomIntersects(newRoom))
+        {
+            rooms.Add(newRoom);
+            newRoom.Carve(mapData);
         }
     }
+
+    private void EnsureAllRoomsConnected(int[,] mapData)
+    {
+        // Создаем список с неприсоединенными комнатами
+        List<Room> disconnectedRooms = new List<Room>(rooms);
+
+        while (disconnectedRooms.Count > 1)
+        {
+            Room roomA = disconnectedRooms[0];
+            Room roomB = FindClosestRoom(roomA, disconnectedRooms);
+
+            if (roomB != null)
+            {
+                ConnectRooms(roomA, roomB, mapData);
+                disconnectedRooms.Remove(roomB);
+            }
+            disconnectedRooms.Remove(roomA);
+        }
+    }
+
+    private Room FindClosestRoom(Room room, List<Room> roomList)
+    {
+        Room closestRoom = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (Room otherRoom in roomList)
+        {
+            if (otherRoom == room) continue;
+
+            float distance = Vector2.Distance(new Vector2(room.CenterX, room.CenterY), new Vector2(otherRoom.CenterX, otherRoom.CenterY));
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestRoom = otherRoom;
+            }
+        }
+        return closestRoom;
+    }
+
 
     private bool RoomIntersects(Room room)
     {

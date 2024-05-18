@@ -225,9 +225,9 @@ public class MapGenerator : MonoBehaviour
     private void SpawnPlayer()
     {
         playerRoom = rooms[random.Next(rooms.Count)];
-        Vector3 playerPos = new Vector3((-width / 2 + playerRoom.CenterX) * CellSize, (-height / 2 + playerRoom.CenterY) * CellSize, 0);
+        Vector3 playerPos = new Vector3((playerRoom.CenterX - width / 2f) * CellSize, (playerRoom.CenterY - height / 2f) * CellSize, 0);
+        playerPos = new Vector3(playerRoom.CenterX * CellSize, playerRoom.CenterY * CellSize, 0);
         Instantiate(playerPrefab, playerPos, Quaternion.identity, transform);
-        Debug.Log($"Player spawned in room at ({playerRoom.X}, {playerRoom.Y}) with size ({playerRoom.Width}, {playerRoom.Height})");
     }
 
     private void PlaceEnemies(int[,] mapData)
@@ -239,11 +239,6 @@ public class MapGenerator : MonoBehaviour
                 continue; // Skip the player's room
             }
 
-<<<<<<< Updated upstream
-            Debug.Log($"Placing enemies in room at ({room.X}, {room.Y}) with size ({room.Width}, {room.Height})");
-
-=======
->>>>>>> Stashed changes
             foreach (var config in enemyConfigurations)
             {
                 int enemyCount = random.Next(config.minCount, config.maxCount + 1);
@@ -252,25 +247,9 @@ public class MapGenerator : MonoBehaviour
                     int enemyX = random.Next(room.X + 1, room.X + room.Width - 1);
                     int enemyY = random.Next(room.Y + 1, room.Y + room.Height - 1);
 
-<<<<<<< Updated upstream
-                    Vector3 enemyPos = new Vector3(-width / 2 + enemyX, -height / 2 + enemyY, 0);
-
-                    Debug.Log($"Placing enemy at ({enemyX}, {enemyY})");
-
+                    Vector3 enemyPos = new Vector3((enemyX - width / 2f) * CellSize, (enemyY - height / 2f) * CellSize, 0);
+                    enemyPos = new Vector3(enemyX * CellSize, enemyY * CellSize, 0);
                     GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
-                    if (enemyInstance != null)
-                    {
-                        Debug.Log($"Successfully instantiated enemy at ({enemyX}, {enemyY})");
-                    }
-                    else
-                    {
-                        Debug.LogError("Failed to instantiate enemy prefab.");
-                    }
-=======
-                    Vector3 enemyPos = new Vector3((-width / 2 + enemyX) * CellSize, (-height / 2 + enemyY) * CellSize, 0);
-
-                    GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
->>>>>>> Stashed changes
                 }
             }
         }
@@ -297,21 +276,4 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-<<<<<<< Updated upstream
-
-    private void InstantiateTile(GameObject prefab, Vector3 position)
-    {
-        GameObject tile = Instantiate(prefab, position, Quaternion.identity, transform);
-        if (tile != null)
-        {
-            Debug.Log($"Successfully instantiated tile at {position}");
-        }
-        else
-        {
-            Debug.LogError("Failed to instantiate tile prefab.");
-        }
-        tile.SetActive(true);
-    }
-=======
->>>>>>> Stashed changes
 }

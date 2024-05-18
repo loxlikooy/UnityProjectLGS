@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 5499341106163435715}
   - component: {fileID: 635808593275215577}
   - component: {fileID: 4860226722900370313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae9f23080b848fcaec5b977fff54685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 10
+  maxHealth: 110
+  currentHealth: 30
 --- !u!114 &8184014539870831574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421397625545510908}
   - component: {fileID: 1472650611416348426}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 1950293922673059605}
   - component: {fileID: 5123037306599726255}
   - component: {fileID: 1428150917982928273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2d VC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 3743235782562710940}
   - component: {fileID: 2271577627870126316}
   - component: {fileID: 1337843041611582595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 8310949745571802764}
   - component: {fileID: 8459353986842480063}
   - component: {fileID: 7455592502611828173}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

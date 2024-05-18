@@ -28,22 +28,43 @@ namespace Code.Script
 
         protected override void Chase()
         {
+            _animator.SetBool("Transform", true);
             base.Chase(); // Call base class chase logic
 
             if (Vector2.Distance(Player.position, transform.position) <= pullRadius)
             {
                 if (_timeSinceLastPull >= pullCooldown)
                 {
+                    _animator.SetBool("Pulling", true);
+                }
+
+                _timeSinceLastPull += Time.deltaTime;
+            }
+        }
+
+        protected override void Patrol()
+        {
+            _animator.SetBool("Transform", false);
+            base.Patrol();
+        }
+
+        private void StartPull()
+        {
+            
+            if (Vector2.Distance(Player.position, transform.position) <= pullRadius)
+            {
+                if (_timeSinceLastPull >= pullCooldown)
+                {
                     _isPulling = true;
-                    Invoke("StopPulling", 1.26f);
                     _timeSinceLastPull = 0f;
                 }
             }
-            _timeSinceLastPull += Time.deltaTime;
         }
 
         private void PullPlayer()
         {
+            
+            
             Vector2 pullDirection = (transform.position - Player.position).normalized;
             float distance = Vector2.Distance(Player.position, transform.position);
             float pullForce = Mathf.Lerp(0, pullStrength, 1 - (distance / pullRadius));
@@ -54,6 +75,7 @@ namespace Code.Script
 
         private void StopPulling()
         {
+            _animator.SetBool("Pulling", false);
             _isPulling = false;
         }
     }

@@ -6558,6 +6558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScreen: {fileID: 314719654}
   HUD: {fileID: 1135997322}
+  allUpgrades: []
   choiceButtons:
   - {fileID: 1847177707}
   - {fileID: 160480285}
@@ -23324,6 +23325,7 @@ MonoBehaviour:
   hudUI: {fileID: 1135997322}
   bookText: {fileID: 124252574}
   titleText: {fileID: 1638229846}
+  _bookData: {fileID: 0}
 --- !u!4 &1136233345
 Transform:
   m_ObjectHideFlags: 0
@@ -53645,7 +53647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a2a4807c5040caba3a9134030d2661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completedQuests: []
+  questDataList: []
   exp: {fileID: 1157619225}
   questText: {fileID: 1499913897}
 --- !u!4 &1919113274
@@ -72743,10 +72745,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1950293922673059605, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.19555569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18567133
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.14499998
+      objectReference: {fileID: 0}
     - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: endPoint
       value: 
       objectReference: {fileID: 675230043}
+    - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: startPoint
       value: 

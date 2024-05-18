@@ -33,19 +33,22 @@ public class Room
         {
             for (int y = Y; y < Y + Height; y++)
             {
-                map[x, y] = 0;
+                if (random.NextDouble() < 0.1) // 20% chance to make a part of the room irregular
+                {
+                    if (random.Next(0, 2) == 0)
+                    {
+                        map[x, y] = 1; // Create a bump
+                    }
+                    else
+                    {
+                        map[x, y] = 0; // Create a dent
+                    }
+                }
+                else
+                {
+                    map[x, y] = 0;
+                }
             }
         }
-    }
-
-    public bool Contains(int pointX, int pointY)
-    {
-        return pointX >= X && pointX < X + Width && pointY >= Y && pointY < Y + Height;
-    }
-
-    public void Move(int offsetX, int offsetY)
-    {
-        X += offsetX;
-        Y += offsetY;
     }
 }

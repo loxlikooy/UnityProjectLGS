@@ -157,10 +157,8 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 100
   roomCount: 8
-  roomMinSize: 5
-  roomMaxSize: 10
-  corridorMinLength: 10
-  corridorMaxLength: 15
+  roomMinSize: 14
+  roomMaxSize: 16
   corridorMinWidth: 2
   corridorMaxWidth: 4
   wallPrefab: {fileID: 8634204367808735526, guid: 82988b26c103f4b75a653d842999e6a2, type: 3}

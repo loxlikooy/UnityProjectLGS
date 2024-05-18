@@ -130,7 +130,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.8627, y: 1.897, z: 0}
-  m_LocalScale: {x: 0.9652, y: 0.8957, z: 1}
+  m_LocalScale: {x: 2.1542, y: 2.0368, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8922531149862827929}
@@ -247,7 +247,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03458117, y: -0.14905766}
+  m_Offset: {x: -0.032943666, y: -0.1611785}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -258,7 +258,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6487695, y: 0.6618846}
+  m_Size: {x: 0.65204453, y: 0.6376429}
   m_EdgeRadius: 0
 --- !u!114 &1573148940140974101
 MonoBehaviour:
@@ -273,6 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 8e906034dedf44b16a6a1f25973bd6b1, type: 2}
+  shockwavePrefab: {fileID: 824633066956342397, guid: afe836885cc0e4ff68b6f8554d30d148, type: 3}
+  shockwaveDamage: 10
+  shockwaveRadius: 1
+  shockWaveCooldown: 1
 --- !u!95 &7348685450507460888
 Animator:
   serializedVersion: 5

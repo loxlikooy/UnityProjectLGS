@@ -15132,46 +15132,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: shockwaveDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: shockwavePrefab
-      value: 
-      objectReference: {fileID: 824633066956342397, guid: afe836885cc0e4ff68b6f8554d30d148, type: 3}
-    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: shockwaveRadius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: shockWaveCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690606194867271231, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Size.x
-      value: 0.65204453
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690606194867271231, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Size.y
-      value: 0.6376429
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690606194867271231, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.032943666
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690606194867271231, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.1611785
-      objectReference: {fileID: 0}
-    - target: {fileID: 3917080492215958215, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.1542
-      objectReference: {fileID: 0}
-    - target: {fileID: 3917080492215958215, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.0368
-      objectReference: {fileID: 0}
     - target: {fileID: 3917080492215958215, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.435
@@ -15215,14 +15175,6 @@ PrefabInstance:
     - target: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
       propertyPath: m_Name
       value: Dyau
-      objectReference: {fileID: 0}
-    - target: {fileID: 8825942140859292120, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8825942140859292120, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

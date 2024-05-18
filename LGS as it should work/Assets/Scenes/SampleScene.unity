@@ -49903,10 +49903,22 @@ PrefabInstance:
       propertyPath: playerDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.12710297
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: endPoint
       value: 
       objectReference: {fileID: 1801992593}
+    - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4860226722900370313, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: startPoint
       value: 

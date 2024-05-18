@@ -223,7 +223,6 @@ public class MapGenerator : MonoBehaviour
         playerRoom = rooms[random.Next(rooms.Count)];
         Vector3 playerPos = new Vector3(-width / 2 + playerRoom.CenterX, -height / 2 + playerRoom.CenterY, 0);
         Instantiate(playerPrefab, playerPos, Quaternion.identity, transform);
-        Debug.Log($"Player spawned in room at ({playerRoom.X}, {playerRoom.Y}) with size ({playerRoom.Width}, {playerRoom.Height})");
     }
 
     private void PlaceEnemies(int[,] mapData)
@@ -235,7 +234,7 @@ public class MapGenerator : MonoBehaviour
                 continue; // Skip the player's room
             }
 
-            Debug.Log($"Placing enemies in room at ({room.X}, {room.Y}) with size ({room.Width}, {room.Height})");
+           
 
             foreach (var config in enemyConfigurations)
             {
@@ -247,17 +246,10 @@ public class MapGenerator : MonoBehaviour
 
                     Vector3 enemyPos = new Vector3(-width / 2 + enemyX, -height / 2 + enemyY, 0);
 
-                    Debug.Log($"Placing enemy at ({enemyX}, {enemyY})");
+                    
 
                     GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
-                    if (enemyInstance != null)
-                    {
-                        Debug.Log($"Successfully instantiated enemy at ({enemyX}, {enemyY})");
-                    }
-                    else
-                    {
-                        Debug.LogError("Failed to instantiate enemy prefab.");
-                    }
+                    
                 }
             }
         }
@@ -295,14 +287,7 @@ public class MapGenerator : MonoBehaviour
     private void InstantiateTile(GameObject prefab, Vector3 position)
     {
         GameObject tile = Instantiate(prefab, position, Quaternion.identity, transform);
-        if (tile != null)
-        {
-            Debug.Log($"Successfully instantiated tile at {position}");
-        }
-        else
-        {
-            Debug.LogError("Failed to instantiate tile prefab.");
-        }
+       
         tile.SetActive(true);
     }
 }

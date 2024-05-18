@@ -86,7 +86,7 @@ namespace Code.Script
             }
         }
 
-        private void Patrol()
+        protected virtual void Patrol()
         {
             if (Player == null || Player.gameObject == null) return;
             MoveTowards(_randomPatrolPoint, enemyData.enemyPatrolSpeed);
@@ -132,7 +132,6 @@ namespace Code.Script
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= enemyData.enemyAttackCooldown)
             {
-                TryDealDamageToPlayer();
                 _timeSinceLastAttack = 0f;
             }
 

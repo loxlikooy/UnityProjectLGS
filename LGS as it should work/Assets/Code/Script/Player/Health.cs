@@ -37,7 +37,6 @@ namespace Code.Script
         public void IncreaseHealth(float amount)
         {
             maxHealth += (int)(maxHealth / 10);
-            Debug.Log(currentHealth);
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
         }
 
@@ -48,7 +47,7 @@ namespace Code.Script
                 return;
             }
             currentHealth += amount;
-            OnHealthChanged?.Invoke(currentHealth);
+            
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
         }
 

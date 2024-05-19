@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 namespace Code.Script
 {
@@ -16,6 +15,8 @@ namespace Code.Script
         private float attackVampire = 2f;
 
         private float _attackTimer; // Таймер для отслеживания кулдауна
+        private float _timeSinceLastAttack = Mathf.Infinity; // Время с последней атаки
+
         private bool _active;
 
         private ComponentGetter _componentGetter;
@@ -32,18 +33,25 @@ namespace Code.Script
         private void Update()
         {
             if (_componentGetter.PlayerAnimator.IsAttacking()) return;
+
             // Обновление таймера кулдауна
             if (_attackTimer > 0)
             {
                 _attackTimer -= Time.deltaTime;
             }
 
+            // Обновление времени с последней атаки
+            _timeSinceLastAttack += Time.deltaTime;
+
             if (_componentGetter.PlayerInputHandler.OnAttack() && _attackTimer <= 0)
             {
                 CheckAndExecuteAttack();
                 _componentGetter.PlayerAnimator.SetAttackAnimation();
                 _attackTimer = attackCooldown; // Сброс таймера кулдауна
+                _timeSinceLastAttack = 0f; // Сброс времени с последней атаки
             }
+            
+            PlayerHUDManager.Instance.AttackCooldown(attackCooldown, Mathf.Clamp(_timeSinceLastAttack, 0, attackCooldown));
         }
 
         private void CheckAndExecuteAttack()
@@ -57,9 +65,9 @@ namespace Code.Script
                 float angle = Vector2.Angle(lastMoveDirection, toEnemy / distanceToEnemy);
                 if (distanceToEnemy <= attackRange && angle <= 45.0f)
                 {
-                     ExecuteAttack(enemy);
-                     HealByAttack();
-                     break; 
+                    ExecuteAttack(enemy);
+                    HealByAttack();
+                    break; 
                 }
             }
         }
@@ -77,7 +85,7 @@ namespace Code.Script
         {
             target.TakeDamage(playerDamage);
         }
-        // tut mojno menyat
+
         public void IncreaseDamage(float amount)
         {
             playerDamage += playerDamage * 0.3f;
@@ -86,9 +94,8 @@ namespace Code.Script
         public void DecreaseAttackCooldown(float amount)
         {
             attackCooldown -= attackCooldown * 0.2f;
-           
         }
-//
+
         public void SaveAttackStats()
         {
             PlayerPrefs.SetFloat("PlayerDamage", playerDamage);
@@ -102,7 +109,6 @@ namespace Code.Script
             _active = true;
         }
         
-
         private void LoadAttackStats()
         {
             if (PlayerPrefs.HasKey("PlayerDamage"))

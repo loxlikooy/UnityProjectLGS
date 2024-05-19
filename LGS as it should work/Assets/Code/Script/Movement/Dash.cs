@@ -8,8 +8,10 @@ namespace Code.Script
         private Vector3 _dashEndPosition;
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
-        private readonly float _dashDuration = 0.2f; // Duration of the dash in seconds
-        private float _dashCooldown = 2f;
+        [SerializeField]
+        private float _dashDuration = 0.2f; // Duration of the dash in seconds
+        [SerializeField]
+        private float _dashCooldown = 1.2f;
         private float _timeSinceLastDash = Mathf.Infinity;
         
         
@@ -94,7 +96,7 @@ namespace Code.Script
 
         public void DecreaseDashCooldown(float amount)
         {
-            _dashCooldown -=  0.5f;
+            _dashCooldown -=  0.2f;
         }
 
         public void SaveDashCooldown()

@@ -16,7 +16,8 @@ namespace Code.Script
         public Text expText;
         [Header("Dash")]
         public Image dashOnColdown;
-        
+        [Header(("Attack"))]
+        public Image attackOnCooldown;
 
         private void Awake()
         {
@@ -48,5 +49,13 @@ namespace Code.Script
             float cooldownLeft = timeSinceLastDash / dashCooldown;
             dashOnColdown.fillAmount = Mathf.Clamp(cooldownLeft, 0, 1);
         }
+        
+        public void AttackCooldown(float attackCooldown, float timeSinceLastAttack)
+        {
+            float cooldownLeft = timeSinceLastAttack / attackCooldown;
+            attackOnCooldown.fillAmount = Mathf.Clamp(cooldownLeft, 0, 1);
+        }
+
+        
     }
 }

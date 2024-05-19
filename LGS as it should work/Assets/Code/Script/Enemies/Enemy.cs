@@ -26,6 +26,8 @@ namespace Code.Script
         private bool _isChasing;
         private float _attackRadius;
 
+        public event Action<Enemy> OnDeath; // Событие смерти врага
+
         private enum EnemyState
         {
             Patrolling,
@@ -215,9 +217,11 @@ namespace Code.Script
             EnemyManager.StopChasing();
             _isChasing = false;
             _exp.AddExp(enemyData.enemyExpValue);
+            OnDeath?.Invoke(this); // Вызов события смерти врага
             Destroy(gameObject);
             this.enabled = false;
         }
+        
 
         public void Attack(IDamagable target)
         {

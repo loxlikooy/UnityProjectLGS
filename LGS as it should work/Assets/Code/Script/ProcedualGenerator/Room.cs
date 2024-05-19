@@ -33,7 +33,7 @@ public class Room
         {
             for (int y = Y; y < Y + Height; y++)
             {
-                if (random.NextDouble() < 0.1) // 20% chance to make a part of the room irregular
+                if (random.NextDouble() < 0.1) // 10% chance to make a part of the room irregular
                 {
                     if (random.Next(0, 2) == 0)
                     {
@@ -46,7 +46,7 @@ public class Room
                 }
                 else
                 {
-                    map[x, y] = 0;
+                    map[x, y] = 0; // Отметка, что это комната
                 }
             }
         }

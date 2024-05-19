@@ -17,26 +17,27 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int roomMaxSize;
     [SerializeField] private int maxObjectCount;
     [SerializeField] private int minObjectCount;
-    
+
     [SerializeField] private int corridorMinWidth;
     [SerializeField] private int corridorMaxWidth;
 
     [SerializeField] private Tilemap collidableTilemap;
     [SerializeField] private Tilemap nonCollidableTilemap;
     [SerializeField] private TileBase wallTile;
-    [SerializeField] private TileBase floorTile;
+    [SerializeField] private TileBase[] corridorTiles;
+    [SerializeField] private TileBase[] roomTiles; // Массив уникальных TileBase для комнат
 
     [SerializeField] private GameObject playerPrefab;
 
     [SerializeField] private List<EnemyConfigurationSO> enemyConfigurations;
-    
-    [SerializeField] private List<GameObject> objectPrefabs;
 
+    [SerializeField] private List<GameObject> objectPrefabs;
 
     private Map map;
     private List<Room> rooms;
     private System.Random random;
     private Room playerRoom;
+    private int[,] mapData;
 
     private const float CellSize = 0.64f;
 
@@ -70,7 +71,7 @@ public class MapGenerator : MonoBehaviour
     private void GenerateMap()
     {
         map = new Map(width, height, random);
-        int[,] mapData = map.GenerateMap(randomFillPercent);
+        mapData = map.GenerateMap(randomFillPercent);
         rooms = new List<Room>();
 
         GenerateRoomsAndCorridors(mapData);
@@ -78,9 +79,8 @@ public class MapGenerator : MonoBehaviour
         DrawMap(mapData);
         SpawnPlayer();
         PlaceEnemies(mapData);
-        PlaceObjectsInRooms(mapData); // Добавьте этот вызов
+        PlaceObjectsInRooms(mapData);
     }
-
 
     private void ConnectRooms(Room roomA, Room roomB, int[,] mapData)
     {
@@ -124,7 +124,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     if (map.IsInMapRange(x + wx, y + wy))
                     {
-                        mapData[x + wx, y + wy] = 0;
+                        mapData[x + wx, y + wy] = -1; // Отметка, что это коридор
                     }
                 }
             }
@@ -148,7 +148,7 @@ public class MapGenerator : MonoBehaviour
     {
         // Создаем первую комнату, которую гарантированно добавляем в список
         CreateRoom(mapData, true);
-    
+
         for (int i = 1; i < roomCount; i++)
         {
             CreateRoom(mapData, false);
@@ -261,12 +261,12 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-    
+
     private void PlaceObjectsInRooms(int[,] mapData)
     {
         foreach (Room room in rooms)
         {
-            int objectCount = random.Next(minObjectCount, maxObjectCount );
+            int objectCount = random.Next(minObjectCount, maxObjectCount);
             for (int i = 0; i < objectCount; i++)
             {
                 int objectX = random.Next(room.X + 1, room.X + room.Width - 1);
@@ -278,7 +278,6 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-
 
     private void DrawMap(int[,] mapData)
     {
@@ -294,11 +293,31 @@ public class MapGenerator : MonoBehaviour
                 {
                     collidableTilemap.SetTile(pos, wallTile);
                 }
-                else
+                else if (mapData[x, y] == -1)
                 {
-                    nonCollidableTilemap.SetTile(pos, floorTile);
+                    TileBase randomCorridorTile = corridorTiles[random.Next(corridorTiles.Length)];
+                    nonCollidableTilemap.SetTile(pos, randomCorridorTile);
                 }
             }
         }
+
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            Room room = rooms[i];
+            TileBase roomTile = roomTiles[i % roomTiles.Length]; // Назначаем уникальный TileBase для каждой комнаты
+            for (int x = room.X; x < room.X + room.Width; x++)
+            {
+                for (int y = room.Y; y < room.Y + room.Height; y++)
+                {
+                    Vector3Int pos = new Vector3Int(x, y, 0);
+                    nonCollidableTilemap.SetTile(pos, roomTile);
+                }
+            }
+        }
+    }
+
+    private bool IsCorridorTile(int x, int y)
+    {
+        return mapData[x, y] == -1;
     }
 }

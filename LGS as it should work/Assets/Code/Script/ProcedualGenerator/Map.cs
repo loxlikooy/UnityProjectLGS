@@ -8,6 +8,7 @@ public class Map
     public int Height { get; }
     private int[,] map;
     private System.Random random;
+    
 
     public Map(int width, int height, System.Random random)
     {

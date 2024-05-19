@@ -15,6 +15,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int roomCount;
     [SerializeField] private int roomMinSize;
     [SerializeField] private int roomMaxSize;
+    [SerializeField] private int maxObjectCount;
+    [SerializeField] private int minObjectCount;
     
     [SerializeField] private int corridorMinWidth;
     [SerializeField] private int corridorMaxWidth;
@@ -27,6 +29,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
 
     [SerializeField] private List<EnemyConfigurationSO> enemyConfigurations;
+    
+    [SerializeField] private List<GameObject> objectPrefabs;
+
 
     private Map map;
     private List<Room> rooms;
@@ -73,7 +78,9 @@ public class MapGenerator : MonoBehaviour
         DrawMap(mapData);
         SpawnPlayer();
         PlaceEnemies(mapData);
+        PlaceObjectsInRooms(mapData); // Добавьте этот вызов
     }
+
 
     private void ConnectRooms(Room roomA, Room roomB, int[,] mapData)
     {
@@ -254,6 +261,24 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
+    
+    private void PlaceObjectsInRooms(int[,] mapData)
+    {
+        foreach (Room room in rooms)
+        {
+            int objectCount = random.Next(minObjectCount, maxObjectCount );
+            for (int i = 0; i < objectCount; i++)
+            {
+                int objectX = random.Next(room.X + 1, room.X + room.Width - 1);
+                int objectY = random.Next(room.Y + 1, room.Y + room.Height - 1);
+
+                Vector3 objectPos = new Vector3(objectX * CellSize, objectY * CellSize, 0);
+                GameObject objectPrefab = objectPrefabs[random.Next(objectPrefabs.Count)];
+                Instantiate(objectPrefab, objectPos, Quaternion.identity, transform);
+            }
+        }
+    }
+
 
     private void DrawMap(int[,] mapData)
     {

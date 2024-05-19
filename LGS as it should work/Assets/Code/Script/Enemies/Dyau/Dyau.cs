@@ -36,5 +36,10 @@ namespace Code.Script.Dyau
                 shockwaveScript.radius = shockwaveRadius;
             }
         }
+
+        private void IsNotShockWaving()
+        {
+            _animator.SetBool("ShockWaving", false);
+        }
     }
 }

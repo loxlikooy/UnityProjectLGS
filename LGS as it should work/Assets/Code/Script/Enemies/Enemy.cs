@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Script
 {
@@ -70,18 +72,20 @@ namespace Code.Script
                     _animator.SetBool("Patrolling", true);
                     _animator.SetBool("Chasing", false);
                     _animator.SetBool("Attacking", false);
+                    _animator.SetBool("PreAttacking", false);
                     break;
                 case EnemyState.Chasing:
                     Chase();
                     _animator.SetBool("Patrolling", false);
                     _animator.SetBool("Chasing", true);
                     _animator.SetBool("Attacking", false);
+                    _animator.SetBool("PreAttacking", false);
                     break;
                 case EnemyState.Attacking:
                     Attack();
+                    _animator.SetBool("PreAttacking", true);
                     _animator.SetBool("Patrolling", false);
                     _animator.SetBool("Chasing", false);
-                    _animator.SetBool("Attacking", true);
                     break;
             }
         }
@@ -132,15 +136,16 @@ namespace Code.Script
             _timeSinceLastAttack += Time.deltaTime;
             if (_timeSinceLastAttack >= enemyData.enemyAttackCooldown)
             {
+                _animator.SetBool("Attacking", true);
                 _timeSinceLastAttack = 0f;
             }
 
-            if (!IsCloseTo(Player.position, _attackRadius))
-            {
+            if (IsCloseTo(Player.position, _attackRadius)) return;
+            
                 _timeSinceLastAttack = 0f;
                 _currentState = EnemyState.Patrolling;
                 _attackRadius = enemyData.enemyAttackRadius;
-            }
+            
         }
 
         private void TryDealDamageToPlayer()
@@ -227,6 +232,13 @@ namespace Code.Script
         public float GetMaxHealth()
         {
             return _maxHealth;
+        }
+
+
+        private void IsNotAttacking()
+        {
+            _animator.SetBool("Attacking", false);
+            
         }
     }
 }

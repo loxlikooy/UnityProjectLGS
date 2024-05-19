@@ -19,8 +19,8 @@ MonoBehaviour:
   enemyChaseSpeed: 0.3
   enemyPatrolRange: 1
   enemyDetectionRadius: 1.7
-  enemyAttackRadius: 0.5
-  enemyAttackCooldown: 10000
+  enemyAttackRadius: 1
+  enemyAttackCooldown: 2
   enemyBackgroundLayer:
     serializedVersion: 2
     m_Bits: 64

@@ -20363,46 +20363,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1061859115165328694, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061859115165328694, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061859115165328694, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1061859115165328694, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108841742244312884, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111328616725373658, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5300650607909203282, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5300650607909203282, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5300650607909203282, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5300650607909203282, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.22
-      objectReference: {fileID: 0}
     - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_Name
       value: Wolf

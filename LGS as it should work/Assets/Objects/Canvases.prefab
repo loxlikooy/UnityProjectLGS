@@ -689,7 +689,7 @@ MonoBehaviour:
   expBar: {fileID: 5120485885292205925}
   expText: {fileID: 8391404427458852872}
   dashOnColdown: {fileID: 3674029187395204872}
-  attackOnCooldown: {fileID: 0}
+  attackOnCooldown: {fileID: 2376447580162321303}
 --- !u!1 &1885887201636491788
 GameObject:
   m_ObjectHideFlags: 0

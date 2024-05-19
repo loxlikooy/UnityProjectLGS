@@ -36,7 +36,7 @@ namespace Code.Script
         
         public void IncreaseHealth(float amount)
         {
-            maxHealth += (int)(maxHealth / 10);
+            maxHealth += (int)(maxHealth * 0.1);
             PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
         }
 

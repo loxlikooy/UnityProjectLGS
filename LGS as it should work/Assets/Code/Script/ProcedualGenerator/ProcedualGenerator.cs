@@ -247,17 +247,9 @@ public class MapGenerator : MonoBehaviour
                     int enemyX = random.Next(room.X + 1, room.X + room.Width - 1);
                     int enemyY = random.Next(room.Y + 1, room.Y + room.Height - 1);
 
-
                     Vector3 enemyPos = new Vector3((enemyX - width / 2f) * CellSize, (enemyY - height / 2f) * CellSize, 0);
                     enemyPos = new Vector3(enemyX * CellSize, enemyY * CellSize, 0);
                     GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
-                    Vector3 enemyPos = new Vector3(-width / 2 + enemyX, -height / 2 + enemyY, 0);
-
-                    
-
-                    GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
-                    
-
                 }
             }
         }
@@ -283,11 +275,5 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-    }
-    private void InstantiateTile(GameObject prefab, Vector3 position)
-    {
-        GameObject tile = Instantiate(prefab, position, Quaternion.identity, transform);
-       
-        tile.SetActive(true);
     }
 }

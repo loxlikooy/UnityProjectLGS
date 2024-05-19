@@ -13,7 +13,7 @@ namespace Code.Script
         [SerializeField]
         private float attackCooldown = 2f; // Длительность кулдауна атаки в секундах
         [SerializeField] 
-        private float attackVampire = 10f;
+        private float attackVampire = 2f;
 
         private float _attackTimer; // Таймер для отслеживания кулдауна
         private bool _active;
@@ -77,7 +77,7 @@ namespace Code.Script
         {
             target.TakeDamage(playerDamage);
         }
-
+        // tut mojno menyat
         public void IncreaseDamage(float amount)
         {
             playerDamage += playerDamage * 0.3f;
@@ -88,7 +88,7 @@ namespace Code.Script
             attackCooldown -= attackCooldown * 0.2f;
            
         }
-
+//
         public void SaveAttackStats()
         {
             PlayerPrefs.SetFloat("PlayerDamage", playerDamage);

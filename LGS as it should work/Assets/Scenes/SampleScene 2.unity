@@ -14945,6 +14945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      propertyPath: shockWaveCooldown
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3917080492215958215, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.435

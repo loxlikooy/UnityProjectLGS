@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DyauCave
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
-  minCount: 1
-  maxCount: 1
+  minCount: 100
+  maxCount: 100

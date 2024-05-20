@@ -405,7 +405,7 @@ MonoBehaviour:
   roomMinSize: 10
   roomMaxSize: 16
   maxObjectCount: 3
-  minObjectCount: 1
+  minObjectCount: 3
   corridorMinWidth: 2
   corridorMaxWidth: 4
   collidableTilemap: {fileID: 1875503028}
@@ -425,6 +425,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
   objectPrefabs:
   - {fileID: 7811293497492269740, guid: ae493175095044e3d94205d5482f641a, type: 3}
+  chestPrefab: {fileID: 4481378436590697573, guid: e5ded1e6d2a0d4cbbb84882d64be9b0a, type: 3}
 --- !u!4 &394571144
 Transform:
   m_ObjectHideFlags: 0

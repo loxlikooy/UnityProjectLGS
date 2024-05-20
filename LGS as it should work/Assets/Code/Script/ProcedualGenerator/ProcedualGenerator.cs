@@ -25,13 +25,14 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap nonCollidableTilemap;
     [SerializeField] private TileBase wallTile;
     [SerializeField] private TileBase[] corridorTiles;
-    [SerializeField] private TileBase[] roomTiles; // Массив уникальных TileBase для комнат
+    [SerializeField] private TileBase[] roomTiles;
 
     [SerializeField] private GameObject playerPrefab;
 
     [SerializeField] private List<EnemyConfigurationSO> enemyConfigurations;
 
     [SerializeField] private List<GameObject> objectPrefabs;
+    [SerializeField] private GameObject chestPrefab;
 
     private Map map;
     private List<Room> rooms;
@@ -45,14 +46,6 @@ public class MapGenerator : MonoBehaviour
     {
         InitializeRandomSeed();
         GenerateMap();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.E))
-        {
-            GenerateMap();
-        }
     }
 
     private void InitializeRandomSeed()
@@ -79,7 +72,7 @@ public class MapGenerator : MonoBehaviour
         DrawMap(mapData);
         SpawnPlayer();
         PlaceEnemies(mapData);
-        PlaceObjectsInRooms(mapData);
+        PlaceObjectsAndChestsInRooms();
     }
 
     private void ConnectRooms(Room roomA, Room roomB, int[,] mapData)
@@ -124,12 +117,11 @@ public class MapGenerator : MonoBehaviour
                 {
                     if (map.IsInMapRange(x + wx, y + wy))
                     {
-                        mapData[x + wx, y + wy] = -1; // Отметка, что это коридор
+                        mapData[x + wx, y + wy] = -1;
                     }
                 }
             }
 
-            // Add some randomness to the corridor path
             if (random.Next(0, 100) < 30)
             {
                 if (x != endX)
@@ -146,7 +138,6 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRoomsAndCorridors(int[,] mapData)
     {
-        // Создаем первую комнату, которую гарантированно добавляем в список
         CreateRoom(mapData, true);
 
         for (int i = 1; i < roomCount; i++)
@@ -170,18 +161,25 @@ public class MapGenerator : MonoBehaviour
         int roomX = random.Next(1, width - roomWidth - 1);
         int roomY = random.Next(1, height - roomHeight - 1);
 
-        Room newRoom = new Room(roomX, roomY, roomWidth, roomHeight, random);
+        GameObject roomObject = new GameObject("Room");
+        Room newRoom = roomObject.AddComponent<Room>();
+        newRoom.Initialize(roomX, roomY, roomWidth, roomHeight, random, objectPrefabs, minObjectCount, maxObjectCount, chestPrefab);
 
         if (forceAdd || !RoomIntersects(newRoom))
         {
             rooms.Add(newRoom);
             newRoom.Carve(mapData);
+            newRoom.PlaceChest(); // Place the chest inside the room
+            roomObject.transform.SetParent(transform);
         }
     }
 
+
+
+
+
     private void EnsureAllRoomsConnected(int[,] mapData)
     {
-        // Создаем список с неприсоединенными комнатами
         List<Room> disconnectedRooms = new List<Room>(rooms);
 
         while (disconnectedRooms.Count > 1)
@@ -239,43 +237,50 @@ public class MapGenerator : MonoBehaviour
 
     private void PlaceEnemies(int[,] mapData)
     {
-        foreach (Room room in rooms)
+        List<Vector2Int> corridorPositions = new List<Vector2Int>();
+
+        for (int x = 0; x < width; x++)
         {
-            if (room == playerRoom)
+            for (int y = 0; y < height; y++)
             {
-                continue; // Skip the player's room
-            }
-
-            foreach (var config in enemyConfigurations)
-            {
-                int enemyCount = random.Next(config.minCount, config.maxCount + 1);
-                for (int i = 0; i < enemyCount; i++)
+                if (IsCorridorTile(x, y))
                 {
-                    int enemyX = random.Next(room.X + 1, room.X + room.Width - 1);
-                    int enemyY = random.Next(room.Y + 1, room.Y + room.Height - 1);
+                    corridorPositions.Add(new Vector2Int(x, y));
+                }
+            }
+        }
 
-                    Vector3 enemyPos = new Vector3((enemyX - width / 2f) * CellSize, (enemyY - height / 2f) * CellSize, 0);
-                    enemyPos = new Vector3(enemyX * CellSize, enemyY * CellSize, 0);
-                    GameObject enemyInstance = Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
+        foreach (var config in enemyConfigurations)
+        {
+            int enemyCount = random.Next(config.minCount, config.maxCount + 1);
+
+            for (int i = 0; i < enemyCount; i++)
+            {
+                if (corridorPositions.Count == 0)
+                {
+                    break;
+                }
+
+                int index = random.Next(corridorPositions.Count);
+                Vector2Int pos = corridorPositions[index];
+
+                corridorPositions.RemoveAt(index);
+
+                if (random.Next(0, 100) < 20)
+                {
+                    Vector3 enemyPos = new Vector3(pos.x * CellSize, pos.y * CellSize, 0);
+                    Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);
                 }
             }
         }
     }
 
-    private void PlaceObjectsInRooms(int[,] mapData)
+    private void PlaceObjectsAndChestsInRooms()
     {
         foreach (Room room in rooms)
         {
-            int objectCount = random.Next(minObjectCount, maxObjectCount);
-            for (int i = 0; i < objectCount; i++)
-            {
-                int objectX = random.Next(room.X + 1, room.X + room.Width - 1);
-                int objectY = random.Next(room.Y + 1, room.Y + room.Height - 1);
-
-                Vector3 objectPos = new Vector3(objectX * CellSize, objectY * CellSize, 0);
-                GameObject objectPrefab = objectPrefabs[random.Next(objectPrefabs.Count)];
-                Instantiate(objectPrefab, objectPos, Quaternion.identity, transform);
-            }
+            room.PlaceObjectsInRoom(transform);
+            room.PlaceChest();
         }
     }
 
@@ -304,7 +309,7 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < rooms.Count; i++)
         {
             Room room = rooms[i];
-            TileBase roomTile = roomTiles[i % roomTiles.Length]; // Назначаем уникальный TileBase для каждой комнаты
+            TileBase roomTile = roomTiles[i % roomTiles.Length];
             for (int x = room.X; x < room.X + room.Width; x++)
             {
                 for (int y = room.Y; y < room.Y + room.Height; y++)

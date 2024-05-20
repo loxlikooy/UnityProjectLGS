@@ -1,24 +1,37 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class Room
+public class Room : MonoBehaviour
 {
     public int X { get; private set; }
     public int Y { get; private set; }
-    public int Width { get; }
-    public int Height { get; }
+    public int Width { get; private set; }
+    public int Height { get; private set; }
 
     public int CenterX => X + Width / 2;
     public int CenterY => Y + Height / 2;
+    public float CellSize = 0.64f;
 
-    private readonly System.Random random;
+    private System.Random random;
+    private List<GameObject> objectPrefabs;
+    private int minObjectCount;
+    private int maxObjectCount;
+    private GameObject chestPrefab;
 
-    public Room(int x, int y, int width, int height, System.Random random)
+    public void Initialize(int x, int y, int width, int height, System.Random random, List<GameObject> objectPrefabs, int minObjectCount, int maxObjectCount, GameObject chestPrefab)
     {
         X = x;
         Y = y;
         Width = width;
         Height = height;
         this.random = random;
+        this.objectPrefabs = objectPrefabs;
+        this.minObjectCount = minObjectCount;
+        this.maxObjectCount = maxObjectCount;
+        this.chestPrefab = chestPrefab;
+
+        // Optionally, you can add this to ensure the Room component is correctly assigned
+        gameObject.name = $"Room ({X}, {Y})";
     }
 
     public bool Intersects(Room other)
@@ -46,9 +59,29 @@ public class Room
                 }
                 else
                 {
-                    map[x, y] = 0; // Отметка, что это комната
+                    map[x, y] = 0; // Mark as room
                 }
             }
         }
+    }
+
+    public void PlaceObjectsInRoom(Transform parentTransform)
+    {
+        int objectCount = random.Next(minObjectCount, maxObjectCount);
+        for (int i = 0; i < objectCount; i++)
+        {
+            int objectX = random.Next(X + 1, X + Width - 1);
+            int objectY = random.Next(Y + 1, Y + Height - 1);
+
+            Vector3 objectPos = new Vector3(objectX * CellSize, objectY * CellSize, 0);
+            GameObject objectPrefab = objectPrefabs[random.Next(objectPrefabs.Count)];
+            Instantiate(objectPrefab, objectPos, Quaternion.identity, parentTransform);
+        }
+    }
+
+    public void PlaceChest()
+    {
+        Vector3 chestPos = new Vector3(CenterX * CellSize, CenterY * CellSize, 0);
+        Instantiate(chestPrefab, chestPos, Quaternion.identity, transform); // Ensure chest is a child of the room
     }
 }

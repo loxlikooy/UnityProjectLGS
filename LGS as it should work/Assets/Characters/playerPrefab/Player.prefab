@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fff596278e47bd802137716763f1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 40
+  moveSpeed: 60
 --- !u!114 &2819936543741047268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 10
   attackRange: 1
-  attackCooldown: 1.4
-  attackVampire: 10
+  attackCooldown: 1
+  attackVampire: 5
 --- !u!114 &7858368217357626877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae9f23080b848fcaec5b977fff54685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 110
+  maxHealth: 50
   currentHealth: 30
 --- !u!114 &8184014539870831574
 MonoBehaviour:

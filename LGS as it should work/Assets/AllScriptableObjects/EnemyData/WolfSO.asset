@@ -19,7 +19,7 @@ MonoBehaviour:
   enemyChaseSpeed: 0.6
   enemyPatrolRange: 1.2
   enemyDetectionRadius: 5
-  enemyAttackRadius: 0.15
+  enemyAttackRadius: 0.4
   enemyAttackCooldown: 0
   enemyBackgroundLayer:
     serializedVersion: 2

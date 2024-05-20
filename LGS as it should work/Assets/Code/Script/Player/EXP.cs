@@ -5,7 +5,7 @@ namespace Code.Script
 {
     public class EXP : MonoBehaviour
     {
-        private float _expForNextLevel = 10f;
+        private float _expForNextLevel = 20f;
         private float _currentExp;
 
 

@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 2d49502183b264b9ca1cc834b4b1b851, type: 2}
-  pullStrength: 0.001
+  pullStrength: 0.01
   pullRadius: 3
   pullCooldown: 5
 --- !u!95 &1704431160897629140

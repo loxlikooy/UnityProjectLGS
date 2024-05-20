@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7b2c3ef0d545f8b381031188f877d5, type: 3}
   m_Name: DyauSO
   m_EditorClassIdentifier: 
-  enemyExpValue: 6
+  enemyExpValue: 25
   enemyHealth: 150
   enemyDamage: 20
   enemyPatrolSpeed: 0.2
   enemyChaseSpeed: 0.3
   enemyPatrolRange: 1
-  enemyDetectionRadius: 1.7
+  enemyDetectionRadius: 2.2
   enemyAttackRadius: 1
   enemyAttackCooldown: 2
   enemyBackgroundLayer:

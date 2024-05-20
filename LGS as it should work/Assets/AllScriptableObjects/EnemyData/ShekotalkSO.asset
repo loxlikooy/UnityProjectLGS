@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ShekotalkSO
   m_EditorClassIdentifier: 
   enemyExpValue: 12
-  enemyHealth: 100
-  enemyDamage: 10
+  enemyHealth: 70
+  enemyDamage: 12
   enemyPatrolSpeed: 0.4
-  enemyChaseSpeed: 0.4
+  enemyChaseSpeed: 0.5
   enemyPatrolRange: 1
   enemyDetectionRadius: 3
-  enemyAttackRadius: 0.2
+  enemyAttackRadius: 0.5
   enemyAttackCooldown: 2
   enemyBackgroundLayer:
     serializedVersion: 2

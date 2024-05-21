@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyExpValue: 5
   enemyHealth: 50
-  enemyDamage: 10
+  enemyDamage: 7
   enemyPatrolSpeed: 0.5
   enemyChaseSpeed: 0.6
   enemyPatrolRange: 1.2
   enemyDetectionRadius: 5
-  enemyAttackRadius: 0.4
+  enemyAttackRadius: 0.27
   enemyAttackCooldown: 0
   enemyBackgroundLayer:
     serializedVersion: 2

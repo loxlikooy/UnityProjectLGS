@@ -4,9 +4,8 @@ using Code.Script;
 
 public class ChestInteraction : MonoBehaviour
 {
-   
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
-    [SerializeField] private EnemyConfigurationSO enemyConfiguration;
+    [SerializeField] private List<EnemyConfigurationSO> enemyConfigurations; // Список конфигураций врагов
     [SerializeField] private int minEnemiesToSpawn = 1;
     [SerializeField] private int maxEnemiesToSpawn = 3;
     [SerializeField] private List<GameObject> artifactPrefabs; // Список префабов артефактов
@@ -19,31 +18,28 @@ public class ChestInteraction : MonoBehaviour
     {
         room = GetComponentInParent<Room>();
     }
-    
-    
+
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (!collider.CompareTag("Player")) return;
-        
-            if (!Input.GetKeyDown(interactionKey)) return;
-            
-                if (!enemiesSpawned)
-                {
-                    SpawnEnemiesInRoom();
-                    enemiesSpawned = true;
-                }
-                else if (enemiesSpawned && room.AllEnemiesDefeated() && !artifactDropped)
-                {
-                    DropArtifact();
-                    artifactDropped = true;
-                }
-            
-        
+
+        if (!Input.GetKey(interactionKey)) return;
+
+        if (!enemiesSpawned)
+        {
+            SpawnEnemiesInRoom();
+            enemiesSpawned = true;
+        }
+        else if (enemiesSpawned && room.AllEnemiesDefeated() && !artifactDropped)
+        {
+            DropArtifact();
+            artifactDropped = true;
+        }
     }
 
     private void SpawnEnemiesInRoom()
     {
-        if (room == null || enemyConfiguration == null)
+        if (room == null || enemyConfigurations == null || enemyConfigurations.Count == 0)
         {
             return;
         }
@@ -55,9 +51,12 @@ public class ChestInteraction : MonoBehaviour
             int objectY = Random.Range(room.Y + 1, room.Y + room.Height - 1);
 
             Vector3 enemyPos = new Vector3(objectX * room.CellSize, objectY * room.CellSize, 0);
-            GameObject enemy = Instantiate(enemyConfiguration.enemyPrefab, enemyPos, Quaternion.identity, room.transform);
 
-            
+            // Выбираем случайную конфигурацию врага
+            EnemyConfigurationSO randomEnemyConfig = enemyConfigurations[Random.Range(0, enemyConfigurations.Count)];
+
+            GameObject enemy = Instantiate(randomEnemyConfig.enemyPrefab, enemyPos, Quaternion.identity, room.transform);
+
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             if (enemyScript != null)
             {

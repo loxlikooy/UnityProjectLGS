@@ -98,13 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0c07f342644ac681b77a0f02aaf10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRadius: 1.5
   interactionKey: 101
-  enemyConfiguration: {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
+  enemyConfigurations:
+  - {fileID: 11400000, guid: 0b37e09ab07e941b899cfa9f8585dea1, type: 2}
+  - {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
+  - {fileID: 11400000, guid: 3487429952db6490e9ad3fc55b912038, type: 2}
   minEnemiesToSpawn: 1
   maxEnemiesToSpawn: 3
   artifactPrefabs:
   - {fileID: 8277153076760695587, guid: 6d57ec5c017804b52906240799104b6b, type: 3}
+  - {fileID: 3938776062593705775, guid: 587d27e3b1c6f4c238f3d335ae44a103, type: 3}
+  - {fileID: 2610128397458610223, guid: ec7eb410773ac49d590f6483ec8bf100, type: 3}
+  - {fileID: 7811293497492269740, guid: ae493175095044e3d94205d5482f641a, type: 3}
 --- !u!61 &28963357943839858
 BoxCollider2D:
   m_ObjectHideFlags: 0

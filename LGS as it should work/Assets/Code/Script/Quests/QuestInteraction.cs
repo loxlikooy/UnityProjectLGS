@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestInteraction : MonoBehaviour
@@ -15,9 +16,18 @@ public class QuestInteraction : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject == player && Input.GetKeyDown(KeyCode.E))
+        if (other.gameObject == player && Input.GetKey(KeyCode.E))
         {
             StartQuest();
+            DestroyChildObjects();
+        }
+    }
+    
+    private void DestroyChildObjects()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
         }
     }
     

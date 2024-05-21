@@ -401,7 +401,7 @@ MonoBehaviour:
   height: 150
   useRandomSeed: 1
   randomFillPercent: 100
-  roomCount: 8
+  roomCount: 1
   roomMinSize: 10
   roomMaxSize: 16
   maxObjectCount: 3

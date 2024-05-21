@@ -126,5 +126,14 @@ namespace Code.Script
                 attackCooldown = PlayerPrefs.GetFloat("AttackCooldown");
             }
         }
+
+        // Новый метод для добавления врагов
+        public void AddEnemy(Enemy enemy)
+        {
+            if (!_enemies.Contains(enemy))
+            {
+                _enemies.Add(enemy);
+            }
+        }
     }
 }

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 2132776948, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,6 +103,8 @@ MonoBehaviour:
   enemyConfiguration: {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
   minEnemiesToSpawn: 1
   maxEnemiesToSpawn: 3
+  artifactPrefabs:
+  - {fileID: 8277153076760695587, guid: 6d57ec5c017804b52906240799104b6b, type: 3}
 --- !u!61 &28963357943839858
 BoxCollider2D:
   m_ObjectHideFlags: 0

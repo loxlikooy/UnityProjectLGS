@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,8 +26,9 @@ namespace Code.Script
         private EXP _exp;
         private bool _isChasing;
         private float _attackRadius;
+        private Room _room;
 
-        public event Action<Enemy> OnDeath; // Событие смерти врага
+        public event Action<Enemy> OnDeath; // Event for enemy death
 
         private enum EnemyState
         {
@@ -43,9 +45,16 @@ namespace Code.Script
             InitializeComponents();
             SetInitialState();
             PickRandomPatrolPoint();
+
+            // Find the Room component in the parent hierarchy
+            _room = GetComponentInParent<Room>();
+            if (_room != null)
+            {
+                _room.AddEnemy(gameObject);
+            }
         }
 
-        protected virtual void InitializeComponents()
+        public virtual void InitializeComponents()
         {
             GameObject playerGameObject = GameObject.FindWithTag("Player");
             _rb = GetComponent<Rigidbody2D>();
@@ -144,10 +153,9 @@ namespace Code.Script
 
             if (IsCloseTo(Player.position, _attackRadius)) return;
             
-                _timeSinceLastAttack = 0f;
-                _currentState = EnemyState.Patrolling;
-                _attackRadius = enemyData.enemyAttackRadius;
-            
+            _timeSinceLastAttack = 0f;
+            _currentState = EnemyState.Patrolling;
+            _attackRadius = enemyData.enemyAttackRadius;
         }
 
         private void TryDealDamageToPlayer()
@@ -207,21 +215,29 @@ namespace Code.Script
 
         public void TakeDamage(float damageAmount)
         {
+            Debug.Log($"{gameObject.name} took {damageAmount} damage.");
             _health -= damageAmount;
             if (_health <= 0)
                 Die();
         }
+
 
         private void Die()
         {
             EnemyManager.StopChasing();
             _isChasing = false;
             _exp.AddExp(enemyData.enemyExpValue);
-            OnDeath?.Invoke(this); // Вызов события смерти врага
+            OnDeath?.Invoke(this); // Trigger the death event
+
+            // Notify the room that this enemy has died
+            if (_room != null)
+            {
+                _room.RemoveEnemy(gameObject);
+                _room.AllEnemiesDefeated();
+            }
+
             Destroy(gameObject);
-            this.enabled = false;
         }
-        
 
         public void Attack(IDamagable target)
         {
@@ -238,11 +254,9 @@ namespace Code.Script
             return _maxHealth;
         }
 
-
         private void IsNotAttacking()
         {
             _animator.SetBool("Attacking", false);
-            
         }
     }
 }

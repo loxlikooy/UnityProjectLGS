@@ -12,7 +12,7 @@ namespace Code.Script
         private bool _isPulling;
         private Rigidbody2D _playerRigidBody;
 
-        protected override void InitializeComponents()
+        public override void InitializeComponents()
         {
             base.InitializeComponents();
             _playerRigidBody = Player.GetComponent<Rigidbody2D>();

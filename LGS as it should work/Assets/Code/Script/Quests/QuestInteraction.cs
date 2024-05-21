@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class QuestInteraction : MonoBehaviour
@@ -11,7 +12,7 @@ public class QuestInteraction : MonoBehaviour
     // Name of the quest to activate
     [SerializeField] private string questName;
     
-    
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject == player && Input.GetKeyDown(KeyCode.E))

@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
     private int minObjectCount;
     private int maxObjectCount;
     private GameObject chestPrefab;
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
 
     public void Initialize(int x, int y, int width, int height, System.Random random, List<GameObject> objectPrefabs, int minObjectCount, int maxObjectCount, GameObject chestPrefab)
     {
@@ -30,7 +31,6 @@ public class Room : MonoBehaviour
         this.maxObjectCount = maxObjectCount;
         this.chestPrefab = chestPrefab;
 
-        // Optionally, you can add this to ensure the Room component is correctly assigned
         gameObject.name = $"Room ({X}, {Y})";
     }
 
@@ -59,7 +59,7 @@ public class Room : MonoBehaviour
                 }
                 else
                 {
-                    map[x, y] = 0; // Mark as room
+                    map[x, y] = 0; // Отметка, что это комната
                 }
             }
         }
@@ -83,5 +83,21 @@ public class Room : MonoBehaviour
     {
         Vector3 chestPos = new Vector3(CenterX * CellSize, CenterY * CellSize, 0);
         Instantiate(chestPrefab, chestPos, Quaternion.identity, transform); // Ensure chest is a child of the room
+    }
+
+    public void AddEnemy(GameObject enemy)
+    {
+        spawnedEnemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        spawnedEnemies.Remove(enemy);
+       
+    }
+
+    public bool AllEnemiesDefeated()
+    {
+        return spawnedEnemies.Count == 0;
     }
 }

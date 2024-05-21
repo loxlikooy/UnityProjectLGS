@@ -280,7 +280,6 @@ public class MapGenerator : MonoBehaviour
         foreach (Room room in rooms)
         {
             room.PlaceObjectsInRoom(transform);
-            room.PlaceChest();
         }
     }
 

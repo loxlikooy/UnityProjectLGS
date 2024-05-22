@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3471129175745678633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9013033543589867999}
+  - component: {fileID: 6193254473540631091}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9013033543589867999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471129175745678633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 121.77683, y: -10.601592, z: -1.9598805}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6193254473540631091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471129175745678633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa90e707910347249a67c1829da4ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 90
+  height: 90
+  useRandomSeed: 1
+  randomFillPercent: 100
+  roomCount: 8
+  roomMinSize: 10
+  roomMaxSize: 16
+  maxObjectCount: 3
+  minObjectCount: 1
+  corridorMinWidth: 2
+  corridorMaxWidth: 6
+  collidableTilemap: {fileID: 0}
+  nonCollidableTilemap: {fileID: 0}
+  wallTile: {fileID: 11400000, guid: 7bc6530c6ce9543aeabe1fe76a5798e0, type: 2}
+  corridorTiles:
+  - {fileID: 11400000, guid: 3b47e0f2f17df4db490d0eea274b40a4, type: 2}
+  - {fileID: 11400000, guid: 7ff7cb81962574568bf402f1d6b2d37a, type: 2}
+  roomTiles:
+  - {fileID: 11400000, guid: f5815ced56c004ff6b786c37f2b998fd, type: 2}
+  - {fileID: 11400000, guid: 4ac5c5205487f4f44a24f34d7b518061, type: 2}
+  - {fileID: 11400000, guid: 3b47e0f2f17df4db490d0eea274b40a4, type: 2}
+  - {fileID: 11400000, guid: 7ff7cb81962574568bf402f1d6b2d37a, type: 2}
+  playerPrefab: {fileID: 5320852814905868469, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+  enemyConfigurations:
+  - {fileID: 11400000, guid: 3487429952db6490e9ad3fc55b912038, type: 2}
+  - {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
+  - {fileID: 11400000, guid: 0b37e09ab07e941b899cfa9f8585dea1, type: 2}
+  objectPrefabs:
+  - {fileID: 5241957252987790670, guid: 7e2a4514366844deba773fbc1d4ee6ee, type: 3}
+  - {fileID: 5241957252987790670, guid: 5436fec6ad8584b02a1d9a8a84192592, type: 3}
+  - {fileID: 5241957252987790670, guid: 349fd48e33e804003b28fbf0e90d4d9e, type: 3}
+  - {fileID: 5241957252987790670, guid: a54b9c58e2de248cfaa9f43ca2d1b898, type: 3}
+  - {fileID: 5241957252987790670, guid: c3ee74fca10b14f97b0ea46a1ca084aa, type: 3}
+  - {fileID: 5241957252987790670, guid: acc58d70662a240caad7c1dc0b4d7d59, type: 3}
+  - {fileID: 5241957252987790670, guid: c97e82b0b7bb84f0d8c1ba28ecdbae4c, type: 3}
+  - {fileID: 5241957252987790670, guid: 53600b77693914703ad88ec3a81cf55b, type: 3}
+  - {fileID: 5241957252987790670, guid: d52240c36d8f94bec8e59a071e489ac3, type: 3}
+  - {fileID: 5241957252987790670, guid: 0a29057009c25493584abd067166510c, type: 3}
+  - {fileID: 6543257582513402535, guid: 26fd20eb22dcf4cd4978a3303588fc15, type: 3}
+  - {fileID: 3906402511171279496, guid: 63a548f1292574e028a2c64e1a5e7faf, type: 3}
+  - {fileID: 5241957252987790670, guid: 811404744b3df499f97bf6c1978eb663, type: 3}
+  - {fileID: 5241957252987790670, guid: 45b33fa0d29c14d50aa4c701949a4bba, type: 3}
+  - {fileID: 5241957252987790670, guid: b07192f0ad4934cf587b34ed04cdd8f7, type: 3}
+  - {fileID: 5241957252987790670, guid: 374b9e4d0287245768fd45a9b3552aa2, type: 3}
+  - {fileID: 6065568445149029141, guid: 94f77fe4d30ab4b05a06b6e74d70df37, type: 3}
+  - {fileID: 7811293497492269740, guid: ae493175095044e3d94205d5482f641a, type: 3}
+  chestPrefab: {fileID: 4481378436590697573, guid: e5ded1e6d2a0d4cbbb84882d64be9b0a, type: 3}

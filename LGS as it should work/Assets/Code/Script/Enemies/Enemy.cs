@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,24 +20,25 @@ namespace Code.Script
         protected Transform Player;
         private Vector2 _randomPatrolPoint;
         private float _timeSinceLastAttack;
-        private EnemyState _currentState;
+        protected EnemyState _currentState;
         protected Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private EXP _exp;
         private bool _isChasing;
         private float _attackRadius;
         private Room _room;
+        private Coroutine _damageOverTimeCoroutine;
 
         public event Action<Enemy> OnDeath; // Event for enemy death
 
-        private enum EnemyState
+        protected enum EnemyState
         {
             Patrolling,
             Chasing,
             Attacking
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             _health = enemyData.enemyHealth;
             _maxHealth = enemyData.enemyHealth;
@@ -215,15 +216,18 @@ namespace Code.Script
 
         public void TakeDamage(float damageAmount)
         {
-            Debug.Log($"{gameObject.name} took {damageAmount} damage.");
             _health -= damageAmount;
             if (_health <= 0)
                 Die();
         }
 
-
         private void Die()
         {
+            if (_damageOverTimeCoroutine != null)
+            {
+                StopCoroutine(_damageOverTimeCoroutine);
+            }
+
             EnemyManager.StopChasing();
             _isChasing = false;
             _exp.AddExp(enemyData.enemyExpValue);
@@ -257,6 +261,27 @@ namespace Code.Script
         private void IsNotAttacking()
         {
             _animator.SetBool("Attacking", false);
+        }
+
+        public void ApplyDamageOverTime(float damageAmount, float duration, float interval)
+        {
+            if (_damageOverTimeCoroutine != null)
+            {
+                StopCoroutine(_damageOverTimeCoroutine);
+            }
+            _damageOverTimeCoroutine = StartCoroutine(DamageOverTimeCoroutine(damageAmount, duration, interval));
+        }
+
+        private IEnumerator DamageOverTimeCoroutine(float damageAmount, float duration, float interval)
+        {
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                
+                TakeDamage(damageAmount);
+                elapsed += interval;
+                yield return new WaitForSeconds(interval);
+            }
         }
     }
 }

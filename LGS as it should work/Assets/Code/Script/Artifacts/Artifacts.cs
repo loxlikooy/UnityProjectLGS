@@ -1,24 +1,89 @@
+using System;
 using Code.Script;
 using UnityEngine;
 
 public class Artifacts : MonoBehaviour
 {
-    [SerializeField] private ComponentGetter componentGetter;
-    [SerializeField] private string nameOfQuest;
-    [SerializeField] private bool turnOnVampiricOnPickup = false; // Новое поле
+    public static event Action OnArtifactWolfPickedUp;
+    public static event Action OnArtifactQumyzPickedUp; // New event for burning effect
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private ComponentGetter componentGetter;
+    [SerializeField] private string nameOfQuest;
+    [SerializeField] private bool turnOnVampiricOnPickup;
+    [SerializeField] private bool wolfsShouldNotAttack;
+    [SerializeField] private bool additionalDashRange;
+    [SerializeField] private bool qumyzHpRegen;
+    [SerializeField] private bool applyBurningEffect; // New flag for burning effect
+    [SerializeField] private float floatAmplitude = 0.1f; // Амплитуда колебаний
+    [SerializeField] private float floatFrequency = 1f; // Частота колебаний
+    [SerializeField] private float rotationSpeed = 30f;
+
+    private Vector3 startPos;
+    private float rotationDirection = 1f;
+    
+    private void Start()
     {
-        if (other.CompareTag("Player"))
+        componentGetter = FindObjectOfType<ComponentGetter>();
+        startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        float newY = startPos.y + Mathf.Abs(Mathf.Sin(Time.time * floatFrequency));
+        transform.position = new Vector3(startPos.x, newY, startPos.z);
+
+        // Поворот объекта
+        transform.Rotate(0, rotationDirection * rotationSpeed * Time.deltaTime, 0);
+
+        // Меняем направление вращения
+        if (transform.rotation.eulerAngles.y >= 45f && rotationDirection > 0)
         {
-            QuestManager.Instance.CompleteQuest(nameOfQuest);
-            
+            rotationDirection = -1f;
+        }
+        else if (transform.rotation.eulerAngles.y <= -45f && rotationDirection < 0)
+        {
+            rotationDirection = 1f;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (nameOfQuest != "")
+            { 
+                QuestManager.Instance.CompleteQuest(nameOfQuest);
+            }
+
             if (turnOnVampiricOnPickup)
             {
                 componentGetter.PlayerAttackComponent.TurnOnVampiric();
             }
-            
-            Destroy(gameObject);
+
+            if (wolfsShouldNotAttack)
+            {
+                OnArtifactWolfPickedUp?.Invoke();
+            }
+
+            if (additionalDashRange)
+            {
+                componentGetter.PlayerDash.IncreaseDashRange(0.5f);
+            }
+
+            if (qumyzHpRegen)
+            {
+                componentGetter.HealthComponent.HealthRegen(30);
+                OnArtifactQumyzPickedUp?.Invoke();
+            }
+
+            if (applyBurningEffect)
+            {
+                componentGetter.PlayerAttackComponent.TurnOnBurn(); // Trigger the burning effect event
+            }
+            Destroy(gameObject); 
         }
     }
 }

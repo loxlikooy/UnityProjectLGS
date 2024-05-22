@@ -13,19 +13,19 @@ namespace Code.Script
         [SerializeField]
         private float _dashCooldown = 1.2f;
         private float _timeSinceLastDash = Mathf.Infinity;
-        
-        
+
         [SerializeField]
         private LayerMask layersToCheck;
-        
+
         private ComponentGetter _componentGetter;
+        private float _baseDashDistance = 0.8f;
+        private float _currentDashDistance;
 
         private void Awake()
         {
-            
             _componentGetter = GetComponent<ComponentGetter>();
             LoadDashCooldown();
-            
+            _currentDashDistance = _baseDashDistance;
         }
 
         public void HandleDash()
@@ -34,19 +34,19 @@ namespace Code.Script
 
             Vector2 lastMoveDirection = _componentGetter.PlayerMovement.LastMoveDirection;
             Vector3 dashDirection3D = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
-            float dashAmount = 0.8f;
-            Vector3 targetDashPosition = transform.position + dashDirection3D * dashAmount;
+            Vector3 targetDashPosition = transform.position + dashDirection3D * _currentDashDistance;
 
-            Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f; //посмотреть нахуй надо
-    
-            // Добавляем layersToCheck в рейкаст
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, dashAmount, layersToCheck);
+            Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f; // Optional adjustment
+
+            // Adding layersToCheck to raycast
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, _currentDashDistance, layersToCheck);
 
             if (raycastHit2D.collider != null)
             {
                 Vector3 hitPoint3D = new Vector3(raycastHit2D.point.x, raycastHit2D.point.y, 0);
                 targetDashPosition = hitPoint3D - dashDirection3D.normalized * 0.2f;
             }
+
             StartDash(targetDashPosition);
         }
 
@@ -56,10 +56,9 @@ namespace Code.Script
             _dashStartPosition = transform.position;
             _dashEndPosition = targetPosition;
             _dashTimeCounter = 0f;
-            
+
             StartCoroutine(DashCoroutine());
             _componentGetter.PlayerAnimator.SetDashAnimation();
-
         }
 
         private IEnumerator DashCoroutine()
@@ -91,17 +90,23 @@ namespace Code.Script
 
             PlayerHUDManager.Instance.DashColdown(_dashCooldown, Mathf.Clamp(_timeSinceLastDash, 0, _dashCooldown));
             HandleDashInput();
-            
         }
 
         public void DecreaseDashCooldown(float amount)
         {
-            _dashCooldown -=  0.2f;
+            _dashCooldown -= amount;
         }
 
-        public void SaveDashCooldown()
+        public void IncreaseDashRange(float amount)
+        {
+            _currentDashDistance += amount;
+        }
+
+        public void SaveDashStats()
         {
             PlayerPrefs.SetFloat("DashCooldown", _dashCooldown);
+            PlayerPrefs.SetFloat("DashRange", _currentDashDistance);
+            
         }
 
         private void LoadDashCooldown()
@@ -109,6 +114,7 @@ namespace Code.Script
             if (PlayerPrefs.HasKey("DashCooldown"))
             {
                 _dashCooldown = PlayerPrefs.GetFloat("DashCooldown");
+                _currentDashDistance = PlayerPrefs.GetFloat("DashRange");
             }
         }
     }

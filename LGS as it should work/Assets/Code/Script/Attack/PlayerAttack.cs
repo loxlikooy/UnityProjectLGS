@@ -11,13 +11,18 @@ namespace Code.Script
         private float attackRange = 1f;
         [SerializeField]
         private float attackCooldown = 2f; // Длительность кулдауна атаки в секундах
-        [SerializeField] 
+        [SerializeField]
         private float attackVampire = 2f;
+        [SerializeField]
+        private float attackBurn = 7f; // Burn damage per second
+        [SerializeField]
+        private float burnDuration = 3f; // Duration of burn effect
 
         private float _attackTimer; // Таймер для отслеживания кулдауна
         private float _timeSinceLastAttack = Mathf.Infinity; // Время с последней атаки
 
-        private bool _active;
+        private bool _activeVampiric;
+        private bool _activateBurn;
 
         private ComponentGetter _componentGetter;
         private List<Enemy> _enemies = new List<Enemy>();
@@ -50,7 +55,7 @@ namespace Code.Script
                 _attackTimer = attackCooldown; // Сброс таймера кулдауна
                 _timeSinceLastAttack = 0f; // Сброс времени с последней атаки
             }
-            
+
             PlayerHUDManager.Instance.AttackCooldown(attackCooldown, Mathf.Clamp(_timeSinceLastAttack, 0, attackCooldown));
         }
 
@@ -67,18 +72,28 @@ namespace Code.Script
                 {
                     ExecuteAttack(enemy);
                     HealByAttack();
-                    break; 
+                    BurnByAttack(enemy);
+                    break;
                 }
             }
         }
 
         private void HealByAttack()
         {
-            if (!_active)
+            if (!_activeVampiric)
             {
                 return;
             }
             _componentGetter.HealthComponent.HealthRegen(attackVampire);
+        }
+
+        private void BurnByAttack(Enemy enemy)
+        {
+            if (!_activateBurn)
+            {
+                return;
+            }
+            enemy.ApplyDamageOverTime(attackBurn, burnDuration, 0.9f); // Apply burn effect
         }
 
         public void ExecuteAttack(IDamagable target)
@@ -100,30 +115,41 @@ namespace Code.Script
         {
             PlayerPrefs.SetFloat("PlayerDamage", playerDamage);
             PlayerPrefs.SetFloat("AttackCooldown", attackCooldown);
-            PlayerPrefs.SetInt("Vampiric", _active ? 1 : 0);
+            PlayerPrefs.SetInt("Vampiric", _activeVampiric ? 1 : 0);
+            PlayerPrefs.SetInt("Burn", _activateBurn ? 1 : 0);
             PlayerPrefs.Save();
+        }
+
+        public void TurnOnBurn()
+        {
+            _activateBurn = true;
         }
 
         public void TurnOnVampiric()
         {
-            _active = true;
+            _activeVampiric = true;
         }
-        
+
         private void LoadAttackStats()
         {
             if (PlayerPrefs.HasKey("PlayerDamage"))
             {
                 playerDamage = PlayerPrefs.GetFloat("PlayerDamage");
             }
-            
+
             if (PlayerPrefs.HasKey("Vampiric"))
             {
-                _active = PlayerPrefs.GetInt("Vampiric") == 1;
+                _activeVampiric = PlayerPrefs.GetInt("Vampiric") == 1;
             }
 
             if (PlayerPrefs.HasKey("AttackCooldown"))
             {
                 attackCooldown = PlayerPrefs.GetFloat("AttackCooldown");
+            }
+
+            if (PlayerPrefs.HasKey("Burn"))
+            {
+                _activateBurn = PlayerPrefs.GetInt("Burn") == 1;
             }
         }
 

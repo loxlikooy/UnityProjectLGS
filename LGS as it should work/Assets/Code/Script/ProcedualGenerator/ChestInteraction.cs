@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using Code.Script;
 
@@ -8,15 +9,20 @@ public class ChestInteraction : MonoBehaviour
     [SerializeField] private List<EnemyConfigurationSO> enemyConfigurations; // Список конфигураций врагов
     [SerializeField] private int minEnemiesToSpawn = 1;
     [SerializeField] private int maxEnemiesToSpawn = 3;
-    [SerializeField] private List<GameObject> artifactPrefabs; // Список префабов артефактов
+    [SerializeField] private List<ArtifactConfigSO> artifactConfigs; // Список конфигураций артефактов
+    [SerializeField] private Sprite closedChestSprite;
+    [SerializeField] private Sprite openChestSprite;
 
     private Room room;
     private bool enemiesSpawned = false;
     private bool artifactDropped = false;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         room = GetComponentInParent<Room>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = closedChestSprite;
     }
 
     private void OnTriggerStay2D(Collider2D collider)
@@ -32,8 +38,10 @@ public class ChestInteraction : MonoBehaviour
         }
         else if (enemiesSpawned && room.AllEnemiesDefeated() && !artifactDropped)
         {
-            DropArtifact();
+            spriteRenderer.sprite = openChestSprite;
+            StartCoroutine(DropArtifactWithDelay());
             artifactDropped = true;
+            Destroy(gameObject, 1.5f); 
         }
     }
 
@@ -72,10 +80,27 @@ public class ChestInteraction : MonoBehaviour
         }
     }
 
+    private IEnumerator DropArtifactWithDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        DropArtifact();
+    }
+
     private void DropArtifact()
     {
-        GameObject artifactPrefab = artifactPrefabs[Random.Range(0, artifactPrefabs.Count)];
-        Vector3 artifactPos = new Vector3(room.CenterX * room.CellSize, room.CenterY * room.CellSize, 0);
-        Instantiate(artifactPrefab, artifactPos, Quaternion.identity, room.transform);
+        if (artifactConfigs == null || artifactConfigs.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var config in artifactConfigs)
+        {
+            if (Random.value <= config.dropChance / 100f)
+            {
+                Vector3 artifactPos = new Vector3(room.CenterX * room.CellSize, room.CenterY * room.CellSize, 0);
+                Instantiate(config.artifactPrefab, artifactPos, Quaternion.identity, room.transform);
+                break;
+            }
+        }
     }
 }

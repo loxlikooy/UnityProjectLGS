@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
     private void SavePlayerPrefs()
     {
        _componentGetter.PlayerAttackComponent.SaveAttackStats();
-       _componentGetter.PlayerDash.SaveDashCooldown();
+       _componentGetter.PlayerDash.SaveDashStats();
        _componentGetter.HealthComponent.SaveHealth();
     }
 

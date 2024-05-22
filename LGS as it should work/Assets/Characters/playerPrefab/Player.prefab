@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashDuration: 0.2
-  _dashCooldown: 1.2
+  _dashCooldown: 8.8
   layersToCheck:
     serializedVersion: 2
     m_Bits: 8
@@ -288,6 +288,8 @@ MonoBehaviour:
   attackRange: 1
   attackCooldown: 1
   attackVampire: 5
+  attackBurn: 1
+  burnDuration: 3
 --- !u!114 &7858368217357626877
 MonoBehaviour:
   m_ObjectHideFlags: 0

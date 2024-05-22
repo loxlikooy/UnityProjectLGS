@@ -103,7 +103,7 @@ namespace Code.Script
 
         public void IncreaseDamage(float amount)
         {
-            playerDamage += playerDamage * 0.3f;
+            playerDamage += playerDamage * (amount/100);
         }
 
         public void DecreaseAttackCooldown(float amount)

@@ -17,6 +17,7 @@ public class Artifacts : MonoBehaviour
     [SerializeField] private float floatAmplitude = 0.1f; // Амплитуда колебаний
     [SerializeField] private float floatFrequency = 1f; // Частота колебаний
     [SerializeField] private float rotationSpeed = 30f;
+    [SerializeField] private bool headBuff;
 
     private Vector3 startPos;
     private float rotationDirection = 1f;
@@ -82,6 +83,12 @@ public class Artifacts : MonoBehaviour
             if (applyBurningEffect)
             {
                 componentGetter.PlayerAttackComponent.TurnOnBurn(); // Trigger the burning effect event
+            }
+
+            if (headBuff)
+            {
+              componentGetter.PlayerAttackComponent.IncreaseDamage(40);  
+              componentGetter.HealthComponent.IncreaseHealth(20f);
             }
             Destroy(gameObject); 
         }

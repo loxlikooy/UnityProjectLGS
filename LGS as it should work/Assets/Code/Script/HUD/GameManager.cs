@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                 playerHealth.HealthRegen(10);
                 break;
             case UpgradeEffect.DamageIncrease:
-                playerAttack.IncreaseDamage(10);
+                playerAttack.IncreaseDamage(30);
                 break;
             case UpgradeEffect.DecreaseDashCooldown:
                 playerDash.DecreaseDashCooldown(10);

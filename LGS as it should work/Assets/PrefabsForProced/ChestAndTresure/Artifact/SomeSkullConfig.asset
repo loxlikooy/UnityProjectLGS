@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307a1c42d1db46a686dadfa381ad8828, type: 3}
   m_Name: SomeSkullConfig
   m_EditorClassIdentifier: 
-  artifactPrefab: {fileID: 0}
-  dropChance: 0
+  artifactPrefab: {fileID: 8096222332543607621, guid: c72b11484a9474ce9af32c28e9482636, type: 3}
+  dropChance: 5

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307a1c42d1db46a686dadfa381ad8828, type: 3}
   m_Name: WolfTeethConfig
   m_EditorClassIdentifier: 
-  artifactPrefab: {fileID: 0}
-  dropChance: 0
+  artifactPrefab: {fileID: 7105583198598209844, guid: 0cdf0982f3e8346e8bd3517e9df20a64, type: 3}
+  dropChance: 10

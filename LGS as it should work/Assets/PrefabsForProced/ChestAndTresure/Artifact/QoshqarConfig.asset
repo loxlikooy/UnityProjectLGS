@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307a1c42d1db46a686dadfa381ad8828, type: 3}
   m_Name: QoshqarConfig
   m_EditorClassIdentifier: 
-  artifactPrefab: {fileID: 0}
-  dropChance: 0
+  artifactPrefab: {fileID: 9172173648459920252, guid: 521c7c780ad834c84b069ce99cec5eeb, type: 3}
+  dropChance: 5

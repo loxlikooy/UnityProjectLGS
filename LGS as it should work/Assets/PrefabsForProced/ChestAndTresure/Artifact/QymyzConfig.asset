@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307a1c42d1db46a686dadfa381ad8828, type: 3}
   m_Name: QymyzConfig
   m_EditorClassIdentifier: 
-  artifactPrefab: {fileID: 0}
-  dropChance: 0
+  artifactPrefab: {fileID: 6025662394977062949, guid: 4706b587d8a344d9a9c70789f7d72006, type: 3}
+  dropChance: 60

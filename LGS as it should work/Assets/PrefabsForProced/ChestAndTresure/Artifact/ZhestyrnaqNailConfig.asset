@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307a1c42d1db46a686dadfa381ad8828, type: 3}
   m_Name: ZhestyrnaqNailConfig
   m_EditorClassIdentifier: 
-  artifactPrefab: {fileID: 0}
-  dropChance: 0
+  artifactPrefab: {fileID: 5294922291824345674, guid: 2bf100f00429a498c937025449e30acd, type: 3}
+  dropChance: 10

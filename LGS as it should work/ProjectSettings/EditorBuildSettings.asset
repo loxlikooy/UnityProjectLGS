@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/map generator.unity
     guid: 6ac6d307226a24dfe91f1351fc79e61b
+  - enabled: 1
+    path: Assets/Scenes/map generator 1.unity
+    guid: 015231b5cd996c74c81cda842d0967dd
+  - enabled: 1
+    path: Assets/Scenes/map generator 2.unity
+    guid: b26e4f638880a244fafea7ac172c6659
   m_configObjects: {}

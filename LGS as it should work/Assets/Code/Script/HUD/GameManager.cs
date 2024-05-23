@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
                 playerAttack.IncreaseDamage(30);
                 break;
             case UpgradeEffect.DecreaseDashCooldown:
-                playerDash.DecreaseDashCooldown(10);
+                playerDash.DecreaseDashCooldown(0.5f);
                 break;
             case UpgradeEffect.SpeedIncrease:
                 playerMoveVelocity.IncreaseSpeed(10);
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame() {

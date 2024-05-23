@@ -114,6 +114,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69368b35cf4f747a38d49beba68a198c, type: 2}
   closedChestSprite: {fileID: 2132776948, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
   openChestSprite: {fileID: -852854580, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
+  doorPrefab: {fileID: 3938776062593705775, guid: 587d27e3b1c6f4c238f3d335ae44a103, type: 3}
 --- !u!61 &28963357943839858
 BoxCollider2D:
   m_ObjectHideFlags: 0

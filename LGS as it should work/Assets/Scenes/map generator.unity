@@ -721,6 +721,10 @@ PrefabInstance:
       value: MapGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: roomCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: collidableTilemap
       value: 
       objectReference: {fileID: 1875503028}

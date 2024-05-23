@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fff596278e47bd802137716763f1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 60
+  moveSpeed: 90
 --- !u!114 &2819936543741047268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashDuration: 0.2
-  _dashCooldown: 8.8
+  _dashCooldown: 8
   layersToCheck:
     serializedVersion: 2
     m_Bits: 8
@@ -284,9 +284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e21c765a094f3081ded3545a529fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 10
+  playerDamage: 48.26809
   attackRange: 1
-  attackCooldown: 1
+  attackCooldown: 0.40959996
   attackVampire: 5
   attackBurn: 1
   burnDuration: 3
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae9f23080b848fcaec5b977fff54685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 30
+  maxHealth: 55
+  currentHealth: 50
 --- !u!114 &8184014539870831574
 MonoBehaviour:
   m_ObjectHideFlags: 0

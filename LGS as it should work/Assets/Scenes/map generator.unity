@@ -128,17 +128,6 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 6466193003594306641, guid: c76dee4eca86c1644afefe803e00a1c8, type: 3}
   m_PrefabInstance: {fileID: 3124593568450496502}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &332191403 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2376447580162321303, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-  m_PrefabInstance: {fileID: 1619561797}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &416638287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9178055067100497981, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
@@ -232,10 +221,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2103953623}
-    - target: {fileID: 980150367816559490, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
     - target: {fileID: 1281405917632670787, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_Name
       value: Canvases (1)
@@ -244,50 +229,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2037766825}
-    - target: {fileID: 1318482915506920212, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenBook
-      objectReference: {fileID: 0}
     - target: {fileID: 2473962329609542916, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2037766825}
-    - target: {fileID: 2473962329609542916, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseBook
-      objectReference: {fileID: 0}
     - target: {fileID: 2992906279587868282, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2103953623}
-    - target: {fileID: 2992906279587868282, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 3483848420958730395, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4163355724681039753, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: attackOnCooldown
-      value: 
-      objectReference: {fileID: 332191403}
     - target: {fileID: 5522483886737988359, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2037766825}
-    - target: {fileID: 5522483886737988359, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextPage
-      objectReference: {fileID: 0}
     - target: {fileID: 6556441397468104105, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2037766825}
-    - target: {fileID: 6556441397468104105, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PrevPage
-      objectReference: {fileID: 0}
     - target: {fileID: 7129132354367590781, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_LocalPosition.x
       value: 394.29486
@@ -767,6 +724,10 @@ PrefabInstance:
       propertyPath: collidableTilemap
       value: 
       objectReference: {fileID: 1875503028}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: randomFillPercent
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: nonCollidableTilemap
       value: 

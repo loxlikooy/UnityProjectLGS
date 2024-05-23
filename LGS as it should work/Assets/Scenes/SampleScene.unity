@@ -21735,17 +21735,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
---- !u!114 &1394064209 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2376447580162321303, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-  m_PrefabInstance: {fileID: 1728289470084787695}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1403572301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47299,10 +47288,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 304630239}
-    - target: {fileID: 4163355724681039753, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
-      propertyPath: attackOnCooldown
-      value: 
-      objectReference: {fileID: 1394064209}
     - target: {fileID: 5522483886737988359, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

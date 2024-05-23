@@ -8,7 +8,7 @@ public class BookInteraction : MonoBehaviour
     public GameObject hudUI; // UI худа
     public TMP_Text bookText; // Текст книги с использованием TextMeshPro
     public TMP_Text titleText; // Заголовок страницы с использованием TextMeshPro
-    private int _pageIndex = 0; // Индекс страницы книги
+    private int _pageIndex; // Индекс страницы книги
 
     // Массивы для текста и заголовков страниц
 

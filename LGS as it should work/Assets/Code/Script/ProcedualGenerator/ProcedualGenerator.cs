@@ -42,7 +42,7 @@ public class MapGenerator : MonoBehaviour
 
     private const float CellSize = 0.64f;
 
-    private void Start()
+    private void Awake()
     {
         InitializeRandomSeed();
         GenerateMap();

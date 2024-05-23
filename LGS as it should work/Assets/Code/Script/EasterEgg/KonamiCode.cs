@@ -5,7 +5,7 @@ public class KonamiCode : MonoBehaviour
     private KeyCode[] _konamiCode;
     private int _konamiIndex;
 
-    void Start()
+    private void Start()
     {
         _konamiCode = new KeyCode[]
         {

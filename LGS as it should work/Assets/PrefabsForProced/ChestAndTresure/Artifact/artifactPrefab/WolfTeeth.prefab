@@ -149,6 +149,6 @@ MonoBehaviour:
   additionalDashRange: 0
   qumyzHpRegen: 0
   applyBurningEffect: 0
-  floatAmplitude: 0.5
-  floatFrequency: 1
-  rotationSpeed: 30
+  floatFrequency: 0.1
+  rotationSpeed: 15
+  headBuff: 0

@@ -58,10 +58,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   abilityChoiceScreen: {fileID: 0}
-  playerHealth: {fileID: 0}
-  playerAttack: {fileID: 0}
-  playerDash: {fileID: 0}
-  playerMoveVelocity: {fileID: 0}
 --- !u!1 &4846410024208135288
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +90,7 @@ Transform:
   - {fileID: 4924259844735877794}
   - {fileID: 7202372288428677352}
   - {fileID: 8308731858224565619}
+  - {fileID: 7250194841097931514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6657435708359322561
@@ -143,8 +140,51 @@ MonoBehaviour:
   questDataList:
   - {fileID: 11400000, guid: 3353687a0519d4196b8ba0f96a451196, type: 2}
   - {fileID: 11400000, guid: 23f1b4aedaa82433883a0a5bbb0e551d, type: 2}
-  exp: {fileID: 0}
   questText: {fileID: 0}
+--- !u!1 &6834126451859939160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7250194841097931514}
+  - component: {fileID: 1961755136793435463}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7250194841097931514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834126451859939160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6112477115258500265}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1961755136793435463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834126451859939160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcb00fb807c457b8eb8ad8821acde29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7586292847252543294
 GameObject:
   m_ObjectHideFlags: 0

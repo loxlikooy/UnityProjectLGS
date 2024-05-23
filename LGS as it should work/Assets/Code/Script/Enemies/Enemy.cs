@@ -28,6 +28,7 @@ namespace Code.Script
         private float _attackRadius;
         private Room _room;
         private Coroutine _damageOverTimeCoroutine;
+        protected IDamagable playerDamagable;
 
         public event Action<Enemy> OnDeath; // Event for enemy death
 
@@ -63,6 +64,7 @@ namespace Code.Script
             _exp = playerGameObject.GetComponent<EXP>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+           playerDamagable = Player.GetComponent<IDamagable>();
         }
 
         private void SetInitialState()
@@ -129,6 +131,7 @@ namespace Code.Script
             if (!IsCloseTo(Player.position, enemyData.enemyDetectionRadius))
             {
                 _currentState = EnemyState.Patrolling;
+                _timeSinceLastAttack = 0f;
                 if (_isChasing)
                 {
                     EnemyManager.StopChasing();
@@ -154,16 +157,18 @@ namespace Code.Script
 
             if (IsCloseTo(Player.position, _attackRadius)) return;
             
-            _timeSinceLastAttack = 0f;
-            _currentState = EnemyState.Patrolling;
+            _currentState = EnemyState.Chasing;
             _attackRadius = enemyData.enemyAttackRadius;
         }
 
         private void TryDealDamageToPlayer()
         {
-            IDamagable playerDamagable = Player.GetComponent<IDamagable>();
             if (playerDamagable != null)
+            {
+                
+
                 playerDamagable.TakeDamage(enemyData.enemyDamage);
+            }
         }
 
         private void PickRandomPatrolPoint()

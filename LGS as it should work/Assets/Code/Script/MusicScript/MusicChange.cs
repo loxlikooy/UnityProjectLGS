@@ -21,30 +21,34 @@ namespace Code.Script.Music
 
         public void SetMusicClip(AudioClip newClip)
         {
-           
             if (_musicBox.clip != newClip)
             {
                 StartCoroutine(FadeOutMusicAndChange(newClip));
             }
-            else if (!_musicBox.isPlaying) // Если музыка уже загружена, но не играет
+            else if (!_musicBox.isPlaying) // If the music is already loaded but not playing
             {
-                StartCoroutine(FadeInMusic()); // Продолжим воспроизведение с текущей позиции
+                StartCoroutine(FadeInMusic()); // Continue playing from the current position
             }
-
-           
         }
 
         private IEnumerator FadeOutMusicAndChange(AudioClip newClip)
         {
+            float fadeOutStep = _startVolume * Time.deltaTime / _fadeOutDuration;
+
             while (_musicBox.volume > 0)
             {
-                _musicBox.volume -= _startVolume * Time.deltaTime / _fadeOutDuration;
+                _musicBox.volume -= fadeOutStep;
                 yield return null;
             }
+
+            _musicBox.volume = 0; // Ensure volume is set to 0
+
             SaveCurrentMusicPosition();
             _musicBox.Stop();
             _musicBox.clip = newClip;
             RestoreMusicPosition(newClip);
+
+            yield return new WaitForSeconds(0.1f); // Slight delay before starting the new clip
 
             _musicBox.Play();
             StartCoroutine(FadeInMusic());
@@ -52,11 +56,15 @@ namespace Code.Script.Music
 
         private IEnumerator FadeInMusic()
         {
+            float fadeInStep = _startVolume * Time.deltaTime / _fadeInDuration;
+
             while (_musicBox.volume < _startVolume)
             {
-                _musicBox.volume += _startVolume * Time.deltaTime / _fadeInDuration;
+                _musicBox.volume += fadeInStep;
                 yield return null;
             }
+
+            _musicBox.volume = _startVolume; // Ensure volume is set to the starting volume
         }
 
         private void SaveCurrentMusicPosition()
@@ -75,7 +83,7 @@ namespace Code.Script.Music
             }
             else
             {
-                _musicBox.time = 0; // Начать с начала, если позиция не была сохранена
+                _musicBox.time = 0; // Start from the beginning if the position was not saved
             }
         }
     }

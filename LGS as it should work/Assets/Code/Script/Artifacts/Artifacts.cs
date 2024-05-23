@@ -14,7 +14,6 @@ public class Artifacts : MonoBehaviour
     [SerializeField] private bool additionalDashRange;
     [SerializeField] private bool qumyzHpRegen;
     [SerializeField] private bool applyBurningEffect; // New flag for burning effect
-    [SerializeField] private float floatAmplitude = 0.1f; // Амплитуда колебаний
     [SerializeField] private float floatFrequency = 1f; // Частота колебаний
     [SerializeField] private float rotationSpeed = 30f;
     [SerializeField] private bool headBuff;
@@ -28,7 +27,7 @@ public class Artifacts : MonoBehaviour
         startPos = transform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         float newY = startPos.y + Mathf.Abs(Mathf.Sin(Time.time * floatFrequency));
         transform.position = new Vector3(startPos.x, newY, startPos.z);
@@ -54,7 +53,7 @@ public class Artifacts : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
         {
-            if (nameOfQuest != "")
+            if (!string.IsNullOrEmpty(nameOfQuest))
             { 
                 QuestManager.Instance.CompleteQuest(nameOfQuest);
             }

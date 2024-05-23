@@ -107,11 +107,11 @@ MonoBehaviour:
   maxEnemiesToSpawn: 3
   artifactConfigs:
   - {fileID: 11400000, guid: 7efb058b1682e45778c881b91f50aef4, type: 2}
-  - {fileID: 11400000, guid: a57d79ed0cd114d69afe2dd2f5b71e76, type: 2}
   - {fileID: 11400000, guid: bafc244579a8c4281ac80da52050c7bd, type: 2}
   - {fileID: 11400000, guid: 009132050f4224cc2a6f4246f2989c73, type: 2}
   - {fileID: 11400000, guid: a26562aca203e468d8ae0c967cde022b, type: 2}
   - {fileID: 11400000, guid: 69368b35cf4f747a38d49beba68a198c, type: 2}
+  - {fileID: 11400000, guid: a57d79ed0cd114d69afe2dd2f5b71e76, type: 2}
   closedChestSprite: {fileID: 2132776948, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
   openChestSprite: {fileID: -852854580, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
   doorPrefab: {fileID: 3938776062593705775, guid: 587d27e3b1c6f4c238f3d335ae44a103, type: 3}

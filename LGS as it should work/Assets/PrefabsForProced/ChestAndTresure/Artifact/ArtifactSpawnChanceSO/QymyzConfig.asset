@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: QymyzConfig
   m_EditorClassIdentifier: 
   artifactPrefab: {fileID: 6025662394977062949, guid: 4706b587d8a344d9a9c70789f7d72006, type: 3}
-  dropChance: 60
+  dropChance: 100

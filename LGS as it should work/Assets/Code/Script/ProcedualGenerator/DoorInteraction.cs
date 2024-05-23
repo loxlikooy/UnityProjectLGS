@@ -1,18 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Code.Script.ProcedualGenerator
+namespace Code.Script.ProceduralGenerator
 {
     public class DoorInteraction : MonoBehaviour
     {
         [SerializeField] private KeyCode interactionKey = KeyCode.F; // Key for interaction
-        
+        private ComponentGetter componentGetter;
+
+        private void Start()
+        {
+            componentGetter = FindObjectOfType<ComponentGetter>();
+        }
+
         private void OnTriggerStay2D(Collider2D collider)
         {
-            if (!collider.CompareTag("Player")) return;
+            if (!collider.CompareTag("Door")) return;
 
             if (Input.GetKey(interactionKey))
             {
+                SaveManager.SavePlayerStats(componentGetter);
+                SaveManager.SaveQuestStates();
                 LoadNextLevel();
             }
         }
@@ -30,8 +38,6 @@ namespace Code.Script.ProcedualGenerator
             else
             {
                 Debug.LogWarning("No more levels to load!");
-                // Optionally, restart the game or show a game complete message
-                // SceneManager.LoadScene(0); // Restart the game
             }
         }
     }

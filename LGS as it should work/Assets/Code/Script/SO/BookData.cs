@@ -11,7 +11,10 @@ namespace Code.Script.SO
         [SerializeField]
         private string[] titles;
 
-        // Свойства для доступа к полям (необязательно, но рекомендуется)
+        [SerializeField]
+        private Sprite[] sprites; // Add this line to include sprites
+
+        // Properties for accessing the fields (optional but recommended)
         public string[] Pages
         {
             get => pages;
@@ -22,6 +25,12 @@ namespace Code.Script.SO
         {
             get => titles;
             set => titles = value;
+        }
+
+        public Sprite[] Sprites // Add this property for sprites
+        {
+            get => sprites;
+            set => sprites = value;
         }
     }
 }

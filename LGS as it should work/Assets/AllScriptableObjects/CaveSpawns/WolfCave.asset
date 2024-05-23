@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WolfCave
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
-  minCount: 0
-  maxCount: 0
+  minCount: 10
+  maxCount: 10

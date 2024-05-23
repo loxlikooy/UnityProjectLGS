@@ -8,6 +8,7 @@ TagManager:
   - MusicBox
   - Quest
   - Artifact
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -276,7 +276,7 @@ MonoBehaviour:
   shockwavePrefab: {fileID: 824633066956342397, guid: afe836885cc0e4ff68b6f8554d30d148, type: 3}
   shockwaveDamage: 20
   shockwaveRadius: 1.5
-  shockWaveCooldown: 2
+  shockWaveCooldown: 6
 --- !u!95 &7348685450507460888
 Animator:
   serializedVersion: 5

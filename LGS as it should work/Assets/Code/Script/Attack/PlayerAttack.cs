@@ -73,7 +73,6 @@ namespace Code.Script
                     ExecuteAttack(enemy);
                     HealByAttack();
                     BurnByAttack(enemy);
-                    break;
                 }
             }
         }

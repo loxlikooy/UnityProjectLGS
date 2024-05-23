@@ -5,36 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Transform startPoint; 
+    [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
     private ComponentGetter _componentGetter;
+
     private void Start()
     {
         _componentGetter = GetComponent<ComponentGetter>();
-        ActivateSavedQuests();
+        SaveManager.LoadQuestStates();
         MoveToStartPoint();
-    }
-
-    private void ActivateSavedQuests()
-    {
-        QuestManager questManager = QuestManager.Instance;
-    
-        foreach (Quest quest in questManager.GetQuests())
-        {
-            if (!quest.IsCompleted && PlayerPrefs.GetInt("Quest_Active_" + quest.QuestName, 0) == 1)
-            {
-                questManager.ActivateQuest(quest.QuestName); // Активируем квест, если он не завершен
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Finish"))
         {
-            SaveQuestPlayerPrefs();
-            SavePlayerPrefs();
-            StartCoroutine(MoveToEndPoint(1.5f, () => LoadNextLevel()));
+            SaveManager.SaveQuestStates();
+            SaveManager.SavePlayerStats(_componentGetter);
+            StartCoroutine(MoveToEndPoint(1.5f, LoadNextLevel));
         }
 
         if (other.CompareTag("Quest"))
@@ -43,20 +31,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
     private void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int totalScenes = SceneManager.sceneCountInBuildSettings;
-        int nextSceneIndex = (currentSceneIndex + 1) % totalScenes; // Переход к следующей сцене по кругу
-        SceneManager.LoadScene(nextSceneIndex); // Загрузка следующей сцены
-    }
-
-    private void SavePlayerPrefs()
-    {
-       _componentGetter.PlayerAttackComponent.SaveAttackStats();
-       _componentGetter.PlayerDash.SaveDashStats();
-       _componentGetter.HealthComponent.SaveHealth();
+        int nextSceneIndex = (currentSceneIndex + 1) % totalScenes; // Loop to the next scene
+        SceneManager.LoadScene(nextSceneIndex); // Load the next scene
     }
 
     private IEnumerator MoveToStartPointCoroutine(Vector2 targetPosition, float duration)
@@ -76,7 +56,7 @@ public class LevelManager : MonoBehaviour
 
     private void MoveToStartPoint()
     {
-        StartCoroutine(MoveToStartPointCoroutine(startPoint.position, 1.5f)); // 1.5 секунды для плавного перемещения
+        StartCoroutine(MoveToStartPointCoroutine(startPoint.position, 1.5f)); // Smooth transition over 1.5 seconds
     }
 
     private IEnumerator MoveToEndPoint(float duration, System.Action onEnd)
@@ -91,21 +71,9 @@ public class LevelManager : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
         transform.position = targetPosition;
 
-        onEnd?.Invoke(); // Вызываем событие по завершению перемещения
+        onEnd?.Invoke(); // Invoke the event after moving
     }
-    
-    private void SaveQuestPlayerPrefs()
-    {
-        foreach (Quest quest in QuestManager.Instance.GetQuests())
-        {
-            if (!quest.IsCompleted && quest.IsActive)
-            {
-                PlayerPrefs.SetInt("Quest_Active_" + quest.QuestName, 1); // Сохраняем, что квест активен
-            }
-        }
-        PlayerPrefs.Save();
-    }
-
 }

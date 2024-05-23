@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 277508a997d2bad42951e59dde397f41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,6 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfQuest: 
   turnOnVampiricOnPickup: 1
+  wolfsShouldNotAttack: 0
+  additionalDashRange: 0
+  qumyzHpRegen: 0
+  applyBurningEffect: 0
+  floatFrequency: 0.1
+  rotationSpeed: 15
+  headBuff: 0
 --- !u!61 &589273655729443033
 BoxCollider2D:
   m_ObjectHideFlags: 0

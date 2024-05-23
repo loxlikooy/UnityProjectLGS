@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Code.Script;
@@ -11,7 +12,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private List<QuestData> questDataList;
     private readonly List<Quest> _quests = new List<Quest>();
     private readonly List<string> _completedQuests = new List<string>();
-    [SerializeField] private EXP exp;
+    private EXP exp;
     [SerializeField] private TextMeshProUGUI questText;
     private Quest _currentActiveQuest;
     
@@ -32,6 +33,11 @@ public class QuestManager : MonoBehaviour
             AddQuest(new Quest(questData));
         }
         Load_completedQuests();
+    }
+
+    private void Start()
+    {
+        exp = FindObjectOfType<EXP>();
     }
 
     private void OnDestroy()

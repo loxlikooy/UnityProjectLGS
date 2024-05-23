@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button[] choiceButtons; // Array of buttons for choosing upgrades
     public GameObject abilityChoiceScreen; // Screen for choosing upgrades
 
-    [SerializeField] private Health playerHealth;
-    [SerializeField] private PlayerAttack playerAttack;
-    [SerializeField] private Dash playerDash;
-    [SerializeField] private MoveVelocity playerMoveVelocity;
+    private Health playerHealth;
+    private PlayerAttack playerAttack;
+    private Dash playerDash;
+    private MoveVelocity playerMoveVelocity;
 
     private void Awake()
     {
@@ -32,7 +32,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    private void Start()
+    {
+        playerHealth = FindObjectOfType<Health>();
+        playerAttack = FindObjectOfType<PlayerAttack>();
+        playerDash = FindObjectOfType<Dash>();
+        playerMoveVelocity = FindObjectOfType<MoveVelocity>();
+
+        if (playerHealth == null || playerAttack == null || playerDash == null || playerMoveVelocity == null)
+        {
+            Debug.LogError("One or more player components are not found on the scene.");
+        }
+    }
 
     public void ShowRestartScreen()
     {
@@ -65,7 +77,6 @@ public class GameManager : MonoBehaviour
             button.onClick.RemoveAllListeners();
             int finalIndex = index; // Local variable for use in the lambda expression
             button.onClick.AddListener(() => ApplyUpgrade(allUpgrades[finalIndex]));
-            Time.timeScale = 0;
         }
 
         abilityChoiceScreen.SetActive(true);

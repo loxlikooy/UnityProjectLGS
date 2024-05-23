@@ -122,9 +122,20 @@ public class GameManager : MonoBehaviour
         return _isUpgradeScreenShown;
     }
 
-    public void RestartGame() {
-        SceneManager.LoadScene(0);
+    public void RestartGame()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    
+        if (currentSceneIndex > 2)
+        {
+            SceneManager.LoadScene(6);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
+
 
     public void QuitGame() {
         Application.Quit();

@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a08256f9454199a1b2b6701fa2c6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  permamentUpgradeSo: {fileID: 11400000, guid: 664ea8ed9f7c64bad89a590c0392a682, type: 2}
 --- !u!114 &4860226722900370313
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,15 +30,16 @@ namespace Code.Script.ProceduralGenerator
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             int nextSceneIndex = currentSceneIndex + 1;
 
-            // Check if the next scene index is within the valid range
-            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            // Check if the next scene index is within the valid range and not greater than 6
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings && nextSceneIndex <= 6)
             {
                 SceneManager.LoadScene(nextSceneIndex);
             }
             else
             {
-                Debug.LogWarning("No more levels to load!");
+                SceneManager.LoadScene(3);
             }
         }
+
     }
 }

@@ -328,6 +328,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
+--- !u!114 &7173469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7780418903884859905, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1103941110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7940058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16238,6 +16249,7 @@ MonoBehaviour:
   hudUI: {fileID: 1625786250}
   bookText: {fileID: 1238115834}
   titleText: {fileID: 737076292}
+  bookImage: {fileID: 7173469}
   _bookData: {fileID: 11400000, guid: 2c8e795d6727e411890b027e77856b21, type: 2}
 --- !u!4 &1136233345
 Transform:

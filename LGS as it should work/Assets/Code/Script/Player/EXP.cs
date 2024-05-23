@@ -5,6 +5,7 @@ namespace Code.Script
 {
     public class EXP : MonoBehaviour
     {
+        [SerializeField] private PermamentUpgradeSO permamentUpgradeSo;
         private float _expForNextLevel = 20f;
         private float _currentExp;
 
@@ -46,19 +47,20 @@ namespace Code.Script
             {
                 _currentExp -= _expForNextLevel;
                 _expForNextLevel += 20;
+                permamentUpgradeSo.LevelGained();
                 if (!GameManager.Instance.IsUpgradeScreenShown()) 
                 {
                     GameManager.Instance.ShowRandomUpgrades();
                 }
             }
             PlayerHUDManager.Instance.SetExp(_currentExp, _expForNextLevel);
-        } //пофиксить получения большого количества экспы
+        } 
 
         private IEnumerator WaitAndAddExp(float amountExp) 
         {
-            // Ожидание пока экран выбора улучшений будет скрыт
+            
             yield return new WaitUntil(() => !GameManager.Instance.IsUpgradeScreenShown());
-            AddExp(amountExp); // Повторное добавление опыта после закрытия экрана
+            AddExp(amountExp); 
         }
         
         private void SaveEXP()

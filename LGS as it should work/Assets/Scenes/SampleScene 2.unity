@@ -4013,6 +4013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScreen: {fileID: 670504432}
   HUD: {fileID: 1625786250}
+  NPCUpgradeScreen: {fileID: 0}
   allUpgrades:
   - {fileID: 11400000, guid: 094d1499f6a23415da2916080a17c80f, type: 2}
   - {fileID: 11400000, guid: 913a4a6d1e8bb4a9084dd27287729aa2, type: 2}
@@ -6938,7 +6939,7 @@ Transform:
   m_GameObject: {fileID: 514447330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.843463, y: -0.28999996, z: -1}
+  m_LocalPosition: {x: -1.9764245, y: -0.28999996, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15036,9 +15037,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 943374559748730006, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 943374559748730006, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 943374559748730006, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068946243399211900, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
     - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.26203632
+      value: 0.19555557
       objectReference: {fileID: 0}
     - target: {fileID: 3368370926615280557, guid: 70bd1fc13b641467bbeda2483a136f1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16740,7 +16757,7 @@ Transform:
   m_GameObject: {fileID: 1156186370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.843463, y: -0.28999996, z: -1}
+  m_LocalPosition: {x: -1.9764245, y: -0.28999996, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

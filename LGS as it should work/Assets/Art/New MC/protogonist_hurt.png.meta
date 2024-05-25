@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba5f5e608cec7e44ba7ae4a99b41a72d
+guid: 011ff488e03a3724fb518eb531bca1c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: protogonist_idle_0
+      name: protogonist_hurt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed62730b60d3152489500baf561eee95
-      internalID: -1494734691
+      spriteID: 395b4694e67428541974600cdf8e3359
+      internalID: -976214215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_idle_1
+      name: protogonist_hurt_1
       rect:
         serializedVersion: 2
         x: 48
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e37e0f288b35da445af346ac82328e9a
-      internalID: 456627695
+      spriteID: e2530272a07df1b4a92a60f0d5879dbf
+      internalID: -1302433053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_idle_2
+      name: protogonist_hurt_2
       rect:
         serializedVersion: 2
         x: 96
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff07710c51a87514fb98ee115d44bddc
-      internalID: 1280708104
+      spriteID: 32471a7957380724da511e484924ec2b
+      internalID: -2033265169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_idle_3
+      name: protogonist_hurt_3
       rect:
         serializedVersion: 2
         x: 144
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 725d19a681a4b74478b614acf74e6f95
-      internalID: -1606043777
+      spriteID: 51eaa6cc31166c14d90c88a09b7e589e
+      internalID: 2103331170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_idle_4
+      name: protogonist_hurt_4
       rect:
         serializedVersion: 2
         x: 192
@@ -208,71 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 360a12ad4c0dc1a42a7b01b6b7e92d87
-      internalID: 1423795322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_idle_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65e578f48dfd45541b7457cda6b68c93
-      internalID: 2131600281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_idle_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2936172ae27812442b0d17f50312c3bc
-      internalID: 1697298238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_idle_7
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cebb321fb4017b1458ba1763e8be1021
-      internalID: 709508984
+      spriteID: a5755235d92c8b14eb6ae8917a45d945
+      internalID: 1519867390
       vertices: []
       indices: 
       edges: []
@@ -288,14 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      protogonist_idle_0: -1494734691
-      protogonist_idle_1: 456627695
-      protogonist_idle_2: 1280708104
-      protogonist_idle_3: -1606043777
-      protogonist_idle_4: 1423795322
-      protogonist_idle_5: 2131600281
-      protogonist_idle_6: 1697298238
-      protogonist_idle_7: 709508984
+      protogonist_hurt_0: -976214215
+      protogonist_hurt_1: -1302433053
+      protogonist_hurt_2: -2033265169
+      protogonist_hurt_3: 2103331170
+      protogonist_hurt_4: 1519867390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

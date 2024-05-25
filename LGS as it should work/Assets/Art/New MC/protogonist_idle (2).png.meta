@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 87d3f5269f4afde4eb692dfbc53a7b96
+guid: dc52402394b9c374e99f25718dd6c575
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: protogonist_dash_0
+      name: protogonist_idle (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1469acd18fd12e94f853f5a3d9f9be6b
-      internalID: 1627695419
+      spriteID: e0ac68a3d018c784c9f3a2100c7a5fc3
+      internalID: 379780679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_1
+      name: protogonist_idle (2)_1
       rect:
         serializedVersion: 2
         x: 48
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02eb9c1bf2fe373448e4052cedf3410d
-      internalID: -816016699
+      spriteID: 4df163ea4ff51f04ba75911dfd747d40
+      internalID: -1786335424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_2
+      name: protogonist_idle (2)_2
       rect:
         serializedVersion: 2
         x: 96
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adcf178ab5514b544968f3bd6776ec2c
-      internalID: -1534517029
+      spriteID: f75bb3fd7fd50824ca4b26acede00f52
+      internalID: -1848290458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_3
+      name: protogonist_idle (2)_3
       rect:
         serializedVersion: 2
         x: 144
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38c708a7d83ba9a488030245891fb53c
-      internalID: -1726496326
+      spriteID: 093afc1998330b04bb812f1ad0188528
+      internalID: 1082557483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_4
+      name: protogonist_idle (2)_4
       rect:
         serializedVersion: 2
         x: 192
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cf713e48bc07e34f9c5dfcf71a45762
-      internalID: -89544151
+      spriteID: c0133db6e4d8ec54a98928a12e7b0c8f
+      internalID: -1691626862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_5
+      name: protogonist_idle (2)_5
       rect:
         serializedVersion: 2
         x: 240
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ff38d707b7a1e54fb3263424b916161
-      internalID: -1943840998
+      spriteID: 8601645b20597f948a383e504f686aa2
+      internalID: -15899754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_6
+      name: protogonist_idle (2)_6
       rect:
         serializedVersion: 2
         x: 288
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da09ae2ce3fa9ba48b896cd89367cc79
-      internalID: 1472564270
+      spriteID: 753e37f573747aa46981caa9766cf3e0
+      internalID: 1886594325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_dash_7
+      name: protogonist_idle (2)_7
       rect:
         serializedVersion: 2
         x: 336
@@ -271,71 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a77a51afeac7e754d8f3ba0a3e65c782
-      internalID: -364118386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_dash_8
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad8197098809fe04bb009fce4cdfb60c
-      internalID: -1459871983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_dash_9
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 198555e1585e3374a946c9a3978926e4
-      internalID: 318916355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_dash_10
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68e2b08bd34a7064b93bf2efc8583834
-      internalID: 1766962768
+      spriteID: dd384bd63f9db8b4b8ff0080174611bc
+      internalID: 1482732100
       vertices: []
       indices: 
       edges: []
@@ -351,17 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      protogonist_dash_0: 1627695419
-      protogonist_dash_1: -816016699
-      protogonist_dash_10: 1766962768
-      protogonist_dash_2: -1534517029
-      protogonist_dash_3: -1726496326
-      protogonist_dash_4: -89544151
-      protogonist_dash_5: -1943840998
-      protogonist_dash_6: 1472564270
-      protogonist_dash_7: -364118386
-      protogonist_dash_8: -1459871983
-      protogonist_dash_9: 318916355
+      protogonist_idle (2)_0: 379780679
+      protogonist_idle (2)_1: -1786335424
+      protogonist_idle (2)_2: -1848290458
+      protogonist_idle (2)_3: 1082557483
+      protogonist_idle (2)_4: -1691626862
+      protogonist_idle (2)_5: -15899754
+      protogonist_idle (2)_6: 1886594325
+      protogonist_idle (2)_7: 1482732100
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

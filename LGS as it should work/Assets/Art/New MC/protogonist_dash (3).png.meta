@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 908451466ff7ca44b929ef51f01e1a77
+guid: e801420216e34d74b848b2b768d7db45
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,169 +110,232 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: protogonist_attack_0
+      name: protogonist_dash (3)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.365, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a73194e9527886488f1325f0457e2bf
-      internalID: -173693949
+      spriteID: 97b8f12af0081f54c894bb2a11809d07
+      internalID: 1536315207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_1
+      name: protogonist_dash (3)_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.365, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fb131680520f80458d4a03fc4f93a7e
-      internalID: -1377412859
+      spriteID: c0f55a92ee9ddcb49846ab5f113af2f0
+      internalID: 36732150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_2
+      name: protogonist_dash (3)_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.43, y: 0.49144092}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f044d099dc12c048b3da00c237a72d9
-      internalID: 1092372952
+      spriteID: 6640e9ebeb09d1945a75d5978823b722
+      internalID: 613032825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 600fe43dedd12664184b123a95e3c50c
-      internalID: 742728004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: protogonist_attack_4
+      name: protogonist_dash (3)_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.41790414, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22c8f68224ed9d4e825edf76febbcb1
-      internalID: -960846959
+      spriteID: 71ef08879d12f4145ace4230cfcb5831
+      internalID: 451169503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_5
+      name: protogonist_dash (3)_4
       rect:
         serializedVersion: 2
-        x: 240
+        x: 256
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.44864655, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04c386c013496d04f8027e8530476b64
-      internalID: 1711930889
+      spriteID: 7546080266a5a674b9f434f54715e9ce
+      internalID: -1870606338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_6
+      name: protogonist_dash (3)_5
       rect:
         serializedVersion: 2
-        x: 288
+        x: 320
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.4871621, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59a05ca5bc85f224fac7fb2ce1c6e0a6
-      internalID: 1495420935
+      spriteID: 8a7e2346b4d00f041a3e25abd3e9ad0a
+      internalID: -1025913805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protogonist_attack_7
+      name: protogonist_dash (3)_6
       rect:
         serializedVersion: 2
-        x: 336
+        x: 384
         y: 0
-        width: 48
+        width: 64
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.56419325, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93175c08ae815ee4b963c9434d7c1258
-      internalID: -601833556
+      spriteID: e6f4370d8e3e6e144a18b64d61e4dbf5
+      internalID: 1163709132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_dash (3)_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.46790648, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6ed6cc108353343a2f85c7a90e7bae
+      internalID: -215082585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_dash (3)_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.43642044, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1396daa3f3d4e194495722b7b9b1f8fb
+      internalID: 248423277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_dash (3)_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.365, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b16bae6d6e1470469419e2c37691618
+      internalID: 296470110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_dash (3)_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.365, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc1fc92033f6a748be0618e9fe2e8e1
+      internalID: -2002018287
       vertices: []
       indices: 
       edges: []
@@ -288,14 +351,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      protogonist_attack_0: -173693949
-      protogonist_attack_1: -1377412859
-      protogonist_attack_2: 1092372952
-      protogonist_attack_3: 742728004
-      protogonist_attack_4: -960846959
-      protogonist_attack_5: 1711930889
-      protogonist_attack_6: 1495420935
-      protogonist_attack_7: -601833556
+      protogonist_dash (3)_0: 1536315207
+      protogonist_dash (3)_1: 36732150
+      protogonist_dash (3)_10: -2002018287
+      protogonist_dash (3)_2: 613032825
+      protogonist_dash (3)_3: 451169503
+      protogonist_dash (3)_4: -1870606338
+      protogonist_dash (3)_5: -1025913805
+      protogonist_dash (3)_6: 1163709132
+      protogonist_dash (3)_7: -215082585
+      protogonist_dash (3)_8: 248423277
+      protogonist_dash (3)_9: 296470110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

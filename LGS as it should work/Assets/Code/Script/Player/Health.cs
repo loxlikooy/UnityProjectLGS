@@ -1,23 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Code.Script
 {
     public class Health : MonoBehaviour, IDamagable
     {
         [SerializeField] private PlayerStatsSO playerStatsSO;
+        private ComponentGetter _componentGetter;
 
         private float _maxHealth;
         private float _currentHealth;  
 
         public delegate void HealthChangedDelegate(float currentHealth);
         public event HealthChangedDelegate OnHealthChanged;
-
+        
         private void Start()
         {
             // Загружаем постоянные и временные параметры
             LoadPermanentStats();
             LoadTemporaryStats();
             PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
+            
+            _componentGetter = GetComponent<ComponentGetter>();
+
         }
 
         public void TakeDamage(float damage)
@@ -26,6 +31,8 @@ namespace Code.Script
             _currentHealth -= damage;
             PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
             OnHealthChanged?.Invoke(_currentHealth);
+
+            _componentGetter.PlayerAnimator.PlayDamageTakingAnimation();
 
             // Проверяем, умер ли игрок
             if (_currentHealth <= 0)

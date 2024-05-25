@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf93ca4302d194a9e903523fe10b923a
+guid: 011ff488e03a3724fb518eb531bca1c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,148 +110,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_0
+      name: protogonist_hurt_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f4e5516ecc3e4b15a5cce771c1a81e9
-      internalID: 414666256
+      spriteID: 395b4694e67428541974600cdf8e3359
+      internalID: -976214215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_1
+      name: protogonist_hurt_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d19ea455605c40d89ec2f4b8a226ff1
-      internalID: -299333051
+      spriteID: e2530272a07df1b4a92a60f0d5879dbf
+      internalID: -1302433053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_2
+      name: protogonist_hurt_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f6ed10176cf545099bd5a2538cc0ab3
-      internalID: 2062072482
+      spriteID: 32471a7957380724da511e484924ec2b
+      internalID: -2033265169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_3
+      name: protogonist_hurt_3
       rect:
         serializedVersion: 2
         x: 144
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 819d72f89344b4244980d811897b9151
-      internalID: 627412573
+      spriteID: 51eaa6cc31166c14d90c88a09b7e589e
+      internalID: 2103331170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_4
+      name: protogonist_hurt_4
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12959507d50494289bc477ae771d78ae
-      internalID: 2088784770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4632d3decb63f4ccf9160a84a3c0b264
-      internalID: -1880083311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a3fcf52aca0541bdb5e91fa64176a84
-      internalID: 471194540
+      spriteID: a5755235d92c8b14eb6ae8917a45d945
+      internalID: 1519867390
       vertices: []
       indices: 
       edges: []
@@ -267,13 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemy1-obnimashki-Sheet_0: 414666256
-      enemy1-obnimashki-Sheet_1: -299333051
-      enemy1-obnimashki-Sheet_2: 2062072482
-      enemy1-obnimashki-Sheet_3: 627412573
-      enemy1-obnimashki-Sheet_4: 2088784770
-      enemy1-obnimashki-Sheet_5: -1880083311
-      enemy1-obnimashki-Sheet_6: 471194540
+      protogonist_hurt_0: -976214215
+      protogonist_hurt_1: -1302433053
+      protogonist_hurt_2: -2033265169
+      protogonist_hurt_3: 2103331170
+      protogonist_hurt_4: 1519867390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

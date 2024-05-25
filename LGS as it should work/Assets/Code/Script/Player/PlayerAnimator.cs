@@ -23,7 +23,7 @@ namespace Code.Script
         {
             _componentGetter.Animator.SetFloat("MoveX", movement.x);
 
-            // Если персонаж не двигается по горизонтали, установите IsIdle в true
+            /*// Если персонаж не двигается по горизонтали, установите IsIdle в true
             if (movement.x == 0)
             {
                 _componentGetter.Animator.SetBool("IsIdle", true);
@@ -32,6 +32,17 @@ namespace Code.Script
             {
                 _componentGetter.Animator.SetBool("IsIdle", false);
                 _componentGetter.SpriteRenderer.flipX = movement.x < 0;
+            }     */  
+            // Если персонаж не двигается по горизонтали, установите IsIdle в true
+            if (movement.x != 0 || movement.y !=0)
+            {
+                _componentGetter.Animator.SetBool("IsIdle", false);
+                _componentGetter.SpriteRenderer.flipX = movement.x < 0;
+
+            }
+            else
+            {
+                _componentGetter.Animator.SetBool("IsIdle", true);
             }
         }
 
@@ -45,5 +56,14 @@ namespace Code.Script
             _componentGetter.Animator.SetTrigger("Dash");
         }
 
+        public void PlayDamageTakingAnimation()
+        {
+            _componentGetter.Animator.SetTrigger("TakeDamage");
+        }
+        
+        public void SetDeathAnimation()
+        {
+            _componentGetter.Animator.SetTrigger("Death");
+        }
     }
 }

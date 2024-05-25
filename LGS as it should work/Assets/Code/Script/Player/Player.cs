@@ -13,6 +13,7 @@ namespace Code.Script
 
         public void TakeDamage(float damageAmount)
         {
+
             _componentGetter.HealthComponent.TakeDamage(damageAmount);
         }
 

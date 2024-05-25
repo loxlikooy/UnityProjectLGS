@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf93ca4302d194a9e903523fe10b923a
+guid: 63d6e7b155306df43b8821cde80d9266
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,148 +110,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_0
+      name: protogonist_death (2)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f4e5516ecc3e4b15a5cce771c1a81e9
-      internalID: 414666256
+      spriteID: 2614e369981724842b6ef9eddb618182
+      internalID: -1993452900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_1
+      name: protogonist_death (2)_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d19ea455605c40d89ec2f4b8a226ff1
-      internalID: -299333051
+      spriteID: c74db8577eb7ba848b823efd08596597
+      internalID: -355091541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_2
+      name: protogonist_death (2)_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 128
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f6ed10176cf545099bd5a2538cc0ab3
-      internalID: 2062072482
+      spriteID: 651fcc45a4d6e8a4a8adfb53664f1a7e
+      internalID: 1538269264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 819d72f89344b4244980d811897b9151
-      internalID: 627412573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_4
+      name: protogonist_death (2)_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12959507d50494289bc477ae771d78ae
-      internalID: 2088784770
+      spriteID: 96eaa87bd5f9340498253a68ff466450
+      internalID: 1391103378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_5
+      name: protogonist_death (2)_4
       rect:
         serializedVersion: 2
-        x: 240
+        x: 256
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4632d3decb63f4ccf9160a84a3c0b264
-      internalID: -1880083311
+      spriteID: a77dbc72760bdb144a4f98b5399c8406
+      internalID: 1808429538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy1-obnimashki-Sheet_6
+      name: protogonist_death (2)_5
       rect:
         serializedVersion: 2
-        x: 288
+        x: 320
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.355, y: 0.5}
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a3fcf52aca0541bdb5e91fa64176a84
-      internalID: 471194540
+      spriteID: d187fa6698ca3684abbf06c3f41955e6
+      internalID: -1696082739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_death (2)_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f53840618b9c04089fa05ea7458402
+      internalID: -1637337185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_death (2)_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98f954fa35d396438c56c72c2c04371
+      internalID: -1183481422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protogonist_death (2)_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8368c395cc8e14894689260b9b1bc3
+      internalID: 1936417486
       vertices: []
       indices: 
       edges: []
@@ -267,13 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemy1-obnimashki-Sheet_0: 414666256
-      enemy1-obnimashki-Sheet_1: -299333051
-      enemy1-obnimashki-Sheet_2: 2062072482
-      enemy1-obnimashki-Sheet_3: 627412573
-      enemy1-obnimashki-Sheet_4: 2088784770
-      enemy1-obnimashki-Sheet_5: -1880083311
-      enemy1-obnimashki-Sheet_6: 471194540
+      protogonist_death (2)_0: -1993452900
+      protogonist_death (2)_1: -355091541
+      protogonist_death (2)_2: 1538269264
+      protogonist_death (2)_3: 1391103378
+      protogonist_death (2)_4: 1808429538
+      protogonist_death (2)_5: -1696082739
+      protogonist_death (2)_6: -1637337185
+      protogonist_death (2)_7: -1183481422
+      protogonist_death (2)_8: 1936417486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

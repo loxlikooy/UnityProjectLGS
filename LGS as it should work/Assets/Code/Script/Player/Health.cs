@@ -1,82 +1,94 @@
-﻿using System.Linq.Expressions;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Script
 {
     public class Health : MonoBehaviour, IDamagable
     {
-        public float maxHealth = 100f; 
-        [SerializeField]
-        private float currentHealth;  
+        [SerializeField] private PlayerStatsSO playerStatsSO;
 
-        
+        private float _maxHealth;
+        private float _currentHealth;  
+
         public delegate void HealthChangedDelegate(float currentHealth);
         public event HealthChangedDelegate OnHealthChanged;
 
         private void Start()
         {
-            
-            currentHealth = maxHealth;
-            LoadHealth();
-            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
-            
+            // Загружаем постоянные и временные параметры
+            LoadPermanentStats();
+            LoadTemporaryStats();
+            PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
         }
 
         public void TakeDamage(float damage)
         {
-            currentHealth -= damage;
-            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
-            OnHealthChanged?.Invoke(currentHealth);
-            if (currentHealth <= 0)
+            // Применяем урон и обновляем HUD
+            _currentHealth -= damage;
+            PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
+            OnHealthChanged?.Invoke(_currentHealth);
+
+            // Проверяем, умер ли игрок
+            if (_currentHealth <= 0)
             {
                 Die();
             }
         }
-        
+
         public void IncreaseHealth(float amount)
         {
-            maxHealth += (int)(maxHealth * (amount/100));
-            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+            // Увеличиваем максимальное здоровье
+            _maxHealth += (int)(_maxHealth * (amount / 100));
+            PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
+            SaveTemporaryStats(); // Сохраняем временные изменения
         }
 
         public void HealthRegen(float amount)
         {
-            if (currentHealth >= maxHealth)
+            // Восстанавливаем здоровье, если это возможно
+            if (_currentHealth >= _maxHealth)
             {
                 return;
             }
-            currentHealth += amount;
-            
-            PlayerHUDManager.Instance.SetHealth(currentHealth, maxHealth);
+            _currentHealth += amount;
+            PlayerHUDManager.Instance.SetHealth(_currentHealth, _maxHealth);
+            SaveTemporaryStats(); // Сохраняем временные изменения
         }
 
         protected virtual void Die()
         {
-            Destroy(gameObject);
+            // Уничтожаем игровые объекты и очищаем временные данные
             Destroy(GameObject.FindGameObjectWithTag("MusicBox"));
-            GameManager.Instance.ShowRestartScreen();
             PlayerPrefs.DeleteAll();
+            GameManager.Instance.ShowRestartScreen();
+            Destroy(gameObject);
         }
-        
-        public void SaveHealth()
+
+        public void SaveTemporaryStats()
         {
-            PlayerPrefs.SetFloat("MaxHealth", maxHealth);
-            PlayerPrefs.SetFloat("CurrentHealth", currentHealth);
+            // Сохраняем временные параметры здоровья
+            PlayerPrefs.SetFloat("TemporaryMaxHealth", _maxHealth);
+            PlayerPrefs.SetFloat("TemporaryCurrentHealth", _currentHealth);
             PlayerPrefs.Save();
         }
 
-        public void LoadHealth()
+        private void LoadPermanentStats()
         {
-            if (PlayerPrefs.HasKey("MaxHealth"))
-            {
-                maxHealth = PlayerPrefs.GetFloat("MaxHealth");
-            }
-            if (PlayerPrefs.HasKey("CurrentHealth"))
-            {
-                currentHealth = PlayerPrefs.GetFloat("CurrentHealth");
-            }
+            // Загружаем постоянные параметры здоровья из ScriptableObject
+            _maxHealth = playerStatsSO.maxHealth;
+            _currentHealth = playerStatsSO.currentHealth;
         }
 
+        private void LoadTemporaryStats()
+        {
+            // Загружаем временные параметры здоровья из PlayerPrefs
+            if (PlayerPrefs.HasKey("TemporaryMaxHealth"))
+            {
+                _maxHealth = PlayerPrefs.GetFloat("TemporaryMaxHealth");
+            }
+            if (PlayerPrefs.HasKey("TemporaryCurrentHealth"))
+            {
+                _currentHealth = PlayerPrefs.GetFloat("TemporaryCurrentHealth");
+            }
+        }
     }
 }

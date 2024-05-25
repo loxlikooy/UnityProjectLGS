@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject HUD;
     private bool _isUpgradeScreenShown = false;
 
+    public GameObject NPCUpgradeScreen;
+
     [SerializeField] private UpgradeData[] allUpgrades; // Array with all available upgrades
     [SerializeField] private Button[] choiceButtons; // Array of buttons for choosing upgrades
     public GameObject abilityChoiceScreen; // Screen for choosing upgrades
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    void ApplyUpgrade(UpgradeData upgrade)
+    private void ApplyUpgrade(UpgradeData upgrade)
     {
         switch (upgrade.effect)
         {
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
         HideAbilityChoiceScreen();
     }
 
-    void HideAbilityChoiceScreen()
+    private void HideAbilityChoiceScreen()
     {
         abilityChoiceScreen.SetActive(false);
         HUD.SetActive(true);
@@ -118,14 +120,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public bool IsUpgradeScreenShown() {
+    public bool IsUpgradeScreenShown()
+    {
         return _isUpgradeScreenShown;
     }
 
     public void RestartGame()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    
+
         if (currentSceneIndex > 2)
         {
             SceneManager.LoadScene(6);
@@ -136,8 +139,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void QuitGame() {
+    public void QuitGame()
+    {
         Application.Quit();
+    }
+
+    public void ShowNPCUpgradeMenu()
+    {
+        if (_isUpgradeScreenShown) return;
+        _isUpgradeScreenShown = true;
+        NPCUpgradeScreen.SetActive(true);
+        HUD.SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    public void HideNPCUpgradeMenu()
+    {
+        NPCUpgradeScreen.SetActive(false);
+        HUD.SetActive(true);
+        _isUpgradeScreenShown = false;
+        Time.timeScale = 1;
     }
 }

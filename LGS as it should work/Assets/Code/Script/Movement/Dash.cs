@@ -5,27 +5,44 @@ namespace Code.Script
 {
     public class Dash : MonoBehaviour, IDash
     {
+        [SerializeField] private PlayerStatsSO playerStatsSO;
+
         private Vector3 _dashEndPosition;
         private Vector3 _dashStartPosition;
         private float _dashTimeCounter;
-        [SerializeField]
-        private float _dashDuration = 0.2f; // Duration of the dash in seconds
-        [SerializeField]
-        private float _dashCooldown = 1.2f;
+
+        [SerializeField] private float _dashDuration = 0.2f;
         private float _timeSinceLastDash = Mathf.Infinity;
 
-        [SerializeField]
-        private LayerMask layersToCheck;
+        [SerializeField] private LayerMask layersToCheck;
 
         private ComponentGetter _componentGetter;
-        private float _baseDashDistance = 0.8f;
         private float _currentDashDistance;
+        private float _dashCooldown;
 
         private void Awake()
         {
             _componentGetter = GetComponent<ComponentGetter>();
-            LoadDashCooldown();
-            _currentDashDistance = _baseDashDistance;
+            LoadPermanentStats();
+            LoadTemporaryStats();
+        }
+
+        private void LoadPermanentStats()
+        {
+            _dashCooldown = playerStatsSO.dashCooldown;
+            _currentDashDistance = playerStatsSO.dashRange;
+        }
+
+        private void LoadTemporaryStats()
+        {
+            if (PlayerPrefs.HasKey("TemporaryDashCooldown"))
+            {
+                _dashCooldown = PlayerPrefs.GetFloat("TemporaryDashCooldown");
+            }
+            if (PlayerPrefs.HasKey("TemporaryDashRange"))
+            {
+                _currentDashDistance = PlayerPrefs.GetFloat("TemporaryDashRange");
+            }
         }
 
         public void HandleDash()
@@ -38,7 +55,6 @@ namespace Code.Script
 
             Vector3 rayStartPoint = transform.position + dashDirection3D * 0.2f; // Optional adjustment
 
-            // Adding layersToCheck to raycast
             RaycastHit2D raycastHit2D = Physics2D.Raycast(rayStartPoint, dashDirection3D, _currentDashDistance, layersToCheck);
 
             if (raycastHit2D.collider != null)
@@ -95,27 +111,20 @@ namespace Code.Script
         public void DecreaseDashCooldown(float amount)
         {
             _dashCooldown -= amount;
+            SaveTemporaryStats(); // Сохраняем временные изменения
         }
 
         public void IncreaseDashRange(float amount)
         {
             _currentDashDistance += amount;
+            SaveTemporaryStats(); // Сохраняем временные изменения
         }
 
-        public void SaveDashStats()
+        public void SaveTemporaryStats()
         {
-            PlayerPrefs.SetFloat("DashCooldown", _dashCooldown);
-            PlayerPrefs.SetFloat("DashRange", _currentDashDistance);
-            
-        }
-
-        private void LoadDashCooldown()
-        {
-            if (PlayerPrefs.HasKey("DashCooldown"))
-            {
-                _dashCooldown = PlayerPrefs.GetFloat("DashCooldown");
-                _currentDashDistance = PlayerPrefs.GetFloat("DashRange");
-            }
+            PlayerPrefs.SetFloat("TemporaryDashCooldown", _dashCooldown);
+            PlayerPrefs.SetFloat("TemporaryDashRange", _currentDashDistance);
+            PlayerPrefs.Save();
         }
     }
 }

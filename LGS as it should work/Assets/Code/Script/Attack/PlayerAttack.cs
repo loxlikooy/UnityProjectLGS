@@ -5,22 +5,21 @@ namespace Code.Script
 {
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField]
-        private float playerDamage = 10f; // Default damage value
-        [SerializeField]
-        private float attackRange = 1f;
-        [SerializeField]
-        private float attackCooldown = 2f; // Длительность кулдауна атаки в секундах
-        [SerializeField]
-        private float attackVampire = 2f;
-        [SerializeField]
-        private float attackBurn = 7f; // Burn damage per second
-        [SerializeField]
-        private float burnDuration = 3f; // Duration of burn effect
+        [SerializeField] private PlayerStatsSO playerStatsSO;
+        
+        // Attack parameters
+        private float _playerDamage;
+        private float _attackRange;
+        private float _attackCooldown;
+        private float _attackVampire;
+        private float _attackBurn;
+        private float _burnDuration;
 
-        private float _attackTimer; // Таймер для отслеживания кулдауна
-        private float _timeSinceLastAttack = Mathf.Infinity; // Время с последней атаки
+        // Cooldown and timers
+        private float _attackTimer;
+        private float _timeSinceLastAttack = Mathf.Infinity;
 
+        // Buffs
         private bool _activeVampiric;
         private bool _activateBurn;
 
@@ -31,32 +30,91 @@ namespace Code.Script
         {
             _componentGetter = GetComponent<ComponentGetter>();
             _enemies.AddRange(FindObjectsOfType<Enemy>());
-            _attackTimer = 0f; // Инициализация таймера кулдауна
-            LoadAttackStats();
+            _attackTimer = 0f;
+
+            LoadPermanentStats();
+            LoadTemporaryStats();
+        }
+
+        private void LoadPermanentStats()
+        {
+            _playerDamage = playerStatsSO.playerDamage;
+            _attackRange = playerStatsSO.attackRange;
+            _attackCooldown = playerStatsSO.attackCooldown;
+            _attackVampire = playerStatsSO.attackVampire;
+            _attackBurn = playerStatsSO.attackBurn;
+            _burnDuration = playerStatsSO.burnDuration;
+            _activeVampiric = playerStatsSO.activeVampiric;
+            _activateBurn = playerStatsSO.activateBurn;
+        }
+
+        private void LoadTemporaryStats()
+        {
+            if (PlayerPrefs.HasKey("TemporaryPlayerDamage"))
+            {
+                _playerDamage = PlayerPrefs.GetFloat("TemporaryPlayerDamage");
+            }
+            if (PlayerPrefs.HasKey("TemporaryAttackCooldown"))
+            {
+                _attackCooldown = PlayerPrefs.GetFloat("TemporaryAttackCooldown");
+            }
+            if (PlayerPrefs.HasKey("TemporaryAttackVampire"))
+            {
+                _attackVampire = PlayerPrefs.GetFloat("TemporaryAttackVampire");
+            }
+            if (PlayerPrefs.HasKey("TemporaryAttackBurn"))
+            {
+                _attackBurn = PlayerPrefs.GetFloat("TemporaryAttackBurn");
+            }
+            if (PlayerPrefs.HasKey("TemporaryVampiric"))
+            {
+                _activeVampiric = PlayerPrefs.GetInt("TemporaryVampiric") == 1;
+            }
+            if (PlayerPrefs.HasKey("TemporaryBurn"))
+            {
+                _activateBurn = PlayerPrefs.GetInt("TemporaryBurn") == 1;
+            }
         }
 
         private void Update()
         {
             if (_componentGetter.PlayerAnimator.IsAttacking()) return;
 
-            // Обновление таймера кулдауна
+            UpdateAttackTimer();
+            UpdateLastAttackTime();
+
+            if (_componentGetter.PlayerInputHandler.OnAttack() && _attackTimer <= 0)
+            {
+                PerformAttack();
+            }
+
+            UpdateHUDCooldown();
+        }
+
+        private void UpdateAttackTimer()
+        {
             if (_attackTimer > 0)
             {
                 _attackTimer -= Time.deltaTime;
             }
+        }
 
-            // Обновление времени с последней атаки
+        private void UpdateLastAttackTime()
+        {
             _timeSinceLastAttack += Time.deltaTime;
+        }
 
-            if (_componentGetter.PlayerInputHandler.OnAttack() && _attackTimer <= 0)
-            {
-                CheckAndExecuteAttack();
-                _componentGetter.PlayerAnimator.SetAttackAnimation();
-                _attackTimer = attackCooldown; // Сброс таймера кулдауна
-                _timeSinceLastAttack = 0f; // Сброс времени с последней атаки
-            }
+        private void PerformAttack()
+        {
+            CheckAndExecuteAttack();
+            _componentGetter.PlayerAnimator.SetAttackAnimation();
+            _attackTimer = _attackCooldown;
+            _timeSinceLastAttack = 0f;
+        }
 
-            PlayerHUDManager.Instance.AttackCooldown(attackCooldown, Mathf.Clamp(_timeSinceLastAttack, 0, attackCooldown));
+        private void UpdateHUDCooldown()
+        {
+            PlayerHUDManager.Instance.AttackCooldown(_attackCooldown, Mathf.Clamp(_timeSinceLastAttack, 0, _attackCooldown));
         }
 
         private void CheckAndExecuteAttack()
@@ -65,10 +123,7 @@ namespace Code.Script
             _enemies.RemoveAll(enemy => enemy == null);
             foreach (Enemy enemy in _enemies)
             {
-                Vector2 toEnemy = enemy.transform.position - transform.position;
-                float distanceToEnemy = toEnemy.magnitude;
-                float angle = Vector2.Angle(lastMoveDirection, toEnemy / distanceToEnemy);
-                if (distanceToEnemy <= attackRange && angle <= 45.0f)
+                if (IsEnemyInRangeAndAngle(enemy, lastMoveDirection))
                 {
                     ExecuteAttack(enemy);
                     HealByAttack();
@@ -77,82 +132,78 @@ namespace Code.Script
             }
         }
 
+        private bool IsEnemyInRangeAndAngle(Enemy enemy, Vector2 lastMoveDirection)
+        {
+            Vector2 toEnemy = enemy.transform.position - transform.position;
+            float distanceToEnemy = toEnemy.magnitude;
+            float angle = Vector2.Angle(lastMoveDirection, toEnemy / distanceToEnemy);
+            return distanceToEnemy <= _attackRange && angle <= 45.0f;
+        }
+
         private void HealByAttack()
         {
-            if (!_activeVampiric)
+            if (_activeVampiric)
             {
-                return;
+                _componentGetter.HealthComponent.HealthRegen(_attackVampire);
             }
-            _componentGetter.HealthComponent.HealthRegen(attackVampire);
         }
 
         private void BurnByAttack(Enemy enemy)
         {
-            if (!_activateBurn)
+            if (_activateBurn)
             {
-                return;
+                enemy.ApplyDamageOverTime(_attackBurn, _burnDuration, 0.9f);
             }
-            enemy.ApplyDamageOverTime(attackBurn, burnDuration, 0.9f); // Apply burn effect
         }
 
         public void ExecuteAttack(IDamagable target)
         {
-            target.TakeDamage(playerDamage);
+            target.TakeDamage(_playerDamage);
         }
 
         public void IncreaseDamage(float amount)
         {
-            playerDamage += playerDamage * (amount/100);
+            _playerDamage += _playerDamage * (amount / 100);
+            SaveTemporaryStats();
         }
 
         public void DecreaseAttackCooldown(float amount)
         {
-            attackCooldown -= attackCooldown * 0.2f;
+            _attackCooldown -= _attackCooldown * (amount / 100);
+            SaveTemporaryStats();
         }
 
-        public void SaveAttackStats()
+        public void SaveTemporaryStats()
         {
-            PlayerPrefs.SetFloat("PlayerDamage", playerDamage);
-            PlayerPrefs.SetFloat("AttackCooldown", attackCooldown);
-            PlayerPrefs.SetInt("Vampiric", _activeVampiric ? 1 : 0);
-            PlayerPrefs.SetInt("Burn", _activateBurn ? 1 : 0);
+            PlayerPrefs.SetFloat("TemporaryPlayerDamage", _playerDamage);
+            PlayerPrefs.SetFloat("TemporaryAttackCooldown", _attackCooldown);
+            PlayerPrefs.SetFloat("TemporaryAttackVampire", _attackVampire);
+            PlayerPrefs.SetFloat("TemporaryAttackBurn", _attackBurn);
+            PlayerPrefs.SetInt("TemporaryVampiric", _activeVampiric ? 1 : 0);
+            PlayerPrefs.SetInt("TemporaryBurn", _activateBurn ? 1 : 0);
             PlayerPrefs.Save();
         }
 
         public void TurnOnBurn()
         {
+            if (_activateBurn)
+            {
+                _attackBurn += 1;
+            }
             _activateBurn = true;
+            SaveTemporaryStats();
         }
 
         public void TurnOnVampiric()
         {
+            if (_activeVampiric)
+            {
+                _attackVampire += 2;
+            }
             _activeVampiric = true;
+            SaveTemporaryStats();
         }
 
-        private void LoadAttackStats()
-        {
-            if (PlayerPrefs.HasKey("PlayerDamage"))
-            {
-                playerDamage = PlayerPrefs.GetFloat("PlayerDamage");
-            }
-
-            if (PlayerPrefs.HasKey("Vampiric"))
-            {
-                _activeVampiric = PlayerPrefs.GetInt("Vampiric") == 1;
-            }
-
-            if (PlayerPrefs.HasKey("AttackCooldown"))
-            {
-                attackCooldown = PlayerPrefs.GetFloat("AttackCooldown");
-            }
-
-            if (PlayerPrefs.HasKey("Burn"))
-            {
-                _activateBurn = PlayerPrefs.GetInt("Burn") == 1;
-            }
-        }
-
-        // Новый метод для добавления врагов
         public void AddEnemy(Enemy enemy)
         {
             if (!_enemies.Contains(enemy))

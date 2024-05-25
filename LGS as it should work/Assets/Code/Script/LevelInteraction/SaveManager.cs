@@ -6,9 +6,9 @@ namespace Code.Script
     {
         public static void SavePlayerStats(ComponentGetter componentGetter)
         {
-            componentGetter.PlayerAttackComponent.SaveAttackStats();
-            componentGetter.PlayerDash.SaveDashStats();
-            componentGetter.HealthComponent.SaveHealth();
+            componentGetter.PlayerAttackComponent.SaveTemporaryStats();
+            componentGetter.PlayerDash.SaveTemporaryStats();
+            componentGetter.HealthComponent.SaveTemporaryStats();
         }
 
         public static void SaveQuestStates()

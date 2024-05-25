@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fff596278e47bd802137716763f1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
+  playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
 --- !u!114 &2819936543741047268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e77a409a3ef45d7a494f84ece484214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
   _dashDuration: 0.2
-  _dashCooldown: 8.8
   layersToCheck:
     serializedVersion: 2
     m_Bits: 8
@@ -286,12 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e21c765a094f3081ded3545a529fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 10
-  attackRange: 1
-  attackCooldown: 1.2
-  attackVampire: 2
-  attackBurn: 3
-  burnDuration: 3
+  playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
 --- !u!114 &7858368217357626877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,8 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae9f23080b848fcaec5b977fff54685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 50
+  playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
 --- !u!114 &8184014539870831574
 MonoBehaviour:
   m_ObjectHideFlags: 0

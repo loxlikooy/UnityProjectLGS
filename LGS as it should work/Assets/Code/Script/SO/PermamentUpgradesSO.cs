@@ -5,6 +5,7 @@ public class PermamentUpgradeSO : ScriptableObject
 {
     public int exp;
     public int timesUpgradedStrength;
+    public int timesUpgradedHealth;
 
     public void LevelGained()
     {

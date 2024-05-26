@@ -1934,6 +1934,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -260892282379282102, guid: 2bf100f00429a498c937025449e30acd, type: 3}
+      propertyPath: interactionText
+      value: 
+      objectReference: {fileID: 256811225}
     - target: {fileID: 1724384643990535211, guid: 2bf100f00429a498c937025449e30acd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.16
@@ -5171,6 +5175,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 1782666883}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &256811225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2546176919153224989, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1512338095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &257098789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27960,6 +27975,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenBook
       objectReference: {fileID: 0}
+    - target: {fileID: 1757716919318042857, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2473962329609542916, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -27967,6 +27986,14 @@ PrefabInstance:
     - target: {fileID: 2473962329609542916, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546176919153224989, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546176919153224989, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_fontSize
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 5522483886737988359, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -45613,6 +45640,7 @@ GameObject:
   - component: {fileID: 1636399573}
   - component: {fileID: 1636399572}
   - component: {fileID: 1636399571}
+  - component: {fileID: 1636399576}
   m_Layer: 0
   m_Name: NPCWoman
   m_TagString: Untagged
@@ -45769,6 +45797,20 @@ Transform:
   - {fileID: 1727757304}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1636399576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636399570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc2b689be834c17bd7dd145f0dbd67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: E
+  interactionTextObjectName: Interact
 --- !u!4 &1644151013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}

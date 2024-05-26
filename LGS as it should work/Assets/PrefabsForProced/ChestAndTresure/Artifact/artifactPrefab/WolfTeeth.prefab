@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9105716577409624453}
   - component: {fileID: 5300990901717690268}
   - component: {fileID: 2928028539997263905}
+  - component: {fileID: -3510223172791282897}
   m_Layer: 0
   m_Name: WolfTeeth
   m_TagString: Untagged
@@ -152,3 +153,17 @@ MonoBehaviour:
   floatFrequency: 0.1
   rotationSpeed: 15
   headBuff: 0
+--- !u!114 &-3510223172791282897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105583198598209844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc2b689be834c17bd7dd145f0dbd67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: E
+  interactionText: {fileID: 0}

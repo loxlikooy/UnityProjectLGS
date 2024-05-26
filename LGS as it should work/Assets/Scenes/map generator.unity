@@ -886,6 +886,26 @@ PrefabInstance:
       propertyPath: nonCollidableTilemap
       value: 
       objectReference: {fileID: 80723068}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: enemyConfigurations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: enemyConfigurations.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ed42c9ce183345044b6e340c97c98be3, type: 2}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: enemyConfigurations.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b37e09ab07e941b899cfa9f8585dea1, type: 2}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: enemyConfigurations.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: enemyConfigurations.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 16c5231358a694712a19bfeb389c9ec5, type: 2}
     - target: {fileID: 9013033543589867999, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 121.77683

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShekotalkaCave
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
-  minCount: 10
-  maxCount: 10
+  minCount: 2
+  maxCount: 3

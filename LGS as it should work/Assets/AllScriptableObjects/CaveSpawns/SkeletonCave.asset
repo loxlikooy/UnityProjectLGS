@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cb593878c14c578ebedf1724ff2d21, type: 3}
   m_Name: SkeletonCave
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 0}
-  minCount: 0
-  maxCount: 0
+  enemyPrefab: {fileID: 8161534024174695420, guid: eefac298d67aa834f90f9e57fd0e0fc2, type: 3}
+  minCount: 15
+  maxCount: 20

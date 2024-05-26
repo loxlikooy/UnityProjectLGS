@@ -266,7 +266,7 @@ public class MapGenerator : MonoBehaviour
 
                 corridorPositions.RemoveAt(index);
 
-                if (random.Next(0, 100) < 20)
+                if (random.Next(0, 100) < 100)
                 {
                     Vector3 enemyPos = new Vector3(pos.x * CellSize, pos.y * CellSize, 0);
                     Instantiate(config.enemyPrefab, enemyPos, Quaternion.identity, transform);

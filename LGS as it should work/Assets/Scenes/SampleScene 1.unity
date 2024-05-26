@@ -5897,6 +5897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScreen: {fileID: 226742998}
   HUD: {fileID: 1831899806}
+  NPCUpgradeScreen: {fileID: 0}
   allUpgrades:
   - {fileID: 11400000, guid: 094d1499f6a23415da2916080a17c80f, type: 2}
   - {fileID: 11400000, guid: 913a4a6d1e8bb4a9084dd27287729aa2, type: 2}
@@ -14726,8 +14727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b72f818a124f6ea4a4b71367da660c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseMusicClip: {fileID: 8300000, guid: d933f87347f704344b8a93ff056c8c11, type: 3}
-  patrolMusicClip: {fileID: 8300000, guid: 165d6190f47cb59499e78886ec5c90e5, type: 3}
+  chaseMusicClip: {fileID: 8300000, guid: 4ba2b1afc947f468e86a65a16e5a5a6e, type: 3}
+  patrolMusicClip: {fileID: 8300000, guid: 2c9346a10032346a3a0bfbf4ac3383e1, type: 3}
 --- !u!1001 &760326589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28584,7 +28585,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 165d6190f47cb59499e78886ec5c90e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2c9346a10032346a3a0bfbf4ac3383e1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.314
   m_Pitch: 1
@@ -28720,7 +28721,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d933f87347f704344b8a93ff056c8c11, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4ba2b1afc947f468e86a65a16e5a5a6e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

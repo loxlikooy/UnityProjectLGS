@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3c28ebdcfe42108b4c3f5fb227c71d, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  dialogEntries:
+  - dialogLine: Welcome to the In-Between, my child.
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: I have been watching you for a long time.
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: You have not yet fulfilled your destiny, you have not saved the village.
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: For your deeds, I can aid your progress, but the victory must be
+      yours alone.
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: ' I found myself here long ago, not knowing when, and I discovered
+      a loophole.'
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: 'There is an exit to the world of the living behind the upper yurt. '
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: ' do not wish to go there myself, but your soul is not yet light
+      enough to ascend to the higher heavens.'
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  - dialogLine: You must defeat the dragon first... Go. after you recieve my blessing.
+    characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
+  TimesDialogueOpened: 0
+  repeatDialog: Do you want my blessing?
+  repeatDialogSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}

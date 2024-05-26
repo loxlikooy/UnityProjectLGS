@@ -6369,7 +6369,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d933f87347f704344b8a93ff056c8c11, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 98df4531105fa4aa49682b60f6b02e02, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6477,7 +6477,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 165d6190f47cb59499e78886ec5c90e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2f31540b8a4d74f84b7aab1c16ea8fb6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.314
   m_Pitch: 1
@@ -17989,8 +17989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b72f818a124f6ea4a4b71367da660c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseMusicClip: {fileID: 8300000, guid: d933f87347f704344b8a93ff056c8c11, type: 3}
-  patrolMusicClip: {fileID: 8300000, guid: 165d6190f47cb59499e78886ec5c90e5, type: 3}
+  chaseMusicClip: {fileID: 8300000, guid: 98df4531105fa4aa49682b60f6b02e02, type: 3}
+  patrolMusicClip: {fileID: 8300000, guid: 2f31540b8a4d74f84b7aab1c16ea8fb6, type: 3}
 --- !u!1001 &1268742016
 PrefabInstance:
   m_ObjectHideFlags: 0

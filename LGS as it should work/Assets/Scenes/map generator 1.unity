@@ -682,6 +682,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1679799003806309866, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
+      propertyPath: chaseMusicClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ba2b1afc947f468e86a65a16e5a5a6e, type: 3}
+    - target: {fileID: 1679799003806309866, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
+      propertyPath: patrolMusicClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0be5c255ee7a94017acd38da71340e20, type: 3}
     - target: {fileID: 3734271030104957343, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.44
@@ -722,6 +730,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4063991231521198132, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0be5c255ee7a94017acd38da71340e20, type: 3}
     - target: {fileID: 9041041415096499586, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
       propertyPath: m_Name
       value: MusicBox

@@ -585,6 +585,10 @@ PrefabInstance:
     - target: {fileID: 1679799003806309866, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
       propertyPath: chaseMusicClip
       value: 
+      objectReference: {fileID: 8300000, guid: 69416124088074b67991be6f0dad5922, type: 3}
+    - target: {fileID: 1679799003806309866, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
+      propertyPath: patrolMusicClip
+      value: 
       objectReference: {fileID: 8300000, guid: 24ea549cf0fa34a429a910a28eadad81, type: 3}
     - target: {fileID: 3734271030104957343, guid: e7603af8d8e468e478986ac0c2c30267, type: 3}
       propertyPath: m_LocalPosition.x

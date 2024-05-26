@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SkeletonCave
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 0}
-  minCount: 0
-  maxCount: 0
+  minCount: 10
+  maxCount: 15

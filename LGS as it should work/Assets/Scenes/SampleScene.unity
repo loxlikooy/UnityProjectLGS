@@ -5952,6 +5952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6975,6 +6979,10 @@ PrefabInstance:
     - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_Name
       value: Wolf (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12478,6 +12486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 888662975366175421, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1013011171853391322, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.37
@@ -12521,6 +12533,10 @@ PrefabInstance:
     - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_Name
       value: Wolf (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18754,6 +18770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19258,6 +19278,10 @@ PrefabInstance:
     - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_Name
       value: Wolf (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41347,6 +41371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43750,6 +43778,10 @@ PrefabInstance:
     - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
       propertyPath: m_Name
       value: Wolf (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46192,6 +46224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47679,6 +47715,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5300609574050182137, guid: eefac298d67aa834f90f9e57fd0e0fc2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807660311447290329, guid: eefac298d67aa834f90f9e57fd0e0fc2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3e078729772d94d40bd551fee57128fd, type: 2}
     - target: {fileID: 8161534024174695420, guid: eefac298d67aa834f90f9e57fd0e0fc2, type: 3}
       propertyPath: m_Name
       value: Skeleton

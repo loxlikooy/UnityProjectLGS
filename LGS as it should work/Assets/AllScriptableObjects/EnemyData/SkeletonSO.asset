@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7b2c3ef0d545f8b381031188f877d5, type: 3}
   m_Name: SkeletonSO
   m_EditorClassIdentifier: 
-  enemyExpValue: 0
-  enemyHealth: 0
-  enemyDamage: 0
-  enemyPatrolSpeed: 0
-  enemyChaseSpeed: 0
-  enemyPatrolRange: 0
-  enemyDetectionRadius: 0
-  enemyAttackRadius: 0
+  enemyExpValue: 7
+  enemyHealth: 40
+  enemyDamage: 10
+  enemyPatrolSpeed: 0.5
+  enemyChaseSpeed: 0.55
+  enemyPatrolRange: 0.7
+  enemyDetectionRadius: 5
+  enemyAttackRadius: 0.15
   enemyAttackCooldown: 0
   enemyBackgroundLayer:
     serializedVersion: 2

@@ -19,32 +19,25 @@ namespace Code.Script
             _componentGetter.Animator.SetTrigger("Attack");
         }
 
-        public void SetMovementAnimation(Vector2 movement)
+        public void SetMovementAnimation(Vector2 movement, Vector2 lastMoveDirection)
         {
-            _componentGetter.Animator.SetFloat("MoveX", movement.x);
+            _componentGetter.Animator.SetFloat("MoveX", movement.x != 0 ? movement.x : movement.y);
 
-            /*// Если персонаж не двигается по горизонтали, установите IsIdle в true
-            if (movement.x == 0)
-            {
-                _componentGetter.Animator.SetBool("IsIdle", true);
-            }
-            else
+            if (movement.x != 0 || movement.y != 0) 
             {
                 _componentGetter.Animator.SetBool("IsIdle", false);
-                _componentGetter.SpriteRenderer.flipX = movement.x < 0;
-            }     */  
-            // Если персонаж не двигается по горизонтали, установите IsIdle в true
-            if (movement.x != 0 || movement.y !=0)
-            {
-                _componentGetter.Animator.SetBool("IsIdle", false);
-                _componentGetter.SpriteRenderer.flipX = movement.x < 0;
-
             }
             else
             {
                 _componentGetter.Animator.SetBool("IsIdle", true);
+            }
+            
+            if (lastMoveDirection.x != 0)
+            {
+                _componentGetter.SpriteRenderer.flipX = lastMoveDirection.x < 0;
             }
         }
+
 
         public bool IsAttacking()
         {

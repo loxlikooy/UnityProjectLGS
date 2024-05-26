@@ -38,7 +38,7 @@ namespace Code.Script
         private void FixedUpdate()
         {
             _movementInput = _componentGetter.PlayerInputHandler.GetMovementVectorNormalized();
-            
+    
             if (_isConfused)
             {
                 _movementInput = ConfuseDirection(_movementInput);
@@ -49,11 +49,12 @@ namespace Code.Script
                     _confusionTime = 0f;
                 }
             }
-            
-            _componentGetter.PlayerAnimator.SetMovementAnimation(_movementInput); 
+    
             HandleMovement();
             AssignLastMoveDirection();
+            _componentGetter.PlayerAnimator.SetMovementAnimation(_movementInput, _lastMoveDirection); 
         }
+
 
         private void HandleMovement()
         {

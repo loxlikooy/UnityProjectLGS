@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6609584399397226054}
   - component: {fileID: 943374559748730006}
+  - component: {fileID: 343801783814897690}
   - component: {fileID: 7239447495096381692}
   - component: {fileID: 7571588499061185833}
   - component: {fileID: 2424761438457795542}
@@ -18,9 +19,8 @@ GameObject:
   - component: {fileID: 7597777190538731393}
   - component: {fileID: 2819936543741047268}
   - component: {fileID: 333153605003840080}
-  - component: {fileID: 7858368217357626877}
   - component: {fileID: 8184014539870831574}
-  - component: {fileID: 343801783814897690}
+  - component: {fileID: 7858368217357626877}
   - component: {fileID: 3664292933740851662}
   - component: {fileID: 5499341106163435715}
   - component: {fileID: 635808593275215577}
@@ -103,6 +103,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &343801783814897690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320852814905868469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efebb685d1a40348a4d3d7bd656032c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7239447495096381692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +299,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
+--- !u!114 &8184014539870831574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320852814905868469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc8ae9ae7b54432a258667b920d65c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7858368217357626877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,30 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatsSO: {fileID: 11400000, guid: e0c14e9865f974d3682debfdb2958ecd, type: 2}
---- !u!114 &8184014539870831574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc8ae9ae7b54432a258667b920d65c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &343801783814897690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320852814905868469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efebb685d1a40348a4d3d7bd656032c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &3664292933740851662
 Animator:
   serializedVersion: 5

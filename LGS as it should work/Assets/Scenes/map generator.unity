@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &591084329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7526407390305297500, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1619561797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &713815993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2825130121688471616, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
@@ -845,6 +850,10 @@ PrefabInstance:
       propertyPath: restartScreen
       value: 
       objectReference: {fileID: 463482269}
+    - target: {fileID: 7906687926305737409, guid: 698dc5022cb0e0c46a9d7a2819eb64ea, type: 3}
+      propertyPath: NPCUpgradeScreen
+      value: 
+      objectReference: {fileID: 591084329}
     - target: {fileID: 7906687926305737409, guid: 698dc5022cb0e0c46a9d7a2819eb64ea, type: 3}
       propertyPath: abilityChoiceScreen
       value: 

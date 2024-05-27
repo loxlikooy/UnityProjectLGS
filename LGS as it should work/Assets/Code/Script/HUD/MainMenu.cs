@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     public void PlayGame()
     {
         // индекс сцены первого уровня
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

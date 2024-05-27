@@ -5,16 +5,17 @@ using UnityEngine;
 public class Artifacts : MonoBehaviour
 {
     public static event Action OnArtifactWolfPickedUp;
-    public static event Action OnArtifactQumyzPickedUp; // New event for burning effect
-
+    public static event Action OnArtifactQumyzPickedUp;
+    
     private ComponentGetter componentGetter;
     [SerializeField] private string nameOfQuest;
     [SerializeField] private bool turnOnVampiricOnPickup;
     [SerializeField] private bool wolfsShouldNotAttack;
     [SerializeField] private bool additionalDashRange;
     [SerializeField] private bool qumyzHpRegen;
-    [SerializeField] private bool applyBurningEffect; // New flag for burning effect
-    [SerializeField] private float floatFrequency = 1f; // Частота колебаний
+    [SerializeField] private bool applyBurningEffect;
+    [SerializeField] private bool isLetterArtifact; // New flag for letter artifact
+    [SerializeField] private float floatFrequency = 1f;
     [SerializeField] private float rotationSpeed = 30f;
     [SerializeField] private bool headBuff;
 
@@ -32,10 +33,8 @@ public class Artifacts : MonoBehaviour
         float newY = startPos.y + Mathf.Abs(Mathf.Sin(Time.time * floatFrequency));
         transform.position = new Vector3(startPos.x, newY, startPos.z);
 
-        // Поворот объекта
         transform.Rotate(0, rotationDirection * rotationSpeed * Time.deltaTime, 0);
 
-        // Меняем направление вращения
         if (transform.rotation.eulerAngles.y >= 45f && rotationDirection > 0)
         {
             rotationDirection = -1f;
@@ -81,14 +80,20 @@ public class Artifacts : MonoBehaviour
 
             if (applyBurningEffect)
             {
-                componentGetter.PlayerAttackComponent.TurnOnBurn(); // Trigger the burning effect event
+                componentGetter.PlayerAttackComponent.TurnOnBurn();
             }
 
             if (headBuff)
             {
-              componentGetter.PlayerAttackComponent.IncreaseDamage(40);  
-              componentGetter.HealthComponent.IncreaseHealth(20f);
+                componentGetter.PlayerAttackComponent.IncreaseDamage(40);  
+                componentGetter.HealthComponent.IncreaseHealth(20f);
             }
+
+            if (isLetterArtifact)
+            {
+                PlayerPrefs.SetInt("HasLetterArtifact", 1); // Save the artifact state
+            }
+            
             Destroy(gameObject); 
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Code.Script.Dyau
@@ -8,11 +9,18 @@ namespace Code.Script.Dyau
         [SerializeField] private float shockwaveDamage;
         [SerializeField] private float shockwaveRadius;
         [SerializeField] private float shockWaveCooldown = 8f;
+        [SerializeField] private Vector2 runAwayPosition = new Vector2(500, 500); // Target position for running away
+        [SerializeField] private float runAwaySpeed = 5f; // Speed at which the enemy will run away
 
         private float _shockwaveHandelCooldown;
+        private bool hasRunAway = false; // Flag to ensure the enemy runs away only once
 
         protected override void Update()
         {
+            if (hasRunAway)
+            {
+                return;
+            }
             base.Update();
             _shockwaveHandelCooldown += Time.deltaTime;
         }
@@ -23,7 +31,6 @@ namespace Code.Script.Dyau
             if (_shockwaveHandelCooldown <= shockWaveCooldown) return;
                 _animator.SetBool("ShockWaving", true);
                 _shockwaveHandelCooldown = 0f;
-            
         }
 
         private void CreateShockwave()
@@ -40,6 +47,33 @@ namespace Code.Script.Dyau
         private void IsNotShockWaving()
         {
             _animator.SetBool("ShockWaving", false);
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player") || hasRunAway)
+                return;
+
+            if (Input.GetKey(KeyCode.E) && PlayerPrefs.GetInt("HasLetterArtifact", 0) == 1)
+            {
+                StartCoroutine(RunAway());
+            }
+        }
+
+        private IEnumerator RunAway()
+        {
+            hasRunAway = true;
+            _animator.SetTrigger("Patrolling");
+            PlayerPrefs.SetInt("HasLetterArtifact", 0);
+
+            // Smoothly move the enemy to the runAwayPosition
+            while ((Vector2)transform.position != runAwayPosition)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, runAwayPosition, runAwaySpeed * Time.deltaTime);
+                yield return null;
+            }
+            
+            Debug.Log("Enemy has run away.");
         }
     }
 }

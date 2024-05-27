@@ -90,6 +90,7 @@ MonoBehaviour:
     more resilient and dangerous in combat. This artifact will be a faithful companion
     in your adventures, providing not only a stylish appearance but also a significant
     advantage in battle.'
+  - 'Section 17: Useless'
   titles:
   - Location Kuldyrgysh
   - Description of Kuldyrgysh
@@ -107,6 +108,7 @@ MonoBehaviour:
   - 'Properties and Effects:'
   - Jewelry
   - 'Properties and Effects:'
+  - Letter
   sprites:
   - {fileID: -1488948177, guid: edad2c53f7ac24df994bd6cfd7810041, type: 3}
   - {fileID: 627412573, guid: bf93ca4302d194a9e903523fe10b923a, type: 3}
@@ -124,3 +126,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 57575b00a3beb7e4fa8b8267dd61ee1f, type: 3}
   - {fileID: 21300000, guid: 9de112f68eee3df4ca12aa3cafb1529b, type: 3}
   - {fileID: 21300000, guid: 9de112f68eee3df4ca12aa3cafb1529b, type: 3}
+  - {fileID: 21300000, guid: 9c6f84a565997524aa4610d3d260ddc9, type: 3}

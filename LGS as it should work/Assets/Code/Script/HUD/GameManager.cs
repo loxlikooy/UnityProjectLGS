@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
         if (currentSceneIndex > 2)
         {
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(7);
         }
         else
         {

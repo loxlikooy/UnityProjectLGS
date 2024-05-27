@@ -37,7 +37,7 @@ namespace Code.Script.ProceduralGenerator
             }
             else
             {
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(0);
             }
         }
 

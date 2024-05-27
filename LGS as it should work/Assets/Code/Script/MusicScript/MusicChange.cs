@@ -86,5 +86,21 @@ namespace Code.Script.Music
                 _musicBox.time = 0; // Start from the beginning if the position was not saved
             }
         }
+        
+        public void PauseMusic()
+        {
+            if (_musicBox.isPlaying)
+            {
+                _musicBox.Pause();
+            }
+        }
+
+        public void ResumeMusic()
+        {
+            if (!_musicBox.isPlaying)
+            {
+                _musicBox.UnPause();
+            }
+        }
     }
 }

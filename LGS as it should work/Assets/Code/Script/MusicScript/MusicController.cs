@@ -35,4 +35,20 @@ public class MusicController : MonoBehaviour
     {
         _musicChange.SetMusicClip(patrolMusicClip);
     }
+    
+    public void PauseMusic()
+    {
+        if (_musicChange != null)
+        {
+            _musicChange.PauseMusic();
+        }
+    }
+
+    public void ResumeMusic()
+    {
+        if (_musicChange != null)
+        {
+            _musicChange.ResumeMusic();
+        }
+    }
 }

@@ -9,11 +9,11 @@ namespace Code.Script.Dyau
         [SerializeField] private float shockwaveDamage;
         [SerializeField] private float shockwaveRadius;
         [SerializeField] private float shockWaveCooldown = 8f;
-        [SerializeField] private Vector2 runAwayPosition = new Vector2(500, 500); // Target position for running away
-        [SerializeField] private float runAwaySpeed = 5f; // Speed at which the enemy will run away
+        [SerializeField] private Vector2 runAwayPosition = new (500, 500);
+        [SerializeField] private float runAwaySpeed = 5f; 
 
         private float _shockwaveHandelCooldown;
-        private bool hasRunAway = false; // Flag to ensure the enemy runs away only once
+        private bool hasRunAway; 
 
         protected override void Update()
         {
@@ -65,15 +65,12 @@ namespace Code.Script.Dyau
             hasRunAway = true;
             _animator.SetTrigger("Patrolling");
             PlayerPrefs.SetInt("HasLetterArtifact", 0);
-
-            // Smoothly move the enemy to the runAwayPosition
+            
             while ((Vector2)transform.position != runAwayPosition)
             {
                 transform.position = Vector2.MoveTowards(transform.position, runAwayPosition, runAwaySpeed * Time.deltaTime);
                 yield return null;
             }
-            
-            Debug.Log("Enemy has run away.");
         }
     }
 }

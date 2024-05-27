@@ -3706,6 +3706,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 123997366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &297624936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8657671755592574346, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1103941110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &299214694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7348,11 +7353,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+--- !u!114 &542507845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 447805390077456401, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1103941110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &544372552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
@@ -8275,6 +8295,10 @@ PrefabInstance:
     - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_Name
       value: Shekotalka Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13701,6 +13725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13889,6 +13917,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      propertyPath: runAwaySpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      propertyPath: runAwayPosition.x
+      value: -500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      propertyPath: runAwayPosition.y
+      value: -500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573148940140974101, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
       propertyPath: shockWaveCooldown
       value: 7
       objectReference: {fileID: 0}
@@ -13939,7 +13979,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1492414480}
+    - targetCorrespondingSourceObject: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1492414479}
   m_SourcePrefab: {fileID: 100100000, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
 --- !u!1001 &942373558
 PrefabInstance:
@@ -15024,6 +15070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15854,6 +15904,18 @@ PrefabInstance:
     - target: {fileID: 2473962329609542916, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseBook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626685592440461005, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1492414480}
+    - target: {fileID: 2626685592440461005, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ContinueDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 2626685592440461005, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NPCDialogManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2992906279587868282, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -18834,6 +18896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19294,6 +19360,10 @@ PrefabInstance:
     - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_Name
       value: Shekotalka Prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133060212721523930, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4308872628726205902, guid: f4ef40019de6944cca5412b1c167f78b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21445,6 +21515,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 276501185}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492414478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8064362446555478287, guid: 0c77a6c20ea95497fa3e495c698bce14, type: 3}
+  m_PrefabInstance: {fileID: 941698687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1492414479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492414478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc2b689be834c17bd7dd145f0dbd67d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: E
+  interactionTextObjectName: Interact
+--- !u!114 &1492414480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492414478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfffeeb1a2f44aaafd14f1059fe326f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogText: {fileID: 1914579416}
+  characterImage: {fileID: 542507845}
+  dialogUI: {fileID: 297624936}
+  dialogSO: {fileID: 11400000, guid: 49772c9a11ff849108a67a18a8d313cc, type: 2}
+  typingSpeed: 0.05
 --- !u!1001 &1492693518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39744,6 +39850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7280078131022189825, guid: aab0d5ff49fd018428190b3d02f9f29e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39754,6 +39864,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1305275482980743997, guid: f4ac58932dd6cd041a1cf1764206a108, type: 3}
   m_PrefabInstance: {fileID: 980072220}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1914579416 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1634751610731184225, guid: 2e242ed1949c3e74b8797745eb386760, type: 3}
+  m_PrefabInstance: {fileID: 1103941110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1916502725
 PrefabInstance:
   m_ObjectHideFlags: 0

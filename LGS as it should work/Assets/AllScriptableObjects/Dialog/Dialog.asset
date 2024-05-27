@@ -32,6 +32,6 @@ MonoBehaviour:
     characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
   - dialogLine: You must defeat the dragon first... Go. after you recieve my blessing.
     characterSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}
-  TimesDialogueOpened: 1
+  TimesDialogueOpened: 0
   repeatDialog: Do you want my blessing?
   repeatDialogSprite: {fileID: 21300000, guid: 46726fbd915804c9dbc1bd135650a9ad, type: 3}

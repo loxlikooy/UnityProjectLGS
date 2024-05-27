@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3c28ebdcfe42108b4c3f5fb227c71d, type: 3}
   m_Name: DyauDialog
   m_EditorClassIdentifier: 
-  dialogEntries: []
+  dialogEntries:
+  - dialogLine: Your brother got bite by dragon
+    characterSprite: {fileID: 21300000, guid: 662a6f56bef230749a330f68e6862c26, type: 3}
+  - dialogLine: Dragon in this cave, he hasnt quit for a long time
+    characterSprite: {fileID: 579405837, guid: 17301f18a79cc4ec0b41232305ab2688, type: 3}
+  - dialogLine: but here is the letter from him
+    characterSprite: {fileID: 21300000, guid: 662a6f56bef230749a330f68e6862c26, type: 3}
+  - dialogLine: brother... i will save you
+    characterSprite: {fileID: 579405837, guid: 17301f18a79cc4ec0b41232305ab2688, type: 3}
   TimesDialogueOpened: 0
-  repeatDialog: Do you want my blessing?
-  repeatDialogSprite: {fileID: 0}
+  repeatDialog: You found this easteregg, thanks for playing
+  repeatDialogSprite: {fileID: 530912763, guid: ea733a642add84bca9f862f994d69b35, type: 3}

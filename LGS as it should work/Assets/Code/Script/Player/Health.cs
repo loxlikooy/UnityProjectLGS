@@ -9,13 +9,15 @@ namespace Code.Script
         private ComponentGetter _componentGetter;
 
         private float _maxHealth;
-        private float _currentHealth;  
+        private float _currentHealth;
+        private SpriteRenderer _spriteRenderer;
 
         public delegate void HealthChangedDelegate(float currentHealth);
         public event HealthChangedDelegate OnHealthChanged;
         
         private void Start()
         {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             // Загружаем постоянные и временные параметры
             LoadPermanentStats();
             LoadTemporaryStats();
@@ -67,7 +69,8 @@ namespace Code.Script
             Destroy(GameObject.FindGameObjectWithTag("MusicBox"));
             PlayerPrefs.DeleteAll();
             GameManager.Instance.ShowRestartScreen();
-            Destroy(gameObject);
+            _spriteRenderer.enabled = false;
+            _componentGetter.PlayerInputHandler.enabled = false;
         }
 
         public void SaveTemporaryStats()

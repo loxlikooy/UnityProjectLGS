@@ -23,13 +23,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Time.timeScale = 1f;
         TogglePauseMenu();
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1f; // Ensure game time is running when changing scenes
-        SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with the name of your main menu scene
+        SceneManager.LoadScene(0); // Replace "MainMenu" with the name of your main menu scene
     }
 
     public void QuitGame()

@@ -152,6 +152,7 @@ namespace Code.Script
         protected virtual void Attack()
         {
             if (Player == null) return;
+            Debug.Log(Player);
 
             _attackRadius = enemyData.enemyAttackRadius * 1.5f;
             _timeSinceLastAttack += Time.deltaTime;
@@ -169,10 +170,9 @@ namespace Code.Script
 
         private void TryDealDamageToPlayer()
         {
-            if (playerDamagable != null)
-            {
+            if (playerDamagable == null) return;
                 playerDamagable.TakeDamage(enemyData.enemyDamage);
-            }
+            
         }
 
         private void PickRandomPatrolPoint()

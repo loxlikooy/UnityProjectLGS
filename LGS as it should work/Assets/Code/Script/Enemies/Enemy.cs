@@ -152,7 +152,6 @@ namespace Code.Script
         protected virtual void Attack()
         {
             if (Player == null) return;
-            Debug.Log(Player);
 
             _attackRadius = enemyData.enemyAttackRadius * 1.5f;
             _timeSinceLastAttack += Time.deltaTime;
@@ -170,9 +169,10 @@ namespace Code.Script
 
         private void TryDealDamageToPlayer()
         {
-            if (playerDamagable == null) return;
+            if (playerDamagable != null)
+            {
                 playerDamagable.TakeDamage(enemyData.enemyDamage);
-            
+            }
         }
 
         private void PickRandomPatrolPoint()
@@ -246,33 +246,27 @@ namespace Code.Script
 
         private void CreateDamagePiece()
         {
-            // Randomize the size of the damage piece
             float pieceWidth = _spriteRenderer.sprite.rect.width * Random.Range(minPieceSize, maxPieceSize);
             float pieceHeight = _spriteRenderer.sprite.rect.height * Random.Range(minPieceSize, maxPieceSize);
 
-            // Generate a random position within the bounds of the sprite
             float x = Random.Range(0, _spriteRenderer.sprite.rect.width - pieceWidth);
             float y = Random.Range(0, _spriteRenderer.sprite.rect.height - pieceHeight);
 
-            // Create a new sprite for the damage piece
             Sprite pieceSprite = Sprite.Create(_spriteRenderer.sprite.texture,
                                                new Rect(x, y, pieceWidth, pieceHeight),
                                                new Vector2(0.5f, 0.5f));
 
-            // Create a GameObject for the damage piece
             GameObject piece = new GameObject("DamagePiece");
             piece.transform.position = (Vector2)transform.position + Random.insideUnitCircle * 0.5f;
+            piece.transform.SetParent(this.transform); 
 
-            // Add components to the piece GameObject
             SpriteRenderer pieceSpriteRenderer = piece.AddComponent<SpriteRenderer>();
             Rigidbody2D rb = piece.AddComponent<Rigidbody2D>();
             piece.AddComponent<BoxCollider2D>();
 
-            // Set the sprite of the damage piece
             pieceSpriteRenderer.sprite = pieceSprite;
-            pieceSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder + 1; // Ensure the piece is rendered above the enemy
+            pieceSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder + 1;
 
-            // Add some random movement to the piece
             rb.AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(0.5f, 1.5f)), ForceMode2D.Impulse);
             rb.AddTorque(Random.Range(-200f, 200f));
         }

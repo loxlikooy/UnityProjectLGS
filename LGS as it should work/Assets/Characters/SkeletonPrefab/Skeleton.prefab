@@ -294,3 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 3ebc17730ec4545498c75d149782fd00, type: 2}
+  damagePiecePrefab: {fileID: 8161534024174695420}
+  minPieces: 3
+  maxPieces: 10
+  minPieceSize: 0.05
+  maxPieceSize: 0.2

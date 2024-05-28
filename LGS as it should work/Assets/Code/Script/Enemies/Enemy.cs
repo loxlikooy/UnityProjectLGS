@@ -39,6 +39,12 @@ namespace Code.Script
             Attacking
         }
 
+        // Dynamic damage effect variables
+        public int minPieces = 3; // Minimum number of pieces to generate
+        public int maxPieces = 10; // Maximum number of pieces to generate
+        public float minPieceSize = 0.05f; // Minimum size of damage pieces
+        public float maxPieceSize = 0.2f; // Maximum size of damage pieces
+
         protected virtual void Start()
         {
             _health = enemyData.enemyHealth;
@@ -64,7 +70,7 @@ namespace Code.Script
             _exp = playerGameObject.GetComponent<EXP>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-           playerDamagable = Player.GetComponent<IDamagable>();
+            playerDamagable = Player.GetComponent<IDamagable>();
         }
 
         private void SetInitialState()
@@ -165,8 +171,6 @@ namespace Code.Script
         {
             if (playerDamagable != null)
             {
-                
-
                 playerDamagable.TakeDamage(enemyData.enemyDamage);
             }
         }
@@ -222,8 +226,55 @@ namespace Code.Script
         public void TakeDamage(float damageAmount)
         {
             _health -= damageAmount;
+            ShowDamageEffect();
+
             if (_health <= 0)
                 Die();
+        }
+
+        private void ShowDamageEffect()
+        {
+            if (_spriteRenderer != null)
+            {
+                int numberOfPieces = Random.Range(minPieces, maxPieces);
+                for (int i = 0; i < numberOfPieces; i++)
+                {
+                    CreateDamagePiece();
+                }
+            }
+        }
+
+        private void CreateDamagePiece()
+        {
+            // Randomize the size of the damage piece
+            float pieceWidth = _spriteRenderer.sprite.rect.width * Random.Range(minPieceSize, maxPieceSize);
+            float pieceHeight = _spriteRenderer.sprite.rect.height * Random.Range(minPieceSize, maxPieceSize);
+
+            // Generate a random position within the bounds of the sprite
+            float x = Random.Range(0, _spriteRenderer.sprite.rect.width - pieceWidth);
+            float y = Random.Range(0, _spriteRenderer.sprite.rect.height - pieceHeight);
+
+            // Create a new sprite for the damage piece
+            Sprite pieceSprite = Sprite.Create(_spriteRenderer.sprite.texture,
+                                               new Rect(x, y, pieceWidth, pieceHeight),
+                                               new Vector2(0.5f, 0.5f));
+
+            // Create a GameObject for the damage piece
+            GameObject piece = new GameObject("DamagePiece");
+            piece.transform.position = (Vector2)transform.position + Random.insideUnitCircle * 0.5f;
+
+            // Add components to the piece GameObject
+            SpriteRenderer pieceSpriteRenderer = piece.AddComponent<SpriteRenderer>();
+            Rigidbody2D rb = piece.AddComponent<Rigidbody2D>();
+            piece.AddComponent<BoxCollider2D>();
+
+            // Set the sprite of the damage piece
+            pieceSpriteRenderer.sprite = pieceSprite;
+            pieceSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder + 1; // Ensure the piece is rendered above the enemy
+
+            // Add some random movement to the piece
+            rb.AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(0.5f, 1.5f)), ForceMode2D.Impulse);
+            rb.AddTorque(Random.Range(-200f, 200f));
         }
 
         private void Die()
@@ -282,7 +333,6 @@ namespace Code.Script
             float elapsed = 0f;
             while (elapsed < duration)
             {
-                
                 TakeDamage(damageAmount);
                 elapsed += interval;
                 yield return new WaitForSeconds(interval);

@@ -273,10 +273,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 8e906034dedf44b16a6a1f25973bd6b1, type: 2}
+  damagePiecePrefab: {fileID: 8064362446555478287}
+  minPieces: 3
+  maxPieces: 10
+  minPieceSize: 0.05
+  maxPieceSize: 0.2
   shockwavePrefab: {fileID: 824633066956342397, guid: afe836885cc0e4ff68b6f8554d30d148, type: 3}
   shockwaveDamage: 20
   shockwaveRadius: 1.5
   shockWaveCooldown: 6
+  runAwayPosition: {x: 500, y: 500}
+  runAwaySpeed: 5
 --- !u!95 &7348685450507460888
 Animator:
   serializedVersion: 5

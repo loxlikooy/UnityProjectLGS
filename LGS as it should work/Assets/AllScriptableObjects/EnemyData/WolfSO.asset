@@ -20,7 +20,7 @@ MonoBehaviour:
   enemyPatrolRange: 1.2
   enemyDetectionRadius: 5
   enemyAttackRadius: 0.27
-  enemyAttackCooldown: 0
+  enemyAttackCooldown: 0.5
   enemyBackgroundLayer:
     serializedVersion: 2
     m_Bits: 64

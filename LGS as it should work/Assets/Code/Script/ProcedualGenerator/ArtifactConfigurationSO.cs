@@ -4,5 +4,5 @@ using UnityEngine;
 public class ArtifactConfigSO : ScriptableObject
 {
     public GameObject artifactPrefab;
-    public float dropChance; // Вероятность выпадения артефакта (в процентах)
+    public float dropChance;
 }

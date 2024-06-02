@@ -1,0 +1,384 @@
+classDiagram
+    class Artifacts {
+        +string nameOfQuest
+        +bool turnOnVampiricOnPickup
+        +bool wolfsShouldNotAttack
+        +bool additionalDashRange
+        +bool qumyzHpRegen
+        +bool applyBurningEffect
+        +bool isLetterArtifact
+        +float floatFrequency
+        +float rotationSpeed
+        +bool headBuff
+        +ComponentGetter componentGetter
+        +OnArtifactWolfPickedUp()
+        +OnArtifactQumyzPickedUp()
+    }
+    
+    class ComponentGetter {
+        +PlayerAttack playerAttackComponent
+        +PlayerDash playerDash
+        +HealthComponent healthComponent
+        +PlayerAnimator playerAnimator
+        +PlayerInputHandler playerInputHandler
+        +PlayerMovement playerMovement
+    }
+
+    class PlayerAttack {
+        +PlayerStatsSO playerStatsSO
+        +float _playerDamage
+        +float _attackRange
+        +float _attackCooldown
+        +float _attackVampire
+        +float _attackBurn
+        +float _burnDuration
+        +float _attackTimer
+        +float _timeSinceLastAttack
+        +bool _activeVampiric
+        +bool _activateBurn
+        +ComponentGetter _componentGetter
+        +List<Enemy> _enemies
+        +LoadPermanentStats()
+        +LoadTemporaryStats()
+        +UpdateAttackTimer()
+        +UpdateLastAttackTime()
+        +PerformAttack()
+        +UpdateHUDCooldown()
+        +CheckAndExecuteAttack()
+        +IsEnemyInRangeAndAngle(enemy: Enemy, lastMoveDirection: Vector2)
+        +HealByAttack()
+        +BurnByAttack(enemy: Enemy)
+        +ExecuteAttack(target: IDamagable)
+        +IncreaseDamage(amount: float)
+        +DecreaseAttackCooldown(amount: float)
+        +SaveTemporaryStats()
+        +TurnOnBurn()
+        +TurnOnVampiric()
+        +AddEnemy(enemy: Enemy)
+    }
+
+    class PlayerStatsSO {
+        +float playerDamage
+        +float attackRange
+        +float attackCooldown
+        +float attackVampire
+        +float attackBurn
+        +float burnDuration
+        +bool activeVampiric
+        +bool activateBurn
+        +float dashCooldown
+        +float dashRange
+    }
+
+    class Enemy {
+        +float _health
+        +float _maxHealth
+        +Rigidbody2D _rb
+        +Transform Player
+        +Vector2 _randomPatrolPoint
+        +float _timeSinceLastAttack
+        +EnemyState _currentState
+        +Animator _animator
+        +SpriteRenderer _spriteRenderer
+        +EXP _exp
+        +bool _isChasing
+        +float _attackRadius
+        +Room _room
+        +Coroutine _damageOverTimeCoroutine
+        +IDamagable playerDamagable
+        +EnemyData enemyData
+        +TakeDamage(damageAmount: float)
+        +ApplyDamageOverTime(damageAmount: float, duration: float, interval: float)
+        +Attack(target: IDamagable)
+        +GetCurrentHealth(): float
+        +GetMaxHealth(): float
+        +OnDeath(Enemy)
+    }
+
+    class EnemyData {
+        +float enemyHealth
+        +float enemyAttackRadius
+        +float enemyAttackCooldown
+        +float enemyDamage
+        +float enemyExpValue
+        +float enemyDetectionRadius
+        +float enemyPatrolRange
+        +LayerMask enemyBackgroundLayer
+        +LayerMask enemyCollideObjectsLayer
+    }
+
+    class EXP {
+        +AddExp(amount: float)
+    }
+
+    class Room {
+        +int X
+        +int Y
+        +int Width
+        +int Height
+        +int CenterX
+        +int CenterY
+        +void Initialize(x: int, y: int, width: int, height: int, random: System.Random, objectPrefabs: List<GameObject>, minObjectCount: int, maxObjectCount: int, chestPrefab: GameObject)
+        +void Carve(mapData: int[,])
+        +void PlaceChest()
+        +void PlaceObjectsInRoom(parentTransform: Transform)
+        +bool Intersects(other: Room)
+    }
+
+    interface IDamagable {
+        +TakeDamage(damageAmount: float)
+        +ApplyDamageOverTime(damageAmount: float, duration: float, interval: float)
+        +GetCurrentHealth(): float
+        +GetMaxHealth(): float
+    }
+
+    interface IAttackable {
+        +Attack(target: IDamagable)
+    }
+
+    interface IDash {
+        +HandleDash()
+        +DecreaseDashCooldown(amount: float)
+        +IncreaseDashRange(amount: float)
+    }
+
+    class EnemyHealthBar {
+        +Enemy enemy
+        +SpriteRenderer healthBarSprite
+        +Transform _healthBarTransform
+        +float _initialScaleX
+        +float _targetScaleX
+        +Start()
+        +Update()
+    }
+
+    class GameManager {
+        +GameObject restartScreen
+        +GameObject HUD
+        +GameObject NPCUpgradeScreen
+        +UpgradeData[] allUpgrades
+        +Button[] choiceButtons
+        +GameObject abilityChoiceScreen
+        +Health playerHealth
+        +PlayerAttack playerAttack
+        +Dash playerDash
+        +MoveVelocity playerMoveVelocity
+        +ShowRestartScreen()
+        +ShowRandomUpgrades()
+        +ApplyUpgrade(upgrade: UpgradeData)
+        +HideAbilityChoiceScreen()
+        +IsUpgradeScreenShown(): bool
+        +RestartGame()
+        +QuitGame()
+        +ShowNPCUpgradeMenu()
+        +HideNPCUpgradeMenu()
+    }
+
+    class Health {
+        +IncreaseHealth(amount: float)
+        +HealthRegen(amount: float)
+    }
+
+    class Dash {
+        +PlayerStatsSO playerStatsSO
+        +Vector3 _dashEndPosition
+        +Vector3 _dashStartPosition
+        +float _dashTimeCounter
+        +float _dashDuration
+        +float _timeSinceLastDash
+        +LayerMask layersToCheck
+        +ComponentGetter _componentGetter
+        +float _currentDashDistance
+        +float _dashCooldown
+        +Awake()
+        +LoadPermanentStats()
+        +LoadTemporaryStats()
+        +HandleDash()
+        +StartDash(targetPosition: Vector3)
+        +DashCoroutine()
+        +HandleDashInput()
+        +Update()
+        +DecreaseDashCooldown(amount: float)
+        +IncreaseDashRange(amount: float)
+        +SaveTemporaryStats()
+    }
+
+    class MoveVelocity {
+        +IncreaseSpeed(amount: float)
+    }
+
+    class UpgradeData {
+        +string upgradeName
+        +Sprite icon
+        +UpgradeEffect effect
+    }
+
+    enum UpgradeEffect {
+        HealthIncrease,
+        HealthRegen,
+        DamageIncrease,
+        DecreaseDashCooldown,
+        SpeedIncrease,
+        UpgradeAttackSpeed
+    }
+
+    class MapGenerator {
+        +int width
+        +int height
+        +string seed
+        +bool useRandomSeed
+        +int randomFillPercent
+        +int roomCount
+        +int roomMinSize
+        +int roomMaxSize
+        +int maxObjectCount
+        +int minObjectCount
+        +int corridorMinWidth
+        +int corridorMaxWidth
+        +Tilemap collidableTilemap
+        +Tilemap nonCollidableTilemap
+        +TileBase wallTile
+        +TileBase[] corridorTiles
+        +TileBase[] roomTiles
+        +GameObject playerPrefab
+        +List<EnemyConfigurationSO> enemyConfigurations
+        +List<GameObject> objectPrefabs
+        +GameObject chestPrefab
+        +Map map
+        +List<Room> rooms
+        +System.Random random
+        +Room playerRoom
+        +int[,] mapData
+        +const float CellSize
+        +Awake()
+        +InitializeRandomSeed()
+        +GenerateMap()
+        +ConnectRooms(roomA: Room, roomB: Room, mapData: int[,])
+        +CreateNonLinearCorridor(startX: int, startY: int, endX: int, endY: int, mapData: int[,])
+        +GenerateRoomsAndCorridors(mapData: int[,])
+        +CreateRoom(mapData: int[,], forceAdd: bool)
+        +EnsureAllRoomsConnected(mapData: int[,])
+        +FindClosestRoom(room: Room, roomList: List<Room>): Room
+        +RoomIntersects(room: Room): bool
+        +SpawnPlayer()
+        +PlaceEnemies(mapData: int[,])
+        +PlaceObjectsAndChestsInRooms()
+        +DrawMap(mapData: int[,])
+        +IsCorridorTile(x: int, y: int): bool
+    }
+
+    class Map {
+        +int width
+        +int height
+        +System.Random random
+        +int[,] GenerateMap(randomFillPercent: int): int[,]
+        +bool IsInMapRange(x: int, y: int): bool
+    }
+
+    class EnemyConfigurationSO {
+        +GameObject enemyPrefab
+        +int minCount
+        +int maxCount
+    }
+
+    class QuestManager {
+        +List<QuestData> questDataList
+        +List<Quest> _quests
+        +List<string> _completedQuests
+        +EXP exp
+        +TextMeshProUGUI questText
+        +Quest _currentActiveQuest
+        +Awake()
+        +Start()
+        +OnDestroy()
+        +Update()
+        +AddQuest(quest: Quest)
+        +Load_completedQuests()
+        +GetQuestByName(questName: string): Quest
+        +CompleteQuest(questName: string)
+        +ActivateQuest(questName: string)
+        +ShowNextActiveQuest()
+        +UpdateQuestText(newText: string)
+        +GetQuests(): List<Quest>
+        +Save_completedQuests()
+    }
+
+    class Quest {
+        +string QuestName
+        +bool IsCompleted
+        +bool IsActive
+        +int QuestExpValue
+        +Quest(questData: QuestData)
+        +Complete()
+        +Activate()
+    }
+
+    class QuestData {
+        +string questName
+        +int questExpValue
+    }
+
+    Artifacts --> ComponentGetter : contains
+    ComponentGetter --> PlayerAttack : contains
+    ComponentGetter --> PlayerDash : contains
+    ComponentGetter --> HealthComponent : contains
+    ComponentGetter --> PlayerAnimator : contains
+    ComponentGetter --> PlayerInputHandler : contains
+    ComponentGetter --> PlayerMovement : contains
+    PlayerAttack --> PlayerStatsSO : uses
+    PlayerAttack --> Enemy : interacts with
+    PlayerStatsSO --> float : playerDamage
+    PlayerStatsSO --> float : attackRange
+    PlayerStatsSO --> float : attackCooldown
+    PlayerStatsSO --> float : attackVampire
+    PlayerStatsSO --> float : attackBurn
+    PlayerStatsSO --> float : burnDuration
+    PlayerStatsSO --> bool : activeVampiric
+    PlayerStatsSO --> bool : activateBurn
+    PlayerStatsSO --> float : dashCooldown
+    PlayerStatsSO --> float : dashRange
+    Enemy --> EnemyData : uses
+    Enemy --> EXP : interacts with
+    Enemy --> Room : interacts with
+    Enemy --> IDamagable : implements
+    Enemy --> IAttackable : implements
+    EXP --> float : AddExp
+    Room --> int : X
+    Room --> int : Y
+    Room --> int : Width
+    Room --> int : Height
+    Room --> int : CenterX
+    Room --> int : CenterY
+    Room --> void : Initialize
+    Room --> void : Carve
+    Room --> void : PlaceChest
+    Room --> void : PlaceObjectsInRoom
+    Room --> bool : Intersects
+    Room --> void : AddEnemy
+    Room --> void : RemoveEnemy
+    Room --> void : AllEnemiesDefeated
+    EnemyHealthBar --> Enemy : uses
+    EnemyHealthBar --> SpriteRenderer : uses
+    GameManager --> Health : uses
+    GameManager --> PlayerAttack : uses
+    GameManager --> Dash : uses
+    GameManager --> MoveVelocity : uses
+    GameManager --> UpgradeData : uses
+    GameManager --> UpgradeEffect : uses
+    UpgradeData --> UpgradeEffect : has
+    Dash --> PlayerStatsSO : uses
+    Dash --> ComponentGetter : uses
+    Dash --> IDash : implements
+    MapGenerator --> Map : uses
+    MapGenerator --> Room : uses
+    MapGenerator --> Tilemap : uses
+    MapGenerator --> TileBase : uses
+    MapGenerator --> GameObject : uses
+    MapGenerator --> EnemyConfigurationSO : uses
+    Map --> System.Random : uses
+    EnemyConfigurationSO --> GameObject : uses
+    QuestManager --> EXP : uses
+    QuestManager --> TextMeshProUGUI : uses
+    QuestManager --> Quest : uses
+    QuestManager --> QuestData : uses
+    Quest --> QuestData : uses

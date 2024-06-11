@@ -92,10 +92,6 @@ public class QuestManager : MonoBehaviour
             _completedQuests.Add(questName);
             Save_completedQuests();
         }
-        else
-        {
-            Debug.LogWarning($"Quest '{questName}' is either already completed or not active.");
-        }
     }
 
     public void ActivateQuest(string questName)
@@ -106,10 +102,6 @@ public class QuestManager : MonoBehaviour
             _currentActiveQuest = quest;
             _currentActiveQuest.Activate();
             UpdateQuestText($"Current Quest: {questName}");
-        }
-        else
-        {
-            Debug.LogWarning($"Quest '{questName}' is either already completed or not found.");
         }
     }
 

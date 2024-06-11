@@ -5,14 +5,20 @@ using UnityEngine;
 public class QuestInteraction : MonoBehaviour
 {
     // Reference to the player character or any object representing the player
-    [SerializeField] private GameObject player;
+    private GameObject player;
     
     // Reference to the quest manager
-    [SerializeField] private QuestManager questManager;
+     private QuestManager questManager;
 
     // Name of the quest to activate
     [SerializeField] private string questName;
-    
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+        questManager = FindObjectOfType<QuestManager>();
+    }
+
 
     private void OnTriggerStay2D(Collider2D other)
     {

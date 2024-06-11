@@ -476,7 +476,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.13730709, g: 0.16037738, b: 0.13692597, a: 0}
+  m_BackGroundColor: {r: 0.256675, g: 0.28836483, b: 0.5283019, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -795,8 +795,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3735358960499130672, guid: c76dee4eca86c1644afefe803e00a1c8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -984,25 +983,45 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: roomCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: chestPrefab
+      value: 
+      objectReference: {fileID: 4481378436590697573, guid: c065331455eab4d979cdb84c8af581bb, type: 3}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: roomMaxSize
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: roomMinSize
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: maxObjectCount
-      value: 14
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: minObjectCount
-      value: 11
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: corridorMaxWidth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: corridorMinWidth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: collidableTilemap
       value: 
       objectReference: {fileID: 1875503028}
+    - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
+      propertyPath: randomFillPercent
+      value: 44
+      objectReference: {fileID: 0}
     - target: {fileID: 6193254473540631091, guid: 8607b937bd49f8046a05c73439c077d2, type: 3}
       propertyPath: nonCollidableTilemap
       value: 

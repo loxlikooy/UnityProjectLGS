@@ -17,7 +17,7 @@ MonoBehaviour:
   playerDamage: 10
   attackRange: 1
   attackCooldown: 2
-  attackVampire: 2
+  attackVampire: 1
   attackBurn: 7
   burnDuration: 3
   activeVampiric: 0

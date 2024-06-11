@@ -9,6 +9,7 @@ TagManager:
   - Quest
   - Artifact
   - Door
+  - QuestManager
   layers:
   - Default
   - TransparentFX

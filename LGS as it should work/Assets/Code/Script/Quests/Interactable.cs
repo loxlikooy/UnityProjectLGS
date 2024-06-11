@@ -35,7 +35,6 @@ public class Interactable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Очищаем текст взаимодействия при выходе из триггера
                 interactionText.text = "";
         }
     }

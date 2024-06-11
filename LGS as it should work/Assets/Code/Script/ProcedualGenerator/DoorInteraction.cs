@@ -25,7 +25,7 @@ namespace Code.Script.ProceduralGenerator
             }
         }
 
-        private void LoadNextLevel()
+        private static void LoadNextLevel()
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             int nextSceneIndex = currentSceneIndex + 1;

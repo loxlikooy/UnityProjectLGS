@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Map
 {
-    public int Width { get; }
-    public int Height { get; }
+    private int Width { get; }
+    private int Height { get; }
     private int[,] map;
     private System.Random random;
     

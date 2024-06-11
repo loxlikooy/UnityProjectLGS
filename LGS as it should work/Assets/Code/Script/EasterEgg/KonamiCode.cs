@@ -43,7 +43,7 @@ public class KonamiCode : MonoBehaviour
         }
     }
 
-    void TriggerEasterEgg()
+    private void TriggerEasterEgg()
     {
         transform.position = new Vector2(500, 500);
     }

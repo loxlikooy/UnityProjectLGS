@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HUB.unity
     guid: 80f151964b56b4a30b9b1888ca25ece7
+  - enabled: 1
+    path: Assets/Scenes/Titri.unity
+    guid: 0f6f460e857c741d5bd6b428b86429de
   m_configObjects: {}

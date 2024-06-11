@@ -129,10 +129,15 @@ public class GameManager : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (currentSceneIndex > 2)
+        if (currentSceneIndex == 6)
+        {
+            SceneManager.LoadScene(8);
+        }
+        else if (currentSceneIndex > 2)
         {
             SceneManager.LoadScene(7);
         }
+       
         else
         {
             SceneManager.LoadScene(0);

@@ -102,8 +102,8 @@ MonoBehaviour:
   interactionKey: 101
   enemyConfigurations:
   - {fileID: 11400000, guid: 0b37e09ab07e941b899cfa9f8585dea1, type: 2}
-  minEnemiesToSpawn: 1
-  maxEnemiesToSpawn: 1
+  minEnemiesToSpawn: 100
+  maxEnemiesToSpawn: 100
   artifactConfigs:
   - {fileID: 11400000, guid: 7efb058b1682e45778c881b91f50aef4, type: 2}
   closedChestSprite: {fileID: 2132776948, guid: c984b3a026f7241a5b9cd56becee43d9, type: 3}
